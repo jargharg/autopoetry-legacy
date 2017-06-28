@@ -5,7 +5,8 @@ wordSearch = "hello";
 $(document).ready(function(){
 	getData();
 
-	$("#submitNewWord").click(newPoem);
+	// Event listeners
+	$("#submitNewWord").click(newPoem); // Submit button pressed
 	$("#newWordText").keypress(function(e){
         if (e.which == 13) newPoem(); // Enter key pressed
     });
@@ -36,13 +37,14 @@ function parseData(data) {
 		textContent.forEach(function(str, ind){
 			str = str.trim();
 			textContent[ind] = str;
-				//get rid of long sections, sentences with @, numbers too?
-				if (str.length < 3 || str.length > 100) {
-					textContent.splice(ind,1);
-				} else {
-					textContent[ind] = str.charAt(0).toUpperCase() + str.slice(1);
-				}
-			});
+			//get rid of long sections, sentences with @, numbers too?
+			if (str.length < 3 || str.length > 100) {
+				textContent.splice(ind,1);
+			} else {
+				textContent[ind] = str.charAt(0).toUpperCase() + str.slice(1);
+			}
+		});
+
 		createPoem(textContent, articleLink);
 	}
 }
