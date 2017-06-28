@@ -1,0 +1,77 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Overpass Mono', serif;
+	font-size: 15pt;
+	background-color: floralwhite;
+	transition: 0.1s;
+}
+h1 {
+	text-transform: uppercase;
+	background: black;
+	color: white;
+	margin: 0;
+	padding-left: 20px;
+}
+ul {
+	padding: 0;
+	margin: 30px;
+}
+li {
+	line-height: 1;
+	list-style: none;
+}
+li:after {
+	content: "+";
+	transform: rotate(45deg);
+	float: right;
+	opacity: 0;
+}
+li:hover:after {
+	opacity: 1;
+}
+a {
+	text-decoration: none;
+	color: gainsboro;
+}
+a:hover {
+	color: black;
+}
+input {
+	font-family: 'Overpass Mono', serif;
+	float: left;
+	box-sizing: border-box;
+	padding: 5px;
+	background: white;
+	border: 0;
+	outline: 0;
+}
+input[type="text"] {
+	width: 75%;
+}
+input[type="submit"] {
+	background: black;
+	color: white;
+	width: 25%;
+}
+.container {
+	width: 80%;
+	max-width: 700px;
+	margin: 50px auto 0;
+}
+.poemContainer {
+	border: 1px solid black;
+}
+.articleLink {
+	font-size: 11px;
+	margin: 20px 0 0;
+	padding-left: 30px;
+}
+.poemForm {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+	border-top: 1px solid black;
+}
