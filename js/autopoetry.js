@@ -1,4 +1,4 @@
-var gUrl = "http://content.guardianapis.com/search?show-fields=body&q=",
+var gUrl = "https://content.guardianapis.com/search?show-fields=body&q=",
 gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52",
 wordSearch = "hello";
 
@@ -59,9 +59,9 @@ function createPoem(content, articleLink){
 	}
 
 	randomArray.forEach(function(x){
-	$poemBody.append(
-		$("<li />").html(content[x])
-		);
+		$poemBody.append(
+			$("<li />").html(content[x])
+			);
 	});
 
 	$("h1").text(wordSearch);
