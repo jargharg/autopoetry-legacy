@@ -8,15 +8,11 @@ $(document).ready(function(){
 
 	// Event listeners
 	$("#submitNewWord").click(function(){ // Submit button pressed
-		newPoem($("#newWordText").val())
-		$("#newWordText").val("")
+		newWordSearch();
 	})
 	$("#newWordText").keypress(function(e){
 		if (e.which == 13) { // Enter key pressed
-
-				newPoem($("#newWordText").val())
-				$("#newWordText").val("")
-
+			newWordSearch();
 		}
 	})
 	$("header span").click(function(){
@@ -24,6 +20,15 @@ $(document).ready(function(){
 	})
 })
 
+function newWordSearch() {
+	var $inputBox = $("#newWordText");
+	if($inputBox.val() != "") {
+		newPoem($inputBox.val())
+		$inputBox.val("")
+	} else {
+		$inputBox.focus()
+	}
+}
 
 function newPoem(wordSearch){
 	$.getJSON(gUrl+wordSearch+gKey, function(data){
@@ -39,8 +44,8 @@ function parseData(data, title) {
 		var articleLink = results[article].webUrl
 
 		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace( "[\u2018\u2019\u201A\u201B\u2032\u2035\u201C\u201D\u201E\u201F\u2033\u2036]", ".")
-		.split(/!|\(|\)|;|:|\"|,|\.|\?|-|\u2022|\|/)
+		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?|-|\u2022|\||@/g, ".")
+		.split(".")
 
 		var tidyContent = []
 

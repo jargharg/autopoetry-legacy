@@ -35,7 +35,6 @@ body {
 		ul {
 			padding: 0;
 			margin: 30px;
-
 			li {
 				line-height: 1;
 				list-style: none;
@@ -56,12 +55,39 @@ body {
 				}
 			}
 		}
-		&:hover span {
+		&:hover header span {
 			opacity: 1;
 		}
 		&:hover .poemLineRefresh {
 			opacity: 1;
 		}
+	}
+}
+.loadingDiv {
+	padding: 100px 0;
+	text-align: center;
+	span {
+		animation: loadingFade 1s infinite ease-in-out both;
+	}
+	span:nth-child(1){
+		opacity: 1;
+		animation-delay: 0s;
+	}
+	span:nth-child(2){
+		opacity: 0.5;
+		animation-delay: 0.2s;
+	}
+	span:nth-child(3){
+		opacity: 0;
+		animation-delay: 0.4s;
+	}
+}
+@keyframes loadingFade {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
 	}
 }
 a {

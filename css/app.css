@@ -47,11 +47,31 @@ body {
           opacity: 0;
           cursor: pointer;
           transition: 0.2s; }
-    .container .poemContainer:hover span {
+    .container .poemContainer:hover header span {
       opacity: 1; }
     .container .poemContainer:hover .poemLineRefresh {
       opacity: 1; }
 
+.loadingDiv {
+  padding: 100px 0;
+  text-align: center; }
+  .loadingDiv span {
+    animation: loadingFade 1s infinite ease-in-out both; }
+  .loadingDiv span:nth-child(1) {
+    opacity: 1;
+    animation-delay: 0s; }
+  .loadingDiv span:nth-child(2) {
+    opacity: 0.5;
+    animation-delay: 0.2s; }
+  .loadingDiv span:nth-child(3) {
+    opacity: 0;
+    animation-delay: 0.4s; }
+
+@keyframes loadingFade {
+  0%, 100% {
+    opacity: 1; }
+  50% {
+    opacity: 0; } }
 a {
   text-decoration: none;
   color: gainsboro; }
