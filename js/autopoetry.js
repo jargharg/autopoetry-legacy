@@ -44,7 +44,7 @@ function parseData(data, title) {
 		var articleLink = results[article].webUrl
 
 		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?| - |&|\u2022|\||@|com/g, ".")
+		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?| - |\&|\u2022|\||@|com/g, ".")
 		.split(".")
 
 		var tidyContent = []
