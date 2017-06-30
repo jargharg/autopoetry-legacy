@@ -1,0 +1,103 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Overpass Mono', serif;
+	font-size: 15pt;
+	background-color: floralwhite;
+	transition: 0.1s;
+}
+
+.container {
+	width: 80%;
+	max-width: 700px;
+	margin: 50px auto 0;
+	.poemContainer {
+		border: 1px solid black;
+		header {
+			position: relative;
+			color: white;
+			padding: 5px 20px;
+			background: black;
+			h1 {
+				text-transform: uppercase;
+				margin: 0;
+			}
+			span {
+				position: absolute;
+				top: 5px;
+				right: 20px;
+				font-size: 2em;
+				opacity: 0;
+				cursor: pointer;
+				transition: 0.2s;
+			}
+		}
+		ul {
+			padding: 0;
+			margin: 30px;
+
+			li {
+				line-height: 1;
+				list-style: none;
+				position: relative;
+
+				.poemLineRefresh {
+					display: inline-block;
+					position: absolute;
+					top: 0px;
+					right: -20px;
+					width: 20px;
+					font-size: 0.8em;
+					padding: 3px;
+					color: crimson;
+					opacity: 0;
+					cursor: pointer;
+					transition: 0.2s;
+				}
+			}
+		}
+		&:hover span {
+			opacity: 1;
+		}
+		&:hover .poemLineRefresh {
+			opacity: 1;
+		}
+	}
+}
+a {
+	text-decoration: none;
+	color: gainsboro;
+	&:hover {
+		color: black;
+	}
+}
+input {
+	font-family: 'Overpass Mono', serif;
+	float: left;
+	box-sizing: border-box;
+	padding: 5px;
+	background: white;
+	border: 0;
+	outline: 0;
+	&[type="text"] {
+		width: 75%;
+	}
+	&[type="submit"] {
+		background: black;
+		color: white;
+		width: 25%;
+	}
+}
+.articleLink {
+	font-size: 11px;
+	margin: 20px 0 0;
+	padding-left: 30px;
+}
+.poemForm {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+	border-top: 1px solid black;
+}
