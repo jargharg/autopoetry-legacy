@@ -44,7 +44,7 @@ function parseData(data, title) {
 		var articleLink = results[article].webUrl
 
 		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?|-|\u2022|\||@/g, ".")
+		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?| - |&|\u2022|\||@|com/g, ".")
 		.split(".")
 
 		var tidyContent = []
@@ -52,13 +52,14 @@ function parseData(data, title) {
 		textContent.forEach(function(str, ind){
 			str = str.trim()
 			//get rid of long sections, sentences with @, numbers too?
-			if (str.length > 3 && str.length < 100 && str != "Photograph") {
+			if (str.length > 2 && str.length < 100 && str != "Photograph") {
 				str = str.charAt(0).toUpperCase() + str.slice(1)
 				tidyContent.push(str)
 			}
 		})
 
 		currentPoemData = {title: title, link: articleLink, content: tidyContent}
+
 		createPoem(currentPoemData)
 	}
 }
