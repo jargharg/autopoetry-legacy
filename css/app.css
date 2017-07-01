@@ -36,13 +36,15 @@ body {
       .container .poemContainer ul li {
         line-height: 1;
         list-style: none;
-        position: relative; }
+        position: relative;
+        transition: 0.1s; }
         .container .poemContainer ul li .poemLineRefresh {
           display: inline-block;
           position: absolute;
           top: 0px;
-          right: -20px;
+          right: -25px;
           width: 20px;
+          height: 100%;
           font-size: 0.8em;
           padding: 3px;
           color: crimson;
@@ -50,6 +52,9 @@ body {
           cursor: pointer;
           transition: 0.2s;
           user-select: none; }
+      .container .poemContainer ul .poemLineHighlight {
+        background-color: crimson;
+        color: white; }
     .container .poemContainer:hover header span {
       opacity: 1; }
     .container .poemContainer:hover .poemLineRefresh {

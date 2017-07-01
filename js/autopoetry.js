@@ -83,6 +83,9 @@ function createPoem(poemData){
 				$("<div class='poemLineRefresh'>")
 				.html("&#x27f2;")
 				.click(refreshLine)
+				.hover(function(){
+					$(this).parent().toggleClass("poemLineHighlight")
+				})
 			)
 		)
 	})
