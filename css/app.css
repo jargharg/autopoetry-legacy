@@ -104,7 +104,7 @@ body {
 .poemForm {
   position: absolute;
   overflow: hidden;
-  transition: 0.5s all;
+  transition: 0.4s all;
   background: slategrey; }
   .poemForm input {
     font-family: 'Overpass Mono', serif;
@@ -115,7 +115,7 @@ body {
     background: white;
     border: 0;
     outline: 0;
-    transition: 0.5s all; }
+    transition: 0.4s all; }
     .poemForm input[type="submit"] {
       background: slategrey;
       color: white;
