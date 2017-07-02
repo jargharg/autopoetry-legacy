@@ -6,7 +6,7 @@ body {
 	background-color: aliceblue;
 }
 .topNav {
-	background: black;
+	background: slategrey;
 	color: white;
 	padding: 0 10px;
 	opacity: 1;
@@ -26,13 +26,13 @@ body {
 	margin: 50px auto 0;
 	transition: opacity 0.4s;
 	.poemContainer {
-		border: 1px solid black;
+		border: 1px solid slategrey;
 		background: white;
 		header {
 			position: relative;
 			color: white;
 			padding: 5px 20px;
-			background: black;
+			background: slategrey;
 			h1 {
 				text-transform: uppercase;
 				margin: 0;
@@ -93,7 +93,7 @@ body {
 			text-decoration: none;
 			color: darkgrey;
 			&:hover {
-				color: black;
+				color: slategrey;
 			}
 		}
 	}
@@ -129,7 +129,7 @@ body {
 	position: absolute;
 	overflow: hidden;
 	transition: 0.5s all;
-	background: black;
+	background: slategrey;
 	input {
 		font-family: 'Overpass Mono', serif;
 		font-size: 0.7em;
@@ -141,8 +141,15 @@ body {
 		outline: 0;
 		transition: 0.5s all;
 		&[type="submit"] {
-			background: black;
+			background: slategrey;
 			color: white;
+			cursor: pointer;
+			&:hover {
+				background: #546576;
+			}
+			&:active {
+				background: #3E4C5A;
+			}
 		}
 	}
 }
@@ -152,7 +159,7 @@ body {
 	width: 40%;
 	left: 50%;
 	transform: translateX(-50%);
-	border: 1px solid black;
+	border: 1px solid slategrey;
 	input {
 		width: 100%;
 		height: 50%;
@@ -171,7 +178,7 @@ body {
 	width: 100%;
 	transform: translateX(0%);
 	margin: 0;
-	border-top: 1px solid black;
+	border-top: 1px solid slategrey;
 	input {
 		height: 100%;
 		&[type="text"] {
