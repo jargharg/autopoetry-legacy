@@ -4,21 +4,31 @@ var currentPoemData = {}
 
 $(document).ready(function(){
 	$("#newWordText").focus()
-	newPoem("hello")
+	//newPoem("hello")
 
 	// Event listeners
-	$("#submitNewWord").click(function(){ // Submit button pressed
-		newWordSearch();
-	})
+	$("#submitNewWord").click(firstWordSearch) // Submit button pressed
 	$("#newWordText").keypress(function(e){
 		if (e.which == 13) { // Enter key pressed
-			newWordSearch();
+			firstWordSearch()
 		}
 	})
 	$("header span").click(function(){
 		createPoem(currentPoemData)
 	})
 })
+
+function firstWordSearch() {
+	$(".container").removeClass("hidden")
+	$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
+	$("#submitNewWord").off().click(newWordSearch) // Submit button pressed
+	$("#newWordText").off().keypress(function(e){
+		if (e.which == 13) { // Enter key pressed
+			newWordSearch()
+		}
+	})
+	newWordSearch()
+}
 
 function newWordSearch() {
 	var $inputBox = $("#newWordText");
@@ -84,7 +94,7 @@ function createPoem(poemData){
 				.html("&#x27f2;")
 				.click(refreshLine)
 				.hover(function(){
-					$(this).parent().toggleClass("poemLineHighlight")
+					$(this).parent().toggleClass("poemHighlight")
 				})
 			)
 		)
