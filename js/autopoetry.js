@@ -15,6 +15,8 @@ $(document).ready(function(){
 	})
 	$("header span").click(function(){
 		createPoem(currentPoemData)
+	}).hover(function(){
+		$(".poemContainer").toggleClass("poemHighlight")
 	})
 })
 

@@ -3,8 +3,7 @@ body {
 	margin: 0;
 	font-family: 'Overpass Mono', serif;
 	font-size: 15pt;
-	background-color: alicewhite;
-	transition: 0.1s;
+	background-color: aliceblue;
 }
 .topNav {
 	background: black;
@@ -15,7 +14,6 @@ body {
 	font-size: 13px;
 	letter-spacing: 4px;
 	text-transform: uppercase;
-	opacity: 0.5;
 	a {
 		float: right;
 		color: white;
@@ -26,7 +24,7 @@ body {
 	width: 80%;
 	max-width: 700px;
 	margin: 50px auto 0;
-	transition: opacity 0.2s;
+	transition: opacity 0.4s;
 	.poemContainer {
 		border: 1px solid black;
 		background: white;
@@ -130,14 +128,18 @@ body {
 .poemForm {
 	position: absolute;
 	overflow: hidden;
+	transition: 0.5s all;
+	background: black;
 	input {
 		font-family: 'Overpass Mono', serif;
+		font-size: 0.7em;
 		float: left;
 		box-sizing: border-box;
 		padding: 5px;
 		background: white;
 		border: 0;
 		outline: 0;
+		transition: 0.5s all;
 		&[type="submit"] {
 			background: black;
 			color: white;
@@ -145,36 +147,59 @@ body {
 	}
 }
 .poemFormInit {
+	height: 120px;
 	bottom: 60%;
-	width: 400px;
+	width: 40%;
 	left: 50%;
 	transform: translateX(-50%);
 	border: 1px solid black;
 	input {
-		height: 60px;
+		width: 100%;
+		height: 50%;
 		&[type="text"] {
 			padding-left: 30px;
-			width: 100%;
 		}
 		&[type="submit"] {
-			width: 100%;
+			height: 60px;
 		}
 	}
 }
 .poemFormBottom {
-	bottom: 0;
 	height: 40px;
+	bottom: 0%;
+	left: 0%;
 	width: 100%;
+	transform: translateX(0%);
 	margin: 0;
 	border-top: 1px solid black;
 	input {
 		height: 100%;
 		&[type="text"] {
-			padding-left: 5px;
+			padding-left: 10px;
 			width: 75%;
 		}
 		&[type="submit"] {
 			width: 25%;
+			animation: submitResize 1s forwards;
+			@keyframes submitResize {
+				0% {
+					width: 100%;
+					opacity: 1;
+				}
+				25% {
+					height: 0%;
+				}
+				30% {
+					opacity: 0;
+					width: 25%;
+				}
+				35% {
+					height: 100%;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
 		}
 	}
 
