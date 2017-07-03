@@ -38,8 +38,9 @@ body {
         margin: 0; }
       .container .poemContainer header span {
         position: absolute;
-        top: 5px;
+        top: 0;
         right: 20px;
+        height: 100%;
         font-size: 2em;
         opacity: 0;
         cursor: pointer;
@@ -61,6 +62,7 @@ body {
           width: 20px;
           height: 100%;
           font-size: 0.8em;
+          line-height: 0.8em;
           padding: 3px;
           color: crimson;
           opacity: 0;
