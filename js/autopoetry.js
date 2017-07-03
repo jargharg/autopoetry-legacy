@@ -43,15 +43,29 @@ function newWordSearch() {
 }
 
 function newPoem(wordSearch){
-	$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>")
-	
-	$.getJSON(gUrl+wordSearch+gKey, function(data){
-		parseData(data, wordSearch)
+	$("h1").text(wordSearch) // Add poem title
+
+	$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
+
+	APIWordSearch = wordSearch.replace(/ /g, " AND ")
+
+	$.getJSON(gUrl+APIWordSearch+gKey, function(data){
+		if (Number(data.response.total) > 0){
+			parseData(data, wordSearch)
+		} else {
+			APIWordSearch = APIWordSearch.replace(/ AND /g, " OR ")
+			$.getJSON(gUrl+APIWordSearch+gKey, function(data){
+				if (Number(data.response.total) > 0){
+					parseData(data, wordSearch)
+				} else {
+					$(".loadingDiv").html("No results, try again x")
+				}
+			})
+		}
 	});
 }
 
 function parseData(data, title) {
-	if (Number(data.response.total) > 0){
 		var results = data.response.results
 		var article = Math.floor(Math.random()*results.length)
 		var content = results[article].fields.body
@@ -75,7 +89,6 @@ function parseData(data, title) {
 		currentPoemData = {title: title, link: articleLink, content: tidyContent}
 
 		createPoem(currentPoemData)
-	}
 }
 
 function createPoem(poemData){
@@ -104,8 +117,6 @@ function createPoem(poemData){
 		)
 	})
 
-
-	$("h1").text(poemData.title)
 	$(".articleLink a").attr("href", poemData.link)
 }
 
