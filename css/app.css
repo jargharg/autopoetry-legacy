@@ -23,7 +23,7 @@ body {
 .container {
   width: 80%;
   max-width: 700px;
-  margin: 50px auto 0;
+  margin: 50px auto 100px;
   transition: opacity 0.4s; }
   .container .poemContainer {
     border: 1px solid slategrey;
@@ -176,6 +176,10 @@ body {
   .container {
     width: 90%;
     margin-top: 20px; }
+    .container .poemContainer ul li .poemLineRefresh {
+      font-size: 1em;
+      line-height: 1em;
+      padding: 0; }
 
   .poemFormInit {
     top: 10%;
@@ -187,6 +191,9 @@ body {
     .poemFormBottom input[type="text"] {
       width: 50%; }
     .poemFormBottom input[type="submit"] {
-      width: 50%; } }
+      width: 50%; }
+
+  .mobileHide {
+    display: none; } }
 
 /*# sourceMappingURL=app.css.map */
