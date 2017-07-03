@@ -129,7 +129,7 @@ body {
 	}
 }
 .poemForm {
-	position: absolute;
+	position: fixed;
 	overflow: hidden;
 	transition: 0.4s all;
 	background: slategrey;
@@ -220,10 +220,12 @@ body {
 		margin-top: 20px;
 	}
 	.poemFormInit {
+		top: 10%;
 		width: 80%;
 		height: 200px;
 	}
 	.poemFormBottom {
+		height: 60px;
 		input {
 			&[type="text"] {
 				width: 50%;

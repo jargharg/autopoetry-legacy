@@ -105,7 +105,7 @@ body {
   50% {
     opacity: 0; } }
 .poemForm {
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   transition: 0.4s all;
   background: slategrey; }
@@ -178,12 +178,15 @@ body {
     margin-top: 20px; }
 
   .poemFormInit {
+    top: 10%;
     width: 80%;
     height: 200px; }
 
-  .poemFormBottom input[type="text"] {
-    width: 50%; }
-  .poemFormBottom input[type="submit"] {
-    width: 50%; } }
+  .poemFormBottom {
+    height: 60px; }
+    .poemFormBottom input[type="text"] {
+      width: 50%; }
+    .poemFormBottom input[type="submit"] {
+      width: 50%; } }
 
 /*# sourceMappingURL=app.css.map */
