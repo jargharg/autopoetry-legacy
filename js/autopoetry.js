@@ -44,6 +44,7 @@ function newWordSearch() {
 
 function newPoem(wordSearch){
 	$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>")
+	
 	$.getJSON(gUrl+wordSearch+gKey, function(data){
 		parseData(data, wordSearch)
 	});
