@@ -167,9 +167,6 @@ body {
 		&[type="text"] {
 			padding-left: 30px;
 		}
-		&[type="submit"] {
-			height: 60px;
-		}
 	}
 }
 .poemFormBottom {
@@ -188,20 +185,19 @@ body {
 		}
 		&[type="submit"] {
 			width: 25%;
-			animation: submitResize 1s forwards;
+			animation: submitResize 0.4s forwards;
 			@keyframes submitResize {
 				0% {
 					width: 100%;
 					opacity: 1;
 				}
-				25% {
+				65% {
 					height: 0%;
 				}
-				30% {
+				70% {
 					opacity: 0;
-					width: 25%;
 				}
-				35% {
+				75% {
 					height: 100%;
 				}
 				100% {
@@ -214,4 +210,25 @@ body {
 }
 .hidden {
 	opacity: 0;
+}
+
+@media (max-width: 500px) {
+	.container {
+		width: 90%;
+		margin-top: 20px;
+	}
+	.poemFormInit {
+		width: 80%;
+		height: 200px;
+	}
+	.poemFormBottom {
+		input {
+			&[type="text"] {
+				width: 50%;
+			}
+			&[type="submit"] {
+				width: 50%;
+			}
+		}
+	}
 }
