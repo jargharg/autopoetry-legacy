@@ -76,15 +76,21 @@ body {
   .container .poemHighlight {
     background-color: crimson;
     color: white; }
-  .container .articleLink {
+  .container .poemLinks {
     font-size: 11px;
     margin: 20px 0 0;
-    padding-left: 30px; }
-    .container .articleLink a {
+    padding: 0 5px; }
+    .container .poemLinks a {
       text-decoration: none;
       color: darkgrey; }
-      .container .articleLink a:hover {
+      .container .poemLinks a:hover {
         color: slategrey; }
+    .container .poemLinks i {
+      font-size: 20px; }
+    .container .poemLinks .shareLink {
+      float: left; }
+    .container .poemLinks .articleLink {
+      float: right; }
   .container .loadingDiv {
     padding: 100px 0;
     text-align: center; }
@@ -174,12 +180,15 @@ body {
 
 @media (max-width: 500px) {
   .container {
-    width: 90%;
-    margin-top: 20px; }
-    .container .poemContainer ul li .poemLineRefresh {
-      font-size: 1em;
-      line-height: 1em;
-      padding: 0; }
+    width: 100%;
+    margin-top: 0px; }
+    .container .poemContainer {
+      border: none;
+      border-bottom: 1px solid slategrey; }
+      .container .poemContainer ul li .poemLineRefresh {
+        font-size: 1em;
+        line-height: 1em;
+        padding: 0; }
 
   .poemFormInit {
     top: 10%;

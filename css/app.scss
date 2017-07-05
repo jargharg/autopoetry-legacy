@@ -58,7 +58,6 @@ body {
 				list-style: none;
 				position: relative;
 				transition: 0.1s;
-
 				.poemLineRefresh {
 					display: inline-block;
 					position: absolute;
@@ -88,16 +87,25 @@ body {
 		background-color: crimson;
 		color: white;
 	}	
-	.articleLink {
+	.poemLinks {
 		font-size: 11px;
 		margin: 20px 0 0;
-		padding-left: 30px;
+		padding: 0 5px;
 		a {
 			text-decoration: none;
 			color: darkgrey;
 			&:hover {
 				color: slategrey;
 			}
+		}
+		i {
+			font-size: 20px;
+		}
+		.shareLink {
+			float: left;
+		}
+		.articleLink {
+			float: right;
 		}
 	}
 	.loadingDiv {
@@ -216,10 +224,12 @@ body {
 
 @media (max-width: 500px) {
 	.container {
-		width: 90%;
-		margin-top: 20px;
+		width: 100%;
+		margin-top: 0px;
 		.poemContainer{
-			ul{
+			border: none;
+			border-bottom: 1px solid slategrey;
+			ul {
 				li {
 					.poemLineRefresh {
 						font-size: 1em;

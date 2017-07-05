@@ -62,7 +62,7 @@ function newPoem(wordSearch){
 				}
 			})
 		}
-	});
+	})
 }
 
 function parseData(data, title) {
@@ -108,7 +108,7 @@ function createPoem(poemData){
 			)
 			.append(
 				$("<div class='poemLineRefresh'>")
-				.html("&#x27f2;")
+				.html("<i class='material-icons'>&#xE86A;</i>")
 				.click(refreshLine)
 				.hover(function(){
 					$(this).parent().toggleClass("poemHighlight")
@@ -118,6 +118,26 @@ function createPoem(poemData){
 	})
 
 	$(".articleLink a").attr("href", poemData.link)
+	$(".shareLink").attr("href",whatsAppPoemLink())
+}
+
+function whatsAppPoemLink() {
+	var whatsAppPre = "whatsapp://send?text="
+	var whatsAppPost = "%0AMake%20your%20own%20autopoem%20at%20jarodhargreav%2Ees%2Fautopoetry"
+	var whatsAppText = $(".poemContainer header h1").text().replace(/ /g,"%20").toUpperCase()+"%0A%0A"
+	var contents = $(".poemLineText")
+
+	contents.each(function(){
+		whatsAppText += this.textContent + "%0A"
+	})
+
+	whatsAppText = whatsAppText.replace(/ /g,"%20")
+	.replace(/\u2019|\u0027|\u05F3|\u8217|\u02BC/g,"%27")
+	.replace(/\u002D|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015/g,"%45")
+
+	var whatsAppLink = whatsAppPre + whatsAppText + whatsAppPost
+
+	return whatsAppLink
 }
 
 function refreshLine() {
