@@ -226,7 +226,7 @@ body {
 	.container {
 		width: 100%;
 		margin-top: 0px;
-		.poemContainer{
+		.poemContainer {
 			border: none;
 			border-bottom: 1px solid slategrey;
 			ul {
@@ -237,6 +237,14 @@ body {
 						padding: 0;
 					}
 				}
+			}
+		}
+		.poemLinks {
+			margin: 20px 10px 140px;
+			font-size: 16px;
+			line-height: 30px;
+			i {
+				font-size: 30px;
 			}
 		}
 	}
