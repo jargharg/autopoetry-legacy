@@ -13,14 +13,17 @@
 
 <body>
     <div class="topNav">
-        <span>Autopoetry</span>
-        <a href="http://www.jarodhargreav.es">by Jarod<span class="mobileHide"> Hargreaves</span></a>
+        <span class="appName">Autopoetry</span>
+        <div class="navMenu">
+            <span class="navAuthor">by Jarod Hargreaves</span>
+            <span class="navMobile">...</span>
+        </div>
     </div>
     <div class="container hidden">
         <div class="poemContainer">
             <header>
                 <h1></h1>
-                <span><i class="material-icons">&#xE86A;</i></span>
+                <span id="wholePoemRefresh"><i class="material-icons md-48">&#xE86A;</i></span>
             </header>
             <ul>
                 <div class="loadingDiv">
@@ -29,7 +32,7 @@
             </ul>
         </div>
         <div class="poemLinks">
-            <a class="shareLink" href="" data-action="share/whatsapp/share"><i class="material-icons">&#xE80D;</i></a>
+            <a class="shareLink" href="" data-action="share/whatsapp/share"><i class="material-icons md-48">&#xE80D;</i></a>
             <a class="articleLink" href="" target="_blank">See the original article</a>
         </div>
     </div>

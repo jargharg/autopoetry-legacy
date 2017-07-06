@@ -2,24 +2,6 @@ var gUrl = "https://content.guardianapis.com/search?show-fields=body&q="
 var gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52"
 var currentPoemData = {}
 
-$(document).ready(function(){
-	$("#newWordText").focus()
-	//newPoem("hello")
-
-	// Event listeners
-	$("#submitNewWord").click(firstWordSearch) // Submit button pressed
-	$("#newWordText").keypress(function(e){
-		if (e.which == 13) { // Enter key pressed
-			firstWordSearch()
-		}
-	})
-	$("header span").click(function(){
-		newPoem(currentPoemData.title)
-	}).hover(function(){
-		$(".poemContainer").toggleClass("poemHighlight")
-	})
-})
-
 function firstWordSearch() {
 	$(".container").removeClass("hidden")
 	$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
@@ -37,8 +19,13 @@ function newWordSearch() {
 	if($inputBox.val() != "") {
 		newPoem($inputBox.val())
 		$inputBox.val("")
+		.removeClass("inputMobile")
+		.parent().removeClass("poemFormExpanded")
 	} else {
-		$inputBox.focus()
+		$inputBox
+		.addClass("inputMobile")
+		.focus()
+		.parent().addClass("poemFormExpanded")
 	}
 }
 
@@ -72,7 +59,8 @@ function parseData(data, title) {
 		var articleLink = results[article].webUrl
 
 		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.|\?| - |\&|\u2022|\||@|com/g, ".")
+		.replace("&apos;","'")
+		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.com|\.|\?| - |\&|\u2022|\||@/g, ".")
 		.split(".")
 
 		var tidyContent = []
@@ -101,7 +89,7 @@ function createPoem(poemData){
 
 	randomArray.forEach(function(x){
 		$poemBody.append(
-			$("<li class='poemLine' >")
+			$("<li class='poemLine'>")
 			.append(
 				$("<span class='poemLineText'>")
 				.html(poemData.content[x])
@@ -117,25 +105,20 @@ function createPoem(poemData){
 		)
 	})
 
-	$(".articleLink a").attr("href", poemData.link)
-	$(".shareLink").attr("href",whatsAppPoemLink())
+	$(".articleLink").attr("href", poemData.link)
 }
 
 function whatsAppPoemLink() {
 	var whatsAppPre = "whatsapp://send?text="
-	var whatsAppPost = "%0AMake%20your%20own%20autopoem%20at%20jarodhargreav%2Ees%2Fautopoetry"
-	var whatsAppText = $(".poemContainer header h1").text().replace(/ /g,"%20").toUpperCase()+"%0A%0A"
+	var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
+	var whatsAppText = $(".poemContainer header h1").text().toUpperCase()+"\n\n"
 	var contents = $(".poemLineText")
 
 	contents.each(function(){
-		whatsAppText += this.textContent + "%0A"
+		whatsAppText += this.textContent + "\n"
 	})
 
-	whatsAppText = whatsAppText.replace(/ /g,"%20")
-	.replace(/\u2019|\u0027|\u05F3|\u8217|\u02BC/g,"%27")
-	.replace(/\u002D|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015/g,"%45")
-
-	var whatsAppLink = whatsAppPre + whatsAppText + whatsAppPost
+	var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost)
 
 	return whatsAppLink
 }
@@ -144,3 +127,23 @@ function refreshLine() {
 	var newLine = currentPoemData.content[Math.floor(Math.random()*currentPoemData.content.length)]
 	$(this).prev().text(newLine)
 }
+
+$(document).ready(function(){
+	$("#newWordText").focus()
+
+	// Event listeners
+	$("#submitNewWord").click(firstWordSearch) // Submit button pressed
+	$("#newWordText").keypress(function(e){
+		if (e.which == 13) { // Enter key pressed
+			firstWordSearch()
+		}
+	})
+	$("#wholePoemRefresh").click(function(){
+		newPoem(currentPoemData.title)
+	}).hover(function(){
+		$(".poemContainer").toggleClass("poemHighlight")
+	})
+	$(".shareLink i").click(function(){
+		$(this).parent().attr("href", whatsAppPoemLink())
+	})
+})

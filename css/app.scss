@@ -15,10 +15,10 @@ body {
 	font-size: 13px;
 	letter-spacing: 4px;
 	text-transform: uppercase;
-	a {
+	.navMenu {
 		float: right;
-		color: white;
 		text-decoration: none;
+		cursor: pointer;
 	}
 }
 .container {
@@ -41,13 +41,18 @@ body {
 			span {
 				position: absolute;
 				top: 0;
-				right: 20px;
-				height: 100%;
-				font-size: 2em;
+				right: 15px;
+				height: 71px;
+				line-height: 71px;
 				opacity: 0;
 				cursor: pointer;
 				transition: 0.2s;
 				user-select: none;
+				i.material-icons {
+					height: 100%;
+					font-size: 48px;
+					line-height: 71px;
+				}
 			}
 		}
 		ul {
@@ -97,15 +102,15 @@ body {
 			&:hover {
 				color: slategrey;
 			}
-		}
-		i {
-			font-size: 20px;
-		}
-		.shareLink {
-			float: left;
-		}
-		.articleLink {
-			float: right;
+			&.shareLink {
+				float: left;
+				i {
+					font-size: 20px;
+				}
+			}
+			&.articleLink {
+				float: right;
+			}
 		}
 	}
 	.loadingDiv {
@@ -163,38 +168,51 @@ body {
 			}
 		}
 	}
-}
-.poemFormInit {
-	height: 120px;
-	bottom: 60%;
-	width: 40%;
-	left: 50%;
-	transform: translateX(-50%);
-	border: 1px solid slategrey;
-	input {
+	&.poemFormInit {
+		height: 120px;
+		bottom: 60%;
+		width: 40%;
+		left: 50%;
+		transform: translateX(-50%);
+		border: 1px solid slategrey;
+		input {
+			width: 100%;
+			height: 50%;
+			&[type="text"] {
+				padding-left: 30px;
+			}
+		}
+	}
+	&.poemFormBottom {
+		height: 40px;
+		left: 0%;
 		width: 100%;
-		height: 50%;
-		&[type="text"] {
-			padding-left: 30px;
+		transform: translateX(0%);
+		margin: 0;
+		border-top: 1px solid slategrey;
+		input {
+			height: 100%;
+			&[type="text"] {
+				padding-left: 10px;
+				width: 75%;
+			}
+			&[type="submit"] {
+				width: 25%;
+			}
 		}
 	}
 }
-.poemFormBottom {
-	height: 40px;
-	bottom: 0%;
-	left: 0%;
-	width: 100%;
-	transform: translateX(0%);
-	margin: 0;
-	border-top: 1px solid slategrey;
-	input {
-		height: 100%;
-		&[type="text"] {
-			padding-left: 10px;
-			width: 75%;
-		}
-		&[type="submit"] {
-			width: 25%;
+.hidden {
+	opacity: 0;
+}
+
+@media (min-width: 500px) {
+	.navMobile {
+		display: none;
+	}
+	.poemFormBottom {
+		bottom: 0%;
+		input[type="submit"]{
 			animation: submitResize 0.4s forwards;
 			@keyframes submitResize {
 				0% {
@@ -216,13 +234,12 @@ body {
 			}
 		}
 	}
-
-}
-.hidden {
-	opacity: 0;
 }
 
 @media (max-width: 500px) {
+	.navAuthor {
+		display: none;
+	}
 	.container {
 		width: 100%;
 		margin-top: 0px;
@@ -248,23 +265,36 @@ body {
 			}
 		}
 	}
-	.poemFormInit {
-		top: 10%;
-		width: 80%;
-		height: 200px;
-	}
-	.poemFormBottom {
-		height: 60px;
-		input {
-			&[type="text"] {
-				width: 50%;
+	.poemForm {
+		&.poemFormInit {
+			top: 150px;
+			width: 80%;
+			height: 200px;
+		}
+		&.poemFormBottom {
+			bottom: 0%;
+			height: 60px;
+			transition: 0.2s all;
+			input {
+				&[type="text"] {
+					width: 100%;
+					display: none;
+					&.inputMobile {
+						display: block;
+					}
+				}
+				&[type="submit"] {
+					width: 100%;
+					animation: none;
+				}
 			}
-			&[type="submit"] {
-				width: 50%;
+			&.poemFormExpanded {
+				height: 120px;
+				input {
+					height: 50%;
+					transition: 0.2s all;
+				}
 			}
 		}
-	}
-	.mobileHide {
-		display: none;
 	}
 }
