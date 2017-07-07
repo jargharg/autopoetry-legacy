@@ -3,15 +3,20 @@ var gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52"
 var currentPoemData = {}
 
 function firstWordSearch() {
-	$(".container").removeClass("hidden")
-	$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
-	$("#submitNewWord").off().click(newWordSearch) // Submit button pressed
-	$("#newWordText").off().keypress(function(e){
-		if (e.which == 13) { // Enter key pressed
-			newWordSearch()
-		}
-	})
-	newWordSearch()
+	var $inputBox = $("#newWordText");
+	if($inputBox.val() != "") {
+		$(".container").removeClass("hidden")
+		$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
+		$("#submitNewWord").off().click(newWordSearch) // Submit button pressed
+		$inputBox.off().keypress(function(e){
+			if (e.which == 13) { // Enter key pressed
+				newWordSearch()
+			}
+		})
+		newWordSearch()
+	} else {
+		$inputBox.focus()
+	}
 }
 
 function newWordSearch() {
@@ -59,8 +64,9 @@ function parseData(data, title) {
 		var articleLink = results[article].webUrl
 
 		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace("&apos;","'")
-		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|,|\.com|\.|\?| - |\&|\u2022|\||@/g, ".")
+		.replace(/\&apos/g,"'")
+		.replace(/\&amp/," and ")
+		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
 		.split(".")
 
 		var tidyContent = []
@@ -68,7 +74,7 @@ function parseData(data, title) {
 		textContent.forEach(function(str, ind){
 			str = str.trim()
 			//get rid of long sections, sentences with @, numbers too?
-			if (str.length > 2 && str.length < 100 && str != "Photograph") {
+			if (str.length > 2 && str.length < 100 && str != "Photograph" && str != "'*") {
 				str = str.charAt(0).toUpperCase() + str.slice(1)
 				tidyContent.push(str)
 			}
@@ -96,7 +102,7 @@ function createPoem(poemData){
 			)
 			.append(
 				$("<div class='poemLineRefresh'>")
-				.html("<i class='material-icons'>&#xE86A;</i>")
+				.html("<i class='material-icons md-18'>&#xE86A;</i>")
 				.click(refreshLine)
 				.hover(function(){
 					$(this).parent().toggleClass("poemHighlight")

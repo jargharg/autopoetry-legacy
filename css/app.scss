@@ -2,17 +2,15 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: 'Overpass Mono', serif;
-	font-size: 15pt;
+	font-size: 18px;
 	background-color: aliceblue;
+	position: relative;
 }
 .topNav {
 	background: slategrey;
 	color: white;
 	padding: 0 10px;
-	opacity: 1;
-	height: 20px;
-	line-height: 20px;
-	font-size: 13px;
+	font-size: 1em;
 	letter-spacing: 4px;
 	text-transform: uppercase;
 	.navMenu {
@@ -24,7 +22,7 @@ body {
 .container {
 	width: 80%;
 	max-width: 700px;
-	margin: 50px auto 100px;
+	margin: 50px auto 0;
 	transition: opacity 0.4s;
 	.poemContainer {
 		border: 1px solid slategrey;
@@ -38,12 +36,11 @@ body {
 				text-transform: uppercase;
 				margin: 0;
 			}
-			span {
+			#wholePoemRefresh {
 				position: absolute;
 				top: 0;
 				right: 15px;
-				height: 71px;
-				line-height: 71px;
+				height: 100%;
 				opacity: 0;
 				cursor: pointer;
 				transition: 0.2s;
@@ -51,7 +48,7 @@ body {
 				i.material-icons {
 					height: 100%;
 					font-size: 48px;
-					line-height: 71px;
+					line-height: 65px;
 				}
 			}
 		}
@@ -70,18 +67,18 @@ body {
 					right: -25px;
 					width: 20px;
 					height: 100%;
-					font-size: 0.8em;
-					line-height: 0.8em;
-					padding: 3px;
 					color: crimson;
 					opacity: 0;
 					cursor: pointer;
 					transition: 0.2s;
 					user-select: none;
+					i.material-icons {
+						font-size: inherit;
+					}
 				}
 			}
 		}
-		&:hover header span {
+		&:hover #wholePoemRefresh {
 			opacity: 1;
 		}
 		&:hover .poemLineRefresh {
@@ -93,20 +90,16 @@ body {
 		color: white;
 	}	
 	.poemLinks {
-		font-size: 11px;
-		margin: 20px 0 0;
-		padding: 0 5px;
+		font-size: 0.7em;
+		padding: 20px 5px 0;
 		a {
 			text-decoration: none;
 			color: darkgrey;
 			&:hover {
 				color: slategrey;
 			}
-			&.shareLink {
-				float: left;
-				i {
-					font-size: 20px;
-				}
+			&.shareLink i {
+				font-size: 20px;
 			}
 			&.articleLink {
 				float: right;
@@ -114,7 +107,8 @@ body {
 		}
 	}
 	.loadingDiv {
-		padding: 100px 0;
+		height: 180px;
+		line-height: 180px;
 		text-align: center;
 		span {
 			animation: loadingFade 1s infinite ease-in-out both;
@@ -204,6 +198,9 @@ body {
 }
 .hidden {
 	opacity: 0;
+	.poemLineRefresh, #wholePoemRefresh {
+		display: none;
+	}
 }
 
 @media (min-width: 500px) {
@@ -237,62 +234,73 @@ body {
 }
 
 @media (max-width: 500px) {
-	.navAuthor {
-		display: none;
-	}
-	.container {
-		width: 100%;
-		margin-top: 0px;
-		.poemContainer {
-			border: none;
-			border-bottom: 1px solid slategrey;
-			ul {
-				li {
-					.poemLineRefresh {
-						font-size: 1em;
-						line-height: 1em;
-						padding: 0;
+	body {
+		font-size: 24px;
+		.navAuthor {
+			display: none;
+		}
+		.container {
+			width: 100%;
+			margin-top: 0px;
+			.poemContainer {
+				header #wholePoemRefresh i.material-icons {
+					line-height: 84px;
+				}
+				border: none;
+				border-bottom: 1px solid slategrey;
+				ul {
+					margin: 20px;
+					li {
+						.poemLineRefresh {
+							font-size: 1em;
+							line-height: 1em;
+							padding: 0;
+							right: -10px;
+						}
 					}
 				}
 			}
-		}
-		.poemLinks {
-			margin: 20px 10px 140px;
-			font-size: 16px;
-			line-height: 30px;
-			i {
-				font-size: 30px;
-			}
-		}
-	}
-	.poemForm {
-		&.poemFormInit {
-			top: 150px;
-			width: 80%;
-			height: 200px;
-		}
-		&.poemFormBottom {
-			bottom: 0%;
-			height: 60px;
-			transition: 0.2s all;
-			input {
-				&[type="text"] {
-					width: 100%;
-					display: none;
-					&.inputMobile {
-						display: block;
-					}
-				}
-				&[type="submit"] {
-					width: 100%;
-					animation: none;
+			.poemLinks {
+				padding: 20px 10px 100px;
+				font-size: 16px;
+				line-height: 30px;
+				i {
+					font-size: 30px;
 				}
 			}
-			&.poemFormExpanded {
-				height: 120px;
+		}
+		.poemForm {
+			&.poemFormInit {
+				top: 150px;
+				width: 80%;
+				height: 200px;
+			}
+			&.poemFormBottom {
+				bottom: 0%;
+				height: 60px;
+				transition: 0.2s all;
 				input {
-					height: 50%;
-					transition: 0.2s all;
+					&[type="text"] {
+						width: 100%;
+						display: none;
+						&.inputMobile {
+							display: block;
+						}
+					}
+					&[type="submit"] {
+						width: 100%;
+						animation: none;
+						&:hover {
+							background: inherit;
+						}
+					}
+				}
+				&.poemFormExpanded {
+					height: 120px;
+					input {
+						height: 50%;
+						transition: 0.2s all;
+					}
 				}
 			}
 		}
