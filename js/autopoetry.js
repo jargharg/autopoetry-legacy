@@ -26,6 +26,7 @@ function newWordSearch() {
 		$inputBox.val("")
 		.removeClass("inputMobile")
 		.parent().removeClass("poemFormExpanded")
+		$inputBox.blur()
 	} else {
 		$inputBox
 		.addClass("inputMobile")
@@ -74,7 +75,7 @@ function parseData(data, title) {
 		textContent.forEach(function(str, ind){
 			str = str.trim()
 			//get rid of long sections, sentences with @, numbers too?
-			if (str.length > 2 && str.length < 100 && str != "Photograph" && str != "'*") {
+			if (str.length > 2 && str.length < 90 && str != "Photograph" && str != "'*") {
 				str = str.charAt(0).toUpperCase() + str.slice(1)
 				tidyContent.push(str)
 			}

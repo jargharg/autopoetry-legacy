@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Overpass Mono', serif;
+  font-family: "Source Code Pro", monospace;
   font-size: 18px;
   background-color: aliceblue;
   position: relative; }
@@ -10,33 +10,38 @@ body {
   background: slategrey;
   color: white;
   position: relative;
-  user-select: none;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 24px; }
   .topNav .appName {
     padding-left: 10px;
-    font-size: 1em;
     letter-spacing: 4px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    display: inline-block; }
   .topNav .moreIcon {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 50px;
-    padding: 2px;
     text-align: center; }
+    .topNav .moreIcon i.material-icons {
+      height: 1em; }
   .topNav .appDetails {
     max-height: 0;
     overflow: hidden;
     background: slategrey;
+    opacity: 0.95;
     padding: 0 10px;
     font-size: 0.7em;
-    width: 100%;
     top: 100%;
     left: 0;
     position: absolute;
-    transition: 0.2s all; }
+    transition: 0.2s all;
+    z-index: 100; }
     .topNav .appDetails a {
       color: white; }
     .topNav .appDetails.visible {
-      max-height: 100px; }
+      max-height: 400px;
+      padding: 10px; }
 
 .container {
   width: 80%;
@@ -66,7 +71,7 @@ body {
         .container .poemContainer header #wholePoemRefresh i.material-icons {
           height: 100%;
           font-size: 48px;
-          line-height: 65px; }
+          line-height: 55px; }
     .container .poemContainer ul {
       padding: 0;
       margin: 30px; }
@@ -103,7 +108,7 @@ body {
       text-decoration: none;
       color: darkgrey; }
       .container .poemLinks a:hover {
-        color: darkslategrey; }
+        color: dark slategrey; }
       .container .poemLinks a.articleLink {
         float: right;
         line-height: 24px; }
@@ -133,7 +138,7 @@ body {
   transition: 0.4s all;
   background: slategrey; }
   .poemForm input {
-    font-family: 'Overpass Mono', serif;
+    font-family: "Source Code Pro", monospace;
     font-size: 0.7em;
     float: left;
     box-sizing: border-box;
@@ -142,6 +147,8 @@ body {
     border: 0;
     outline: 0;
     transition: 0.4s all; }
+    .poemForm input[type="text"]:focus + input[type="submit"] {
+      background: #546576; }
     .poemForm input[type="submit"] {
       background: slategrey;
       color: white;
@@ -200,51 +207,49 @@ body {
     100% {
       opacity: 1; } } }
 @media (max-width: 500px) {
-  body {
-    font-size: 24px; }
-    body .container {
+  body .container {
+    width: 100%;
+    margin-top: 0px; }
+    body .container .poemContainer {
+      border: none;
+      border-bottom: 1px solid slategrey; }
+      body .container .poemContainer header #wholePoemRefresh i.material-icons {
+        line-height: 55px; }
+      body .container .poemContainer ul {
+        margin: 20px; }
+        body .container .poemContainer ul li .poemLineRefresh {
+          font-size: 1em;
+          line-height: 1em;
+          padding: 0;
+          right: -10px; }
+    body .container .poemLinks {
+      padding: 20px 10px 100px;
+      font-size: 16px;
+      line-height: 30px; }
+      body .container .poemLinks i {
+        font-size: 30px; }
+  body .poemForm.poemFormInit {
+    top: 150px;
+    width: 80%;
+    height: 200px; }
+  body .poemForm.poemFormBottom {
+    bottom: 0%;
+    height: 60px;
+    transition: 0.2s all; }
+    body .poemForm.poemFormBottom input[type="text"] {
       width: 100%;
-      margin-top: 0px; }
-      body .container .poemContainer {
-        border: none;
-        border-bottom: 1px solid slategrey; }
-        body .container .poemContainer header #wholePoemRefresh i.material-icons {
-          line-height: 84px; }
-        body .container .poemContainer ul {
-          margin: 20px; }
-          body .container .poemContainer ul li .poemLineRefresh {
-            font-size: 1em;
-            line-height: 1em;
-            padding: 0;
-            right: -10px; }
-      body .container .poemLinks {
-        padding: 20px 10px 100px;
-        font-size: 16px;
-        line-height: 30px; }
-        body .container .poemLinks i {
-          font-size: 30px; }
-    body .poemForm.poemFormInit {
-      top: 150px;
-      width: 80%;
-      height: 200px; }
-    body .poemForm.poemFormBottom {
-      bottom: 0%;
-      height: 60px;
-      transition: 0.2s all; }
-      body .poemForm.poemFormBottom input[type="text"] {
-        width: 100%;
-        display: none; }
-        body .poemForm.poemFormBottom input[type="text"].inputMobile {
-          display: block; }
-      body .poemForm.poemFormBottom input[type="submit"] {
-        width: 100%;
-        animation: none; }
-        body .poemForm.poemFormBottom input[type="submit"]:hover {
-          background: inherit; }
-      body .poemForm.poemFormBottom.poemFormExpanded {
-        height: 120px; }
-        body .poemForm.poemFormBottom.poemFormExpanded input {
-          height: 50%;
-          transition: 0.2s all; } }
+      display: none; }
+      body .poemForm.poemFormBottom input[type="text"].inputMobile {
+        display: block; }
+    body .poemForm.poemFormBottom input[type="submit"] {
+      width: 100%;
+      animation: none; }
+      body .poemForm.poemFormBottom input[type="submit"]:hover {
+        background: inherit; }
+    body .poemForm.poemFormBottom.poemFormExpanded {
+      height: 120px; }
+      body .poemForm.poemFormBottom.poemFormExpanded input {
+        height: 50%;
+        transition: 0.2s all; } }
 
 /*# sourceMappingURL=app.css.map */
