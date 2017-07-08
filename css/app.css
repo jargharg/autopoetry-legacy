@@ -83,11 +83,10 @@ body {
       text-decoration: none;
       color: darkgrey; }
       .container .poemLinks a:hover {
-        color: slategrey; }
-      .container .poemLinks a.shareLink i {
-        font-size: 20px; }
+        color: darkslategrey; }
       .container .poemLinks a.articleLink {
-        float: right; }
+        float: right;
+        line-height: 24px; }
   .container .loadingDiv {
     height: 180px;
     line-height: 180px;
