@@ -152,4 +152,7 @@ $(document).ready(function(){
 	$(".shareLink i").click(function(){
 		$(this).parent().attr("href", whatsAppPoemLink())
 	})
+	$(".moreIcon").click(function(){
+		$(".appDetails").toggleClass("visible")
+	})
 })

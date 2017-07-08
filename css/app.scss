@@ -9,14 +9,42 @@ body {
 .topNav {
 	background: slategrey;
 	color: white;
-	padding: 0 10px;
-	font-size: 1em;
-	letter-spacing: 4px;
-	text-transform: uppercase;
-	.navMenu {
+	position: relative;
+	.appName {
+		padding-left: 10px;
+		font-size: 1em;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+	}
+	.moreIcon {
 		float: right;
 		text-decoration: none;
 		cursor: pointer;
+		width: 50px;
+		display: inline-block;
+		padding: 2px;
+		text-align: center;
+		height: 100%;
+		user-select: none;
+	}
+	.appDetails {
+		max-height: 0;
+		overflow: hidden;
+		background: slategrey;
+		padding: 0 10px;
+		box-sizing: border-box;
+		font-size: 0.8em;
+		width: 100%;
+		top: 100%;
+		left: 0;
+		position: absolute;
+		transition: 0.2s all;
+		a {
+			color: white;
+		}
+		&.visible {
+			max-height: 100px;
+		}
 	}
 }
 .container {
@@ -202,9 +230,6 @@ body {
 }
 
 @media (min-width: 500px) {
-	.navMobile {
-		display: none;
-	}
 	.poemFormBottom {
 		bottom: 0%;
 		input[type="submit"]{
@@ -234,9 +259,6 @@ body {
 @media (max-width: 500px) {
 	body {
 		font-size: 24px;
-		.navAuthor {
-			display: none;
-		}
 		.container {
 			width: 100%;
 			margin-top: 0px;
