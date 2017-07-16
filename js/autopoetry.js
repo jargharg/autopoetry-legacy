@@ -1,34 +1,36 @@
-var gUrl = "https://content.guardianapis.com/search?show-fields=body&q="
-var gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52"
-var currentPoemData = {}
+var appData = {
+	gUrl: "https://content.guardianapis.com/search?show-fields=body&q=",
+	gKey: "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52",
+	currentPoemData: {},
+	$inputBox: ""
+}
 
 function firstWordSearch() {
-	var $inputBox = $("#newWordText");
-	if($inputBox.val() != "") {
+	appData.$inputBox = $("#newWordText")
+	if(appData.$inputBox.val() != "") {
 		$(".container").removeClass("hidden")
 		$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
 		$("#submitNewWord").off().click(newWordSearch) // Submit button pressed
-		$inputBox.off().keypress(function(e){
+		appData.$inputBox.off().keypress(function(e){
 			if (e.which == 13) { // Enter key pressed
 				newWordSearch()
 			}
 		})
 		newWordSearch()
 	} else {
-		$inputBox.focus()
+		appData.$inputBox.focus()
 	}
 }
 
 function newWordSearch() {
-	var $inputBox = $("#newWordText");
-	if($inputBox.val() != "") {
-		newPoem($inputBox.val())
-		$inputBox.val("")
+	if(appData.$inputBox.val() != "") {
+		newPoem(appData.$inputBox.val())
+		appData.$inputBox.val("")
 		.removeClass("inputMobile")
 		.parent().removeClass("poemFormExpanded")
-		$inputBox.blur()
+		appData.$inputBox.blur()
 	} else {
-		$inputBox
+		appData.$inputBox
 		.addClass("inputMobile")
 		.focus()
 		.parent().addClass("poemFormExpanded")
@@ -42,14 +44,14 @@ function newPoem(wordSearch){
 
 	APIWordSearch = wordSearch.replace(/ /g, " AND ")
 
-	$.getJSON(gUrl+APIWordSearch+gKey, function(data){
-		if (Number(data.response.total) > 0){
-			parseData(data, wordSearch)
+	$.getJSON(appData.gUrl+APIWordSearch+appData.gKey, function(guardianData){
+		if (Number(guardianData.response.total) > 0){
+			parseData(guardianData, wordSearch)
 		} else {
 			APIWordSearch = APIWordSearch.replace(/ AND /g, " OR ")
-			$.getJSON(gUrl+APIWordSearch+gKey, function(data){
-				if (Number(data.response.total) > 0){
-					parseData(data, wordSearch)
+			$.getJSON(appData.gUrl+APIWordSearch+appData.gKey, function(guardianData){
+				if (Number(guardianData.response.total) > 0){
+					parseData(guardianData, wordSearch)
 				} else {
 					$(".loadingDiv").html("No results, try again x")
 				}
@@ -58,22 +60,22 @@ function newPoem(wordSearch){
 	})
 }
 
-function parseData(data, title) {
-		var results = data.response.results
-		var article = Math.floor(Math.random()*results.length)
-		var content = results[article].fields.body
-		var articleLink = results[article].webUrl
+function parseData(guardianData, title) {
+	var results = guardianData.response.results
+	var article = Math.floor(Math.random()*results.length)
+	var content = results[article].fields.body
+	var articleLink = results[article].webUrl
 
-		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
-		.replace(/\&apos/g,"'")
-		.replace(/\&amp/," and ")
-		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
-		.split(".")
+	var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
+	.replace(/\&apos/g,"'")
+	.replace(/\&amp/," and ")
+	.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
+	.split(".")
 
-		var tidyContent = []
+	var tidyContent = []
 
-		textContent.forEach(function(str, ind){
-			str = str.trim()
+	textContent.forEach(function(str, ind){
+		str = str.trim()
 			//get rid of long sections, sentences with @, numbers too?
 			if (str.length > 2 && str.length < 90 && str != "Photograph" && str != "'*") {
 				str = str.charAt(0).toUpperCase() + str.slice(1)
@@ -81,9 +83,9 @@ function parseData(data, title) {
 			}
 		})
 
-		currentPoemData = {title: title, link: articleLink, content: tidyContent}
+	appData.currentPoemData = {title: title, link: articleLink, content: tidyContent}
 
-		createPoem(currentPoemData)
+	createPoem(appData.currentPoemData)
 }
 
 function createPoem(poemData){
@@ -100,7 +102,7 @@ function createPoem(poemData){
 			.append(
 				$("<span class='poemLineText'>")
 				.html(poemData.content[x])
-			)
+				)
 			.append(
 				$("<div class='poemLineRefresh'>")
 				.html("<i class='material-icons md-18'>&#xE86A;</i>")
@@ -108,8 +110,8 @@ function createPoem(poemData){
 				.hover(function(){
 					$(this).parent().toggleClass("poemHighlight")
 				})
+				)
 			)
-		)
 	})
 
 	$(".articleLink").attr("href", poemData.link)
@@ -131,7 +133,7 @@ function whatsAppPoemLink() {
 }
 
 function refreshLine() {
-	var newLine = currentPoemData.content[Math.floor(Math.random()*currentPoemData.content.length)]
+	var newLine = appData.currentPoemData.content[Math.floor(Math.random()*appData.currentPoemData.content.length)]
 	$(this).prev().text(newLine)
 }
 
@@ -146,7 +148,7 @@ $(document).ready(function(){
 		}
 	})
 	$("#wholePoemRefresh").click(function(){
-		newPoem(currentPoemData.title)
+		newPoem(appData.currentPoemData.title)
 	}).hover(function(){
 		$(".poemContainer").toggleClass("poemHighlight")
 	})
