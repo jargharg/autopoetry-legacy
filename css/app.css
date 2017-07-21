@@ -63,6 +63,9 @@ body {
     #poemContainer {
       border: 1px solid slategrey; } }
 
+.hidden {
+  opacity: 0; }
+
 #poemTitle {
   position: relative;
   color: white;
@@ -264,11 +267,6 @@ body {
         width: 75%; }
       .poemForm.poemFormBottom input[type="submit"] {
         width: 25%; }
-
-.hidden {
-  opacity: 0; }
-  .hidden .poemLineRefresh {
-    display: none; }
 
 .editMode #poemTitle > h1 {
   padding-left: 50px; }
