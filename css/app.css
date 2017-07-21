@@ -2,9 +2,12 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Source Code Pro", monospace;
-  font-size: 18px;
+  font-size: 1.2rem;
   background-color: aliceblue;
   position: relative; }
+  @media (min-width: 530px) {
+    body {
+      font-size: 1rem; } }
 
 .topNav {
   background: slategrey;
@@ -44,42 +47,63 @@ body {
       padding: 10px; }
 
 .container {
-  width: 80%;
+  width: 100%;
   max-width: 700px;
-  margin: 50px auto 0;
+  margin: 0 auto;
   transition: opacity 0.4s; }
+  @media (min-width: 530px) {
+    .container {
+      width: 80%;
+      margin-top: 50px; } }
 
-.poemContainer {
-  border: 1px solid slategrey;
-  background: white; }
+#poemContainer {
+  background: white;
+  border-bottom: 1px solid slategrey; }
+  @media (min-width: 530px) {
+    #poemContainer {
+      border: 1px solid slategrey; } }
 
-.poemTitle {
+#poemTitle {
   position: relative;
   color: white;
   padding: 5px 20px;
   background: slategrey; }
-  .poemTitle h1 {
+  #poemTitle h1 {
     text-transform: uppercase;
-    margin: 0; }
-  .poemTitle #poemEdit {
+    margin: 0;
+    display: inline-block;
+    padding-left: 0;
+    transition: all 0.2s ease-out; }
+  #poemTitle span {
     position: absolute;
     top: 0;
-    right: 15px;
     height: 100%;
     cursor: pointer;
-    transition: 0.2s;
     user-select: none;
-    opacity: 0.4; }
-    .poemTitle #poemEdit:hover {
-      opacity: 1; }
-    .poemTitle #poemEdit i.material-icons {
+    transition: all 0.2s ease-out; }
+    #poemTitle span i.material-icons {
       height: 100%;
       font-size: 48px;
-      line-height: 55px; }
+      line-height: 58px; }
+      @media (min-width: 530px) {
+        #poemTitle span i.material-icons {
+          line-height: 1; } }
+    #poemTitle span#poemEdit {
+      right: 15px;
+      opacity: 0.4; }
+      #poemTitle span#poemEdit:hover {
+        opacity: 1; }
+    #poemTitle span#wholePoemRefresh {
+      left: 15px;
+      width: 0;
+      overflow: hidden; }
 
 .poemBody {
   padding: 0;
-  margin: 30px; }
+  margin: 20px; }
+  @media (min-width: 530px) {
+    .poemBody {
+      margin: 20px; } }
   .poemBody li {
     line-height: 1;
     list-style: none;
@@ -107,18 +131,15 @@ body {
         position: absolute;
         top: 50%;
         transform: translateY(-50%); }
-    .poemBody li.poemHighlight {
-      min-height: 40px;
-      margin-bottom: 2px; }
-      .poemBody li.poemHighlight .poemLineText {
-        padding-right: 40px; }
-      .poemBody li.poemHighlight .poemLineRefresh {
-        opacity: 1;
-        width: 40px; }
 
 .poemLinks {
-  font-size: 0.7em;
-  padding: 20px 30px 0; }
+  padding: 20px 20px 100px;
+  font-size: 1rem; }
+  @media (min-width: 530px) {
+    .poemLinks {
+      font-size: 0.7rem;
+      padding: 20px 20px 0;
+      line-height: 1; } }
   .poemLinks a {
     text-decoration: none;
     color: darkgrey; }
@@ -126,7 +147,10 @@ body {
       color: dark slategrey; }
     .poemLinks a.articleLink {
       float: right;
-      line-height: 24px; }
+      line-height: 30px; }
+      @media (min-width: 530px) {
+        .poemLinks a.articleLink {
+          line-height: 1; } }
 
 .loadingDiv {
   height: 180px;
@@ -174,24 +198,65 @@ body {
       .poemForm input[type="submit"]:active {
         background: #3E4C5A; }
   .poemForm.poemFormInit {
-    height: 120px;
+    top: 150px;
+    width: 80%;
+    height: 200px;
     bottom: 60%;
-    width: 40%;
     left: 50%;
     transform: translateX(-50%);
     border: 1px solid slategrey; }
+    @media (min-width: 530px) {
+      .poemForm.poemFormInit {
+        top: auto;
+        width: 40%;
+        height: 120px; } }
     .poemForm.poemFormInit input {
       width: 100%;
       height: 50%; }
       .poemForm.poemFormInit input[type="text"] {
         padding-left: 30px; }
   .poemForm.poemFormBottom {
-    height: 40px;
+    bottom: 0%;
+    height: 60px;
     left: 0%;
     width: 100%;
     transform: translateX(0%);
     margin: 0;
-    border-top: 1px solid slategrey; }
+    border-top: 1px solid slategrey;
+    transition: 0.2s all; }
+    @media (max-width: 530px) {
+      .poemForm.poemFormBottom input[type="text"] {
+        width: 100%;
+        display: none; }
+        .poemForm.poemFormBottom input[type="text"].inputMobile {
+          display: block; }
+      .poemForm.poemFormBottom input[type="submit"] {
+        width: 100%;
+        animation: none; }
+        .poemForm.poemFormBottom input[type="submit"]:hover {
+          background: inherit; }
+      .poemForm.poemFormBottom.poemFormExpanded {
+        height: 120px; }
+        .poemForm.poemFormBottom.poemFormExpanded input {
+          height: 50%;
+          transition: 0.2s all; } }
+    @media (min-width: 530px) {
+      .poemForm.poemFormBottom {
+        height: 40px; }
+        .poemForm.poemFormBottom input[type="submit"] {
+          animation: submitResize 0.4s forwards; }
+      @keyframes submitResize {
+        0% {
+          width: 100%;
+          opacity: 1; }
+        65% {
+          height: 0%; }
+        70% {
+          opacity: 0; }
+        75% {
+          height: 100%; }
+        100% {
+          opacity: 1; } } }
     .poemForm.poemFormBottom input {
       height: 100%; }
       .poemForm.poemFormBottom input[type="text"] {
@@ -205,67 +270,19 @@ body {
   .hidden .poemLineRefresh {
     display: none; }
 
-@media (min-width: 500px) {
-  .poemFormBottom {
-    bottom: 0%; }
-    .poemFormBottom input[type="submit"] {
-      animation: submitResize 0.4s forwards; }
-  @keyframes submitResize {
-    0% {
-      width: 100%;
-      opacity: 1; }
-    65% {
-      height: 0%; }
-    70% {
-      opacity: 0; }
-    75% {
-      height: 100%; }
-    100% {
-      opacity: 1; } } }
-@media (max-width: 500px) {
-  body .container {
-    width: 100%;
-    margin-top: 0px; }
-    body .container .poemContainer {
-      border: none;
-      border-bottom: 1px solid slategrey; }
-      body .container .poemContainer header #wholePoemRefresh i.material-icons {
-        line-height: 55px; }
-      body .container .poemContainer ul {
-        margin: 20px; }
-        body .container .poemContainer ul li .poemLineRefresh {
-          font-size: 1em;
-          line-height: 1em;
-          padding: 0;
-          right: -10px; }
-    body .container .poemLinks {
-      padding: 20px 10px 100px;
-      font-size: 16px;
-      line-height: 30px; }
-      body .container .poemLinks i {
-        font-size: 30px; }
-  body .poemForm.poemFormInit {
-    top: 150px;
-    width: 80%;
-    height: 200px; }
-  body .poemForm.poemFormBottom {
-    bottom: 0%;
-    height: 60px;
-    transition: 0.2s all; }
-    body .poemForm.poemFormBottom input[type="text"] {
-      width: 100%;
-      display: none; }
-      body .poemForm.poemFormBottom input[type="text"].inputMobile {
-        display: block; }
-    body .poemForm.poemFormBottom input[type="submit"] {
-      width: 100%;
-      animation: none; }
-      body .poemForm.poemFormBottom input[type="submit"]:hover {
-        background: inherit; }
-    body .poemForm.poemFormBottom.poemFormExpanded {
-      height: 120px; }
-      body .poemForm.poemFormBottom.poemFormExpanded input {
-        height: 50%;
-        transition: 0.2s all; } }
+.editMode #poemTitle > h1 {
+  padding-left: 50px; }
+.editMode #poemTitle > #wholePoemRefresh {
+  width: 50px; }
+.editMode .poemBody > li {
+  min-height: 40px;
+  margin-bottom: 2px; }
+  .editMode .poemBody > li:hover > .poemLineRefresh {
+    opacity: 1; }
+  .editMode .poemBody > li .poemLineText {
+    padding-right: 40px; }
+  .editMode .poemBody > li .poemLineRefresh {
+    opacity: 0.5;
+    width: 40px; }
 
 /*# sourceMappingURL=app.css.map */

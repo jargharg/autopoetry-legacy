@@ -158,9 +158,11 @@ function PoemControls(poemData) {
 	var base = this
 	this.poemData = poemData
 	this.poemEdit = $("#poemEdit")
-	this.poemLines = $(".poemLine")
+	this.poemEditIcon = $("#poemEdit .material-icons")
+	this.poemContainer = $("#poemContainer")
 	this.poemLinesRefresh = $(".poemLineRefresh")
 	this.wholePoemRefresh = $("#wholePoemRefresh")
+	this.editModeActive = ($(".editMode").length > 0) ? true : false
 
 	this.events = function(){
 		this.poemEdit.click(this.editMode.bind(this))
@@ -169,7 +171,15 @@ function PoemControls(poemData) {
 	}
 
 	this.editMode = function() {
-		this.poemLines.toggleClass("poemHighlight")
+		if (this.editModeActive === true) {
+			this.poemEditIcon.text("mode_edit")
+			this.poemContainer.removeClass("editMode")
+			this.editModeActive = false
+		} else {
+			this.poemEditIcon.text("done")
+			this.poemContainer.addClass("editMode")
+			this.editModeActive = true
+		}
 	}
 
 	this.refreshLine = function() {
@@ -195,7 +205,7 @@ function ShareLinks() {
 	this.whatsAppPoemLink = function() {
 		var whatsAppPre = "whatsapp://send?text="
 		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
-		var whatsAppText = $(".poemTitle h1").text().toUpperCase()+"\n\n"
+		var whatsAppText = $("#poemTitle h1").text().toUpperCase()+"\n\n"
 		var contents = $(".poemLineText")
 
 		contents.each(function(){

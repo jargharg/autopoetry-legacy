@@ -3,14 +3,30 @@ $bg-color: aliceblue;
 $primary-color: slategrey;
 $secondary-color: crimson;
 
+@mixin atMedium {
+	@media (min-width: 530px) {
+		@content;
+	}
+}
+
+@mixin belowMedium {
+	@media (max-width: 530px) {
+		@content;
+	}
+}
+
 body {
 	padding: 0;
 	margin: 0;
 	font-family: $font-stack;
-	font-size: 18px;
+	font-size: 1.2rem;
 	background-color: $bg-color;
 	position: relative;
+	@include atMedium {
+		font-size: 1rem;
+	}
 }
+
 .topNav {
 	background: $primary-color;
 	color: white;
@@ -40,7 +56,6 @@ body {
 		opacity: 0.95;
 		padding: 0 10px;
 		font-size: 0.7em;
-		//width: 100%;
 		top: 100%;
 		left: 0;
 		position: absolute;
@@ -55,18 +70,27 @@ body {
 		}
 	}
 }
+
 .container {
-	width: 80%;
+	width: 100%;
 	max-width: 700px;
-	margin: 50px auto 0;
+	margin: 0 auto;
 	transition: opacity 0.4s;
-}
-.poemContainer {
-	border: 1px solid $primary-color;
-	background: white;
+	@include atMedium {
+		width: 80%;
+		margin-top: 50px;
+	}
 }
 
-.poemTitle {
+#poemContainer {
+	background: white;
+	border-bottom: 1px solid $primary-color;
+	@include atMedium {
+		border: 1px solid $primary-color;
+	}
+}
+
+#poemTitle {
 	position: relative;
 	color: white;
 	padding: 5px 20px;
@@ -74,30 +98,46 @@ body {
 	h1 {
 		text-transform: uppercase;
 		margin: 0;
+		display: inline-block;
+		padding-left: 0;
+		transition: all 0.2s ease-out;
 	}
-	#poemEdit {
+	span {
 		position: absolute;
 		top: 0;
-		right: 15px;
 		height: 100%;
 		cursor: pointer;
-		transition: 0.2s;
 		user-select: none;
-		opacity: 0.4;
-		&:hover {
-			opacity: 1;
-		}
+		transition: all 0.2s ease-out;
 		i.material-icons {
 			height: 100%;
 			font-size: 48px;
-			line-height: 55px;
+			line-height: 58px;
+			@include atMedium {
+				line-height: 1;
+			}
+		}
+		&#poemEdit {
+			right: 15px;
+			opacity: 0.4;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		&#wholePoemRefresh {
+			left: 15px;
+			width: 0;
+			overflow: hidden;
 		}
 	}
 }
 
 .poemBody {
 	padding: 0;
-	margin: 30px;
+	margin: 20px;
+	@include atMedium {
+		margin: 20px;
+	}
 	li {
 		line-height: 1;
 		list-style: none;
@@ -118,7 +158,6 @@ body {
 			overflow: hidden;
 			height: 100%;
 			color: $secondary-color;
-			//background-color: $secondary-color;
 			cursor: pointer;
 			transition: 0.2s;
 			user-select: none;
@@ -129,24 +168,18 @@ body {
 				transform: translateY(-50%);
 			}
 		}
-		&.poemHighlight {
-			min-height: 40px;
-			margin-bottom: 2px;
-			.poemLineText {
-				padding-right: 40px;
-			}
-			.poemLineRefresh {
-				opacity: 1;
-				width: 40px;
-			}
-		}
 	}
 }
 
 
 .poemLinks {
-	font-size: 0.7em;
-	padding: 20px 30px 0;
+	padding: 20px 20px 100px;
+	font-size: 1rem;
+	@include atMedium {
+		font-size: 0.7rem;
+		padding: 20px 20px 0;
+		line-height: 1;
+	}
 	a {
 		text-decoration: none;
 		color: darkgrey;
@@ -155,7 +188,10 @@ body {
 		}
 		&.articleLink {
 			float: right;
-			line-height: 24px;
+			line-height: 30px;
+			@include atMedium {
+				line-height: 1;
+			}
 		}
 	}
 }
@@ -220,12 +256,18 @@ body {
 		}
 	}
 	&.poemFormInit {
-		height: 120px;
+		top: 150px;
+		width: 80%;
+		height: 200px;
 		bottom: 60%;
-		width: 40%;
 		left: 50%;
 		transform: translateX(-50%);
 		border: 1px solid $primary-color;
+		@include atMedium {
+			top: auto;
+			width: 40%;
+			height: 120px;
+		}
 		input {
 			width: 100%;
 			height: 50%;
@@ -235,12 +277,64 @@ body {
 		}
 	}
 	&.poemFormBottom {
-		height: 40px;
+		bottom: 0%;
+		height: 60px;
 		left: 0%;
 		width: 100%;
 		transform: translateX(0%);
 		margin: 0;
 		border-top: 1px solid $primary-color;
+		transition: 0.2s all;
+
+		@include belowMedium {
+			input {
+				&[type="text"] {
+					width: 100%;
+					display: none;
+					&.inputMobile {
+						display: block;
+					}
+				}
+				&[type="submit"] {
+					width: 100%;
+					animation: none;
+					&:hover {
+						background: inherit;
+					}
+				}
+			}
+			&.poemFormExpanded {
+				height: 120px;
+				input {
+					height: 50%;
+					transition: 0.2s all;
+				}
+			}
+		}
+		@include atMedium {
+			height: 40px;
+			input[type="submit"]{
+				animation: submitResize 0.4s forwards;
+				@keyframes submitResize {
+					0% {
+						width: 100%;
+						opacity: 1;
+					}
+					65% {
+						height: 0%;
+					}
+					70% {
+						opacity: 0;
+					}
+					75% {
+						height: 100%;
+					}
+					100% {
+						opacity: 1;
+					}
+				}
+			}
+		}
 		input {
 			height: 100%;
 			&[type="text"] {
@@ -253,6 +347,7 @@ body {
 		}
 	}
 }
+
 .hidden {
 	opacity: 0;
 	.poemLineRefresh {
@@ -260,99 +355,27 @@ body {
 	}
 }
 
-@media (min-width: 500px) {
-	.poemFormBottom {
-		bottom: 0%;
-		input[type="submit"]{
-			animation: submitResize 0.4s forwards;
-			@keyframes submitResize {
-				0% {
-					width: 100%;
-					opacity: 1;
-				}
-				65% {
-					height: 0%;
-				}
-				70% {
-					opacity: 0;
-				}
-				75% {
-					height: 100%;
-				}
-				100% {
-					opacity: 1;
-				}
-			}
+.editMode {
+	#poemTitle {
+		&> h1 {
+			padding-left: 50px;
+		}
+		&> #wholePoemRefresh {
+			width: 50px;
 		}
 	}
-}
-
-@media (max-width: 500px) {
-	body {
-		.container {
-			width: 100%;
-			margin-top: 0px;
-			.poemContainer {
-				header #wholePoemRefresh i.material-icons {
-					line-height: 55px;
-				}
-				border: none;
-				border-bottom: 1px solid $primary-color;
-				ul {
-					margin: 20px;
-					li {
-						.poemLineRefresh {
-							font-size: 1em;
-							line-height: 1em;
-							padding: 0;
-							right: -10px;
-						}
-					}
-				}
-			}
-			.poemLinks {
-				padding: 20px 10px 100px;
-				font-size: 16px;
-				line-height: 30px;
-				i {
-					font-size: 30px;
-				}
-			}
+	.poemBody > li {
+		min-height: 40px;
+		margin-bottom: 2px;
+		&:hover > .poemLineRefresh {
+			opacity: 1;
 		}
-		.poemForm {
-			&.poemFormInit {
-				top: 150px;
-				width: 80%;
-				height: 200px;
-			}
-			&.poemFormBottom {
-				bottom: 0%;
-				height: 60px;
-				transition: 0.2s all;
-				input {
-					&[type="text"] {
-						width: 100%;
-						display: none;
-						&.inputMobile {
-							display: block;
-						}
-					}
-					&[type="submit"] {
-						width: 100%;
-						animation: none;
-						&:hover {
-							background: inherit;
-						}
-					}
-				}
-				&.poemFormExpanded {
-					height: 120px;
-					input {
-						height: 50%;
-						transition: 0.2s all;
-					}
-				}
-			}
+		.poemLineText {
+			padding-right: 40px;
+		}
+		.poemLineRefresh {
+			opacity: 0.5;
+			width: 40px;
 		}
 	}
 }
