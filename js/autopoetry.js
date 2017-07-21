@@ -24,7 +24,7 @@ function PoemInput() {
 
 	this.newWordSearch = function() {
 		if(this.inputText.val() != "") {
-			var poem = new Poem(this.inputText.val())
+			this.poem = new Poem(this.inputText.val())
 			this.inputText.val("")
 			.removeClass("inputMobile")
 			.parent().removeClass("poemFormExpanded")
@@ -165,9 +165,9 @@ function PoemControls(poemData) {
 	this.editModeActive = false
 
 	this.events = function(){
-		this.poemEdit.click(this.editMode.bind(this))
-		this.poemLinesRefresh.click(this.refreshLine)
-		this.wholePoemRefresh.click(this.refreshPoem.bind(this))
+		this.poemEdit.off().click(this.editMode.bind(this))
+		this.poemLinesRefresh.off().click(this.refreshLine)
+		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
 	}
 
 	this.editMode = function() {
@@ -188,8 +188,8 @@ function PoemControls(poemData) {
 	}
 
 	this.refreshPoem = function(){
-		var poem = new Poem(base.poemData.title)
 		this.editMode()
+		var poem = new Poem(base.poemData.title)
 	}
 
 	this.events()
