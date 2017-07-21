@@ -162,7 +162,7 @@ function PoemControls(poemData) {
 	this.poemContainer = $("#poemContainer")
 	this.poemLinesRefresh = $(".poemLineRefresh")
 	this.wholePoemRefresh = $("#wholePoemRefresh")
-	this.editModeActive = ($(".editMode").length > 0) ? true : false
+	this.editModeActive = false
 
 	this.events = function(){
 		this.poemEdit.click(this.editMode.bind(this))
@@ -189,6 +189,7 @@ function PoemControls(poemData) {
 
 	this.refreshPoem = function(){
 		var poem = new Poem(base.poemData.title)
+		this.editMode()
 	}
 
 	this.events()
