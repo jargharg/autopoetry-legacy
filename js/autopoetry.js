@@ -91,9 +91,6 @@ function Poem(inputPhrase) {
 				.append(
 					$("<div class='poemLineRefresh'>")
 					.html("<i class='material-icons md-18'>&#xE86A;</i>")
-					.hover(function(){
-						$(this).parent().toggleClass("poemHighlight")
-					})
 					)
 				)
 		})
@@ -160,12 +157,19 @@ function Poem(inputPhrase) {
 function PoemControls(poemData) {
 	var base = this
 	this.poemData = poemData
+	this.poemEdit = $("#poemEdit")
+	this.poemLines = $(".poemLine")
 	this.poemLinesRefresh = $(".poemLineRefresh")
 	this.wholePoemRefresh = $("#wholePoemRefresh")
 
 	this.events = function(){
+		this.poemEdit.click(this.editMode.bind(this))
 		this.poemLinesRefresh.click(this.refreshLine)
 		this.wholePoemRefresh.click(this.refreshPoem.bind(this))
+	}
+
+	this.editMode = function() {
+		this.poemLines.toggleClass("poemHighlight")
 	}
 
 	this.refreshLine = function() {
@@ -191,7 +195,7 @@ function ShareLinks() {
 	this.whatsAppPoemLink = function() {
 		var whatsAppPre = "whatsapp://send?text="
 		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
-		var whatsAppText = $(".poemContainer header h1").text().toUpperCase()+"\n\n"
+		var whatsAppText = $(".poemTitle h1").text().toUpperCase()+"\n\n"
 		var contents = $(".poemLineText")
 
 		contents.each(function(){

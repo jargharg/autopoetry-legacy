@@ -48,85 +48,101 @@ body {
   max-width: 700px;
   margin: 50px auto 0;
   transition: opacity 0.4s; }
-  .container .poemContainer {
-    border: 1px solid slategrey;
-    background: white; }
-    .container .poemContainer header {
-      position: relative;
-      color: white;
-      padding: 5px 20px;
-      background: slategrey; }
-      .container .poemContainer header h1 {
-        text-transform: uppercase;
-        margin: 0; }
-      .container .poemContainer header #wholePoemRefresh {
+
+.poemContainer {
+  border: 1px solid slategrey;
+  background: white; }
+
+.poemTitle {
+  position: relative;
+  color: white;
+  padding: 5px 20px;
+  background: slategrey; }
+  .poemTitle h1 {
+    text-transform: uppercase;
+    margin: 0; }
+  .poemTitle #poemEdit {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+    opacity: 0.4; }
+    .poemTitle #poemEdit:hover {
+      opacity: 1; }
+    .poemTitle #poemEdit i.material-icons {
+      height: 100%;
+      font-size: 48px;
+      line-height: 55px; }
+
+.poemBody {
+  padding: 0;
+  margin: 30px; }
+  .poemBody li {
+    line-height: 1;
+    list-style: none;
+    position: relative;
+    min-height: 10px;
+    transition: all 0.3s; }
+    .poemBody li .poemLineText {
+      margin-left: 1em;
+      text-indent: -1em;
+      display: block; }
+    .poemBody li .poemLineRefresh {
+      display: inline-block;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 0px;
+      overflow: hidden;
+      height: 100%;
+      color: crimson;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none; }
+      .poemBody li .poemLineRefresh i.material-icons {
+        font-size: 40px;
         position: absolute;
-        top: 0;
-        right: 15px;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
-        transition: 0.2s;
-        user-select: none; }
-        .container .poemContainer header #wholePoemRefresh i.material-icons {
-          height: 100%;
-          font-size: 48px;
-          line-height: 55px; }
-    .container .poemContainer ul {
-      padding: 0;
-      margin: 30px; }
-      .container .poemContainer ul li {
-        line-height: 1;
-        list-style: none;
-        position: relative;
-        transition: 0.1s; }
-        .container .poemContainer ul li .poemLineRefresh {
-          display: inline-block;
-          position: absolute;
-          top: 0px;
-          right: -25px;
-          width: 20px;
-          height: 100%;
-          color: crimson;
-          opacity: 0;
-          cursor: pointer;
-          transition: 0.2s;
-          user-select: none; }
-          .container .poemContainer ul li .poemLineRefresh i.material-icons {
-            font-size: inherit; }
-    .container .poemContainer:hover #wholePoemRefresh {
-      opacity: 1; }
-    .container .poemContainer:hover .poemLineRefresh {
-      opacity: 1; }
-  .container .poemHighlight {
-    background-color: crimson;
-    color: white; }
-  .container .poemLinks {
-    font-size: 0.7em;
-    padding: 20px 5px 0; }
-    .container .poemLinks a {
-      text-decoration: none;
-      color: darkgrey; }
-      .container .poemLinks a:hover {
-        color: dark slategrey; }
-      .container .poemLinks a.articleLink {
-        float: right;
-        line-height: 24px; }
-  .container .loadingDiv {
-    height: 180px;
-    line-height: 180px;
-    text-align: center; }
-    .container .loadingDiv span {
-      animation: loadingFade 1s infinite ease-in-out both; }
-      .container .loadingDiv span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%); }
+    .poemBody li.poemHighlight {
+      min-height: 40px;
+      margin-bottom: 2px; }
+      .poemBody li.poemHighlight .poemLineText {
+        padding-right: 40px; }
+      .poemBody li.poemHighlight .poemLineRefresh {
         opacity: 1;
-        animation-delay: 0s; }
-      .container .loadingDiv span:nth-child(2) {
-        opacity: 0.5;
-        animation-delay: 0.2s; }
-      .container .loadingDiv span:nth-child(3) {
-        opacity: 0;
-        animation-delay: 0.4s; }
+        width: 40px; }
+
+.poemLinks {
+  font-size: 0.7em;
+  padding: 20px 30px 0; }
+  .poemLinks a {
+    text-decoration: none;
+    color: darkgrey; }
+    .poemLinks a:hover {
+      color: dark slategrey; }
+    .poemLinks a.articleLink {
+      float: right;
+      line-height: 24px; }
+
+.loadingDiv {
+  height: 180px;
+  line-height: 180px;
+  text-align: center; }
+  .loadingDiv span {
+    animation: loadingFade 1s infinite ease-in-out both; }
+    .loadingDiv span:nth-child(1) {
+      opacity: 1;
+      animation-delay: 0s; }
+    .loadingDiv span:nth-child(2) {
+      opacity: 0.5;
+      animation-delay: 0.2s; }
+    .loadingDiv span:nth-child(3) {
+      opacity: 0;
+      animation-delay: 0.4s; }
 @keyframes loadingFade {
   0%, 100% {
     opacity: 1; }
@@ -186,7 +202,7 @@ body {
 
 .hidden {
   opacity: 0; }
-  .hidden .poemLineRefresh, .hidden #wholePoemRefresh {
+  .hidden .poemLineRefresh {
     display: none; }
 
 @media (min-width: 500px) {

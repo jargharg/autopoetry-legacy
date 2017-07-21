@@ -60,115 +60,135 @@ body {
 	max-width: 700px;
 	margin: 50px auto 0;
 	transition: opacity 0.4s;
-	.poemContainer {
-		border: 1px solid $primary-color;
-		background: white;
-		header {
-			position: relative;
-			color: white;
-			padding: 5px 20px;
-			background: $primary-color;
-			h1 {
-				text-transform: uppercase;
-				margin: 0;
-			}
-			#wholePoemRefresh {
+}
+.poemContainer {
+	border: 1px solid $primary-color;
+	background: white;
+}
+
+.poemTitle {
+	position: relative;
+	color: white;
+	padding: 5px 20px;
+	background: $primary-color;
+	h1 {
+		text-transform: uppercase;
+		margin: 0;
+	}
+	#poemEdit {
+		position: absolute;
+		top: 0;
+		right: 15px;
+		height: 100%;
+		cursor: pointer;
+		transition: 0.2s;
+		user-select: none;
+		opacity: 0.4;
+		&:hover {
+			opacity: 1;
+		}
+		i.material-icons {
+			height: 100%;
+			font-size: 48px;
+			line-height: 55px;
+		}
+	}
+}
+
+.poemBody {
+	padding: 0;
+	margin: 30px;
+	li {
+		line-height: 1;
+		list-style: none;
+		position: relative;
+		min-height: 10px;
+		transition: all 0.3s;
+		.poemLineText {
+			margin-left: 1em;
+			text-indent: -1em;
+			display: block;
+		}
+		.poemLineRefresh {
+			display: inline-block;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			width: 0px;
+			overflow: hidden;
+			height: 100%;
+			color: $secondary-color;
+			//background-color: $secondary-color;
+			cursor: pointer;
+			transition: 0.2s;
+			user-select: none;
+			i.material-icons {
+				font-size: 40px;
 				position: absolute;
-				top: 0;
-				right: 15px;
-				height: 100%;
-				opacity: 0;
-				cursor: pointer;
-				transition: 0.2s;
-				user-select: none;
-				i.material-icons {
-					height: 100%;
-					font-size: 48px;
-					line-height: 55px;
-				}
+				top: 50%;
+				transform: translateY(-50%);
 			}
 		}
-		ul {
-			padding: 0;
-			margin: 30px;
-			li {
-				line-height: 1;
-				list-style: none;
-				position: relative;
-				transition: 0.1s;
-				.poemLineRefresh {
-					display: inline-block;
-					position: absolute;
-					top: 0px;
-					right: -25px;
-					width: 20px;
-					height: 100%;
-					color: $secondary-color;
-					opacity: 0;
-					cursor: pointer;
-					transition: 0.2s;
-					user-select: none;
-					i.material-icons {
-						font-size: inherit;
-					}
-				}
+		&.poemHighlight {
+			min-height: 40px;
+			margin-bottom: 2px;
+			.poemLineText {
+				padding-right: 40px;
 			}
-		}
-		&:hover #wholePoemRefresh {
-			opacity: 1;
-		}
-		&:hover .poemLineRefresh {
-			opacity: 1;
-		}
-	}
-	.poemHighlight {
-		background-color: $secondary-color;
-		color: white;
-	}	
-	.poemLinks {
-		font-size: 0.7em;
-		padding: 20px 5px 0;
-		a {
-			text-decoration: none;
-			color: darkgrey;
-			&:hover {
-				color: dark$primary-color;
-			}
-			&.articleLink {
-				float: right;
-				line-height: 24px;
-			}
-		}
-	}
-	.loadingDiv {
-		height: 180px;
-		line-height: 180px;
-		text-align: center;
-		span {
-			animation: loadingFade 1s infinite ease-in-out both;
-			&:nth-child(1){
+			.poemLineRefresh {
 				opacity: 1;
-				animation-delay: 0s;
-			}
-			&:nth-child(2){
-				opacity: 0.5;
-				animation-delay: 0.2s;
-			}
-			&:nth-child(3){
-				opacity: 0;
-				animation-delay: 0.4s;
-			}	
-		}
-		@keyframes loadingFade {
-			0%, 100% {
-				opacity: 1;
-			}
-			50% {
-				opacity: 0;
+				width: 40px;
 			}
 		}
 	}
 }
+
+
+.poemLinks {
+	font-size: 0.7em;
+	padding: 20px 30px 0;
+	a {
+		text-decoration: none;
+		color: darkgrey;
+		&:hover {
+			color: dark$primary-color;
+		}
+		&.articleLink {
+			float: right;
+			line-height: 24px;
+		}
+	}
+}
+
+.loadingDiv {
+	height: 180px;
+	line-height: 180px;
+	text-align: center;
+	span {
+		animation: loadingFade 1s infinite ease-in-out both;
+		&:nth-child(1){
+			opacity: 1;
+			animation-delay: 0s;
+		}
+		&:nth-child(2){
+			opacity: 0.5;
+			animation-delay: 0.2s;
+		}
+		&:nth-child(3){
+			opacity: 0;
+			animation-delay: 0.4s;
+		}	
+	}
+	@keyframes loadingFade {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+}
+
 .poemForm {
 	position: fixed;
 	overflow: hidden;
@@ -235,7 +255,7 @@ body {
 }
 .hidden {
 	opacity: 0;
-	.poemLineRefresh, #wholePoemRefresh {
+	.poemLineRefresh {
 		display: none;
 	}
 }

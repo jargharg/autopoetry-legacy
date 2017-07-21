@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="topNav">
+    <header class="topNav">
         <span class="appName">Autopoetry</span>
         <div class="moreIcon">
             <i class="material-icons">&#xE5D4;</i>
@@ -22,13 +22,14 @@
             Inspired by the cut-up technique of William S Burroughs, this app searches for your phrase in the <a href="http://open-platform.theguardian.com/" target="_blank">Guardian API</a> and slices up an article to make a poem with random snippets. Hover over lines to replace them, or get a new article with the big refresh button. 
             Made by <a href="https://jarodhargreav.es">Jarod Hargreaves</a>.
         </div>
-    </div>
+    </header>
+
     <div class="container hidden">
         <div class="poemContainer">
-            <header>
+            <div class="poemTitle">
                 <h1></h1>
-                <span id="wholePoemRefresh"><i class="material-icons md-48">&#xE86A;</i></span>
-            </header>
+                <span id="poemEdit"><i class="material-icons md-48">mode_edit</i></span>
+            </div>
             <ul class="poemBody">
                 <div class="loadingDiv">
                     Loading<span>.</span><span>.</span><span>.</span>
