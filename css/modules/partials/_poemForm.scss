@@ -14,17 +14,17 @@
 		outline: 0;
 		transition: 0.4s all;
 		&[type="text"]:focus + input[type="submit"]{
-			background: #546576;
+			background: $primary-color-d1;
 		}
 		&[type="submit"] {
 			background: $primary-color;
 			color: white;
 			cursor: pointer;
 			&:hover {
-				background: #546576;
+				background: $primary-color-d1;
 			}
 			&:active {
-				background: #3E4C5A;
+				background: $primary-color-d2;
 			}
 		}
 	}
