@@ -5,36 +5,52 @@ var appData = {
 	$inputBox: ""
 }
 
-function firstWordSearch() {
-	appData.$inputBox = $("#newWordText")
-	if(appData.$inputBox.val() != "") {
-		$(".container").removeClass("hidden")
-		$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
-		$("#submitNewWord").off().click(newWordSearch) // Submit button pressed
-		appData.$inputBox.off().keypress(function(e){
+function PoemInput() {
+	var base = this
+	this.inputButton = $("#inputSubmit")
+	this.inputText = $("#inputText")
+
+	this.newWordSearch = function newWordSearch() {
+		if(this.inputText.val() != "") {
+			newPoem(this.inputText.val())
+			this.inputText.val("")
+			.removeClass("inputMobile")
+			.parent().removeClass("poemFormExpanded")
+			this.inputButton.blur()
+		} else {
+			this.inputText
+			.addClass("inputMobile")
+			.focus()
+			.parent().addClass("poemFormExpanded")
+		}
+	}
+
+	this.firstWordSearch = function firstWordSearch() {
+		if(this.inputText.val() != "") {
+			$(".container").removeClass("hidden")
+			$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
+			this.inputButton.off().click(this.newWordSearch.bind(this)) // Submit button pressed
+			this.inputText.off().keypress(function(e){
+				if (e.which == 13) { // Enter key pressed
+					base.newWordSearch()
+				}
+			})
+			this.newWordSearch()
+		} else {
+			this.inputText.focus()
+		}
+	}
+
+	this.events = function events(){ // event listeners
+		this.inputButton.click(this.firstWordSearch.bind(this)) // Submit button pressed
+		this.inputText.keypress(function(e){
 			if (e.which == 13) { // Enter key pressed
-				newWordSearch()
+				base.firstWordSearch()
 			}
 		})
-		newWordSearch()
-	} else {
-		appData.$inputBox.focus()
 	}
-}
 
-function newWordSearch() {
-	if(appData.$inputBox.val() != "") {
-		newPoem(appData.$inputBox.val())
-		appData.$inputBox.val("")
-		.removeClass("inputMobile")
-		.parent().removeClass("poemFormExpanded")
-		appData.$inputBox.blur()
-	} else {
-		appData.$inputBox
-		.addClass("inputMobile")
-		.focus()
-		.parent().addClass("poemFormExpanded")
-	}
+	this.events()
 }
 
 function newPoem(wordSearch){
@@ -138,15 +154,10 @@ function refreshLine() {
 }
 
 $(document).ready(function(){
-	$("#newWordText").focus()
+	$("#inputText").focus()
 
-	// Event listeners
-	$("#submitNewWord").click(firstWordSearch) // Submit button pressed
-	$("#newWordText").keypress(function(e){
-		if (e.which == 13) { // Enter key pressed
-			firstWordSearch()
-		}
-	})
+	var poemInput = new PoemInput()
+
 	$("#wholePoemRefresh").click(function(){
 		newPoem(appData.currentPoemData.title)
 	}).hover(function(){
