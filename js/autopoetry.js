@@ -24,7 +24,7 @@ function PoemInput() {
 
 	this.newWordSearch = function() {
 		if(this.inputText.val() != "") {
-			var poem = new Poem(this.inputText.val())
+			this.poem = new Poem(this.inputText.val())
 			this.inputText.val("")
 			.removeClass("inputMobile")
 			.parent().removeClass("poemFormExpanded")
@@ -91,9 +91,6 @@ function Poem(inputPhrase) {
 				.append(
 					$("<div class='poemLineRefresh'>")
 					.html("<i class='material-icons md-18'>&#xE86A;</i>")
-					.hover(function(){
-						$(this).parent().toggleClass("poemHighlight")
-					})
 					)
 				)
 		})
@@ -160,12 +157,29 @@ function Poem(inputPhrase) {
 function PoemControls(poemData) {
 	var base = this
 	this.poemData = poemData
+	this.poemEdit = $("#poemEdit")
+	this.poemEditIcon = $("#poemEdit .material-icons")
+	this.poemContainer = $("#poemContainer")
 	this.poemLinesRefresh = $(".poemLineRefresh")
 	this.wholePoemRefresh = $("#wholePoemRefresh")
+	this.editModeActive = false
 
 	this.events = function(){
-		this.poemLinesRefresh.click(this.refreshLine)
-		this.wholePoemRefresh.click(this.refreshPoem.bind(this))
+		this.poemEdit.off().click(this.editMode.bind(this))
+		this.poemLinesRefresh.off().click(this.refreshLine)
+		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
+	}
+
+	this.editMode = function() {
+		if (this.editModeActive === true) {
+			this.poemEditIcon.text("mode_edit")
+			this.poemContainer.removeClass("editMode")
+			this.editModeActive = false
+		} else {
+			this.poemEditIcon.text("done")
+			this.poemContainer.addClass("editMode")
+			this.editModeActive = true
+		}
 	}
 
 	this.refreshLine = function() {
@@ -174,6 +188,7 @@ function PoemControls(poemData) {
 	}
 
 	this.refreshPoem = function(){
+		this.editMode()
 		var poem = new Poem(base.poemData.title)
 	}
 
@@ -191,7 +206,7 @@ function ShareLinks() {
 	this.whatsAppPoemLink = function() {
 		var whatsAppPre = "whatsapp://send?text="
 		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
-		var whatsAppText = $(".poemContainer header h1").text().toUpperCase()+"\n\n"
+		var whatsAppText = $("#poemTitle h1").text().toUpperCase()+"\n\n"
 		var contents = $(".poemLineText")
 
 		contents.each(function(){

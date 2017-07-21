@@ -1,0 +1,41 @@
+#poemTitle {
+	position: relative;
+	color: white;
+	padding: 5px 20px;
+	background: $primary-color;
+	h1 {
+		text-transform: uppercase;
+		margin: 0;
+		display: inline-block;
+		padding-left: 0;
+		transition: all 0.2s ease-out;
+	}
+	span {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		cursor: pointer;
+		user-select: none;
+		transition: all 0.2s ease-out;
+		opacity: 0.4;
+		&:hover {
+			opacity: 1;
+		}
+		i.material-icons {
+			height: 100%;
+			font-size: 48px;
+			line-height: 58px;
+			@include atMedium {
+				line-height: 1;
+			}
+		}
+		&#poemEdit {
+			right: 15px;
+		}
+		&#wholePoemRefresh {
+			left: 15px;
+			width: 0;
+			overflow: hidden;
+		}
+	}
+}
