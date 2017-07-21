@@ -58,6 +58,16 @@
 		margin: 0;
 		border-top: 1px solid $primary-color;
 		transition: 0.2s all;
+		input {
+			height: 100%;
+			&[type="text"] {
+				padding-left: 10px;
+				width: 75%;
+			}
+			&[type="submit"] {
+				width: 25%;
+			}
+		}
 
 		@include belowMedium {
 			input {
@@ -84,6 +94,7 @@
 				}
 			}
 		}
+
 		@include atMedium {
 			height: 40px;
 			input[type="submit"]{
@@ -106,16 +117,6 @@
 						opacity: 1;
 					}
 				}
-			}
-		}
-		input {
-			height: 100%;
-			&[type="text"] {
-				padding-left: 10px;
-				width: 75%;
-			}
-			&[type="submit"] {
-				width: 25%;
 			}
 		}
 	}

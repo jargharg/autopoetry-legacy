@@ -227,6 +227,13 @@ body {
     margin: 0;
     border-top: 1px solid slategrey;
     transition: 0.2s all; }
+    .poemForm.poemFormBottom input {
+      height: 100%; }
+      .poemForm.poemFormBottom input[type="text"] {
+        padding-left: 10px;
+        width: 75%; }
+      .poemForm.poemFormBottom input[type="submit"] {
+        width: 25%; }
     @media (max-width: 530px) {
       .poemForm.poemFormBottom input[type="text"] {
         width: 100%;
@@ -260,13 +267,6 @@ body {
           height: 100%; }
         100% {
           opacity: 1; } } }
-    .poemForm.poemFormBottom input {
-      height: 100%; }
-      .poemForm.poemFormBottom input[type="text"] {
-        padding-left: 10px;
-        width: 75%; }
-      .poemForm.poemFormBottom input[type="submit"] {
-        width: 25%; }
 
 .editMode #poemTitle > h1 {
   padding-left: 50px; }
