@@ -699,22 +699,6 @@ body {
 	height: 180px;
 	line-height: 180px;
 	text-align: center;
-	@-webkit-keyframes loadingFade {
-		0%, 100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0;
-		}
-	}
-	@keyframes loadingFade {
-		0%, 100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0;
-		}
-	}
 }
 
 .loadingDiv span {
@@ -739,6 +723,24 @@ body {
 			-webkit-animation-delay: 0.4s;
 			        animation-delay: 0.4s;
 		}
+
+@-webkit-keyframes loadingFade {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes loadingFade {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
 
 .poemForm {
 	position: fixed;
