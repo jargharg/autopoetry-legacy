@@ -1,3 +1,6 @@
+import ShareLinks from "./ShareLinks"
+import PoemControls from "./PoemControls"
+
 function Poem(inputPhrase) {
 	var base = this
 	this.inputPhrase = inputPhrase

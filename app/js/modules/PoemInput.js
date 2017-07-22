@@ -1,3 +1,5 @@
+import Poem from "./Poem"
+
 function PoemInput() {
 	var base = this
 	this.inputButton = $("#inputSubmit")
