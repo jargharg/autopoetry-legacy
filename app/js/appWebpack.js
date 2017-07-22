@@ -2,11 +2,11 @@
 
 var $ = require("jquery")
 
-var TopNav =require("./modules/TopNav")
-var ShareLinks =require("./modules/ShareLinks")
-var PoemControls =require("./modules/PoemControls")
-var Poem =require("./modules/Poem")
-var PoemInput =require("./modules/PoemInput")
+import TopNav from "./modules/TopNav"
+import ShareLinks from "./modules/ShareLinks"
+import PoemControls from "./modules/PoemControls"
+import Poem from "./modules/Poem"
+import PoemInput from "./modules/PoemInput"
 
 var topNav = new TopNav()
 // !! initialise the poem here, then pass it to PoemInput?
