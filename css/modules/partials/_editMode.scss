@@ -22,6 +22,12 @@
 		.poemLineRefresh {
 			opacity: 0.5;
 			width: 40px;
+			@include atMedium {
+				i.material-icons {
+					font-size: 32px;
+					right: 0;
+				}
+			}
 		}
 	}
 }

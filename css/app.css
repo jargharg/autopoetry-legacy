@@ -93,7 +93,8 @@ body {
       line-height: 58px; }
       @media (min-width: 530px) {
         #poemTitle span i.material-icons {
-          line-height: 1; } }
+          font-size: 32px;
+          line-height: 50px; } }
     #poemTitle span#poemEdit {
       right: 15px; }
     #poemTitle span#wholePoemRefresh {
@@ -284,5 +285,9 @@ body {
   .editMode .poemBody > li .poemLineRefresh {
     opacity: 0.5;
     width: 40px; }
+    @media (min-width: 530px) {
+      .editMode .poemBody > li .poemLineRefresh i.material-icons {
+        font-size: 32px;
+        right: 0; } }
 
 /*# sourceMappingURL=app.css.map */
