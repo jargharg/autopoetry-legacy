@@ -1,0 +1,36 @@
+{
+  "name": "autopoetry",
+  "version": "1.0.0",
+  "description": "Create poetry from Guardian articles",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jargharg/autopoetry.git"
+  },
+  "author": "Jarod Hargreaves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jargharg/autopoetry/issues"
+  },
+  "homepage": "https://github.com/jargharg/autopoetry#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-watch": "^4.3.11",
+    "postcss": "^6.0.8",
+    "postcss-import": "^10.0.0",
+    "postcss-mixins": "^6.0.1",
+    "postcss-nested": "^2.0.4",
+    "postcss-simple-vars": "^4.0.0",
+    "webpack": "^3.3.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "normalize.css": "^7.0.0"
+  }
+}
