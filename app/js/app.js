@@ -114,7 +114,7 @@ function Poem(inputPhrase) {
 	this.newPoem = function(wordSearch){
 		$("h1").text(wordSearch) // Add poem title
 
-		$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
+		$(".poemBody").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
 
 		var APIWordSearch = wordSearch.replace(/ /g, " AND ")
 
