@@ -86,4 +86,4 @@ function Poem(inputPhrase) {
 	this.newPoem(this.inputPhrase)
 }
 
-module.exports = Poem
+export default Poem

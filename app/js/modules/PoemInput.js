@@ -47,4 +47,4 @@ function PoemInput() {
 	this.inputText.focus()
 }
 
-module.exports = PoemInput
+export default PoemInput

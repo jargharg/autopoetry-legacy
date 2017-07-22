@@ -28,4 +28,4 @@ function ShareLinks() {
 	this.events()
 }
 
-module.exports = ShareLinks
+export default ShareLinks
