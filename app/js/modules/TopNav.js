@@ -1,11 +1,12 @@
-function TopNav() {
-	this.topNav = $(".topNav")
-
-	this.events = function(){
+class TopNav {
+	constructor() {
+		this.topNav = $(".topNav")
+		this.events()
+	}
+	events() {
 		this.topNav.click(this.infoToggle.bind(this))
 	}
-
-	this.infoToggle = function(e){
+	infoToggle(e){
 		$(".appDetails").toggleClass("visible")
 		e.stopPropagation()
 		$(document).click(function(){
@@ -13,8 +14,6 @@ function TopNav() {
 			$("body").off()
 		})
 	}
-
-	this.events()
 }
 
-module.exports = TopNav
+export default TopNav
