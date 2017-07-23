@@ -16,9 +16,6 @@
 		@mixin atMedium {
 			font-size: 0.7em;
 		}
-		&[type="text"]:focus + input[type="submit"]{
-			background: $primary-color-d1;
-		}
 		&[type="submit"] {
 			background: $primary-color;
 			color: white;

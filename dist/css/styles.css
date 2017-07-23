@@ -499,8 +499,10 @@ body {
 		}
 
 .topNav .appDetails {
-		max-height: 0;
 		width: 100%;
+		-webkit-box-sizing: border-box;
+		        box-sizing: border-box;
+		max-height: 0;
 		overflow: hidden;
 		background: #708090;
 		opacity: 0.95;
@@ -556,7 +558,7 @@ body {
 @media (min-width: 530px) {
 
 #poemTitle {
-		border: 1px solid #CDCDCD;
+		border: 1px solid #708090;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px
 }
@@ -618,7 +620,7 @@ body {
 	padding: 0 0 20px 0;
 
 	background: white;
-	border-bottom: 1px solid #CDCDCD;
+	border-bottom: 1px solid #708090;
 }
 
 @media (min-width: 530px) {
@@ -631,7 +633,7 @@ body {
 @media (min-width: 530px) {
 
 .poemBody {
-		border: 1px solid #CDCDCD;
+		border: 1px solid #708090;
 		border-bottom-left-radius: 20px;
 		border-bottom-right-radius: 20px
 }
@@ -795,10 +797,6 @@ body {
 	}
 	}
 
-.poemForm input[type="text"]:focus + input[type="submit"]{
-			background: #546576;
-		}
-
 .poemForm input[type="submit"] {
 			background: #708090;
 			color: white;
@@ -954,21 +952,25 @@ body {
 
 .editMode #poemTitle> #wholePoemRefresh {
 			width: 50px;
+			color: #ED143D;
+			opacity: 1;
 		}
 
 .editMode .poemBody> li {
 			padding-top: 7px;
 			padding-bottom: 5px;
 			min-height: 30px;
-			border-bottom: 1px solid #CDCDCD;
+			border-bottom: 1px solid #708090;
 		}
 
 .editMode .poemBody> li:hover {
-				background-color: rgba(220,20,60,0.5);
+				color: white;
+				background-color: #ED143D;
 			}
 
 .editMode .poemBody> li:hover> .poemLineRefresh {
 					opacity: 1;
+					color: white;
 				}
 
 .editMode .poemBody> li:last-child {
@@ -980,7 +982,7 @@ body {
 			}
 
 .editMode .poemBody> li .poemLineRefresh {
-				opacity: 0.5;
+				opacity: 1;
 				width: 40px;
 				margin-right: 10px;
 			}

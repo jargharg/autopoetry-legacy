@@ -1,5 +1,5 @@
 .topNav {
-	background: $primary-color;
+	background: $border-color;
 	color: white;
 	position: relative;
 	cursor: pointer;
@@ -24,8 +24,9 @@
 		}
 	}
 	.appDetails {
-		max-height: 0;
 		width: 100%;
+		box-sizing: border-box;
+		max-height: 0;
 		overflow: hidden;
 		background: $primary-color;
 		opacity: 0.95;
