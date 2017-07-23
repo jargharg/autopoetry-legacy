@@ -5,12 +5,11 @@
 		padding: 20px 0;
 	}
 
-	background: white;
-	border-bottom: 1px solid $border-color;
+	@mixin belowMedium {
+		border-bottom: 1px solid $border-color;
+	}
 	@mixin atMedium {
-		border: 1px solid $border-color;
-		border-bottom-left-radius: 20px;
-		border-bottom-right-radius: 20px;
+		border-top: 1px solid $border-color;
 	}
 
 	li {
@@ -29,13 +28,13 @@
 		.poemLineRefresh {
 			display: inline-block;
 			position: absolute;
-			opacity: 0;
+			margin-right: 10px;
 			top: 0px;
 			right: 0px;
-			width: 0px;
+			width: 40px;
 			overflow: hidden;
-			height: 100%;
-			color: $secondary-color;
+			height: 0;
+			color: #fff;
 			cursor: pointer;
 			transition: 0.2s;
 			user-select: none;

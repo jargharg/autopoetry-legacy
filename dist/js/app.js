@@ -73,151 +73,12 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-function ShareLinks() {
-	var base = this;
-	this.shareLink = $(".shareLink i");
 
-	this.events = function () {
-		this.shareLink.click(this.sendWhatsAppPoem.bind(this));
-	};
-
-	this.whatsAppPoemLink = function () {
-		var whatsAppPre = "whatsapp://send?text=";
-		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry";
-		var whatsAppText = $("#poemTitle h1").text().toUpperCase() + "\n\n";
-		var contents = $(".poemLineText");
-
-		contents.each(function () {
-			whatsAppText += this.textContent + "\n";
-		});
-
-		var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost);
-
-		return whatsAppLink;
-	};
-
-	this.sendWhatsAppPoem = function () {
-		this.shareLink.parent().attr("href", base.whatsAppPoemLink());
-	};
-
-	this.events();
-}
-
-exports.default = ShareLinks;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-function PoemControls(poemData) {
-	var base = this;
-	this.poemData = poemData;
-	this.poemEdit = $("#poemEdit");
-	this.poemEditIcon = $("#poemEdit .material-icons");
-	this.poemContainer = $("#poemContainer");
-	this.poemLinesRefresh = $(".poemLineRefresh");
-	this.wholePoemRefresh = $("#wholePoemRefresh");
-	this.editModeActive = false;
-
-	this.events = function () {
-		this.poemEdit.off().click(this.editMode.bind(this));
-		this.poemLinesRefresh.off().click(this.refreshLine);
-		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
-	};
-
-	this.editMode = function () {
-		if (this.editModeActive === true) {
-			this.poemEditIcon.text("mode_edit");
-			this.poemContainer.removeClass("editMode");
-			this.editModeActive = false;
-		} else {
-			this.poemEditIcon.text("done");
-			this.poemContainer.addClass("editMode");
-			this.editModeActive = true;
-		}
-	};
-
-	this.refreshLine = function () {
-		var newLine = base.poemData.content[Math.floor(Math.random() * base.poemData.content.length)];
-		$(this).prev().text(newLine);
-	};
-
-	this.refreshPoem = function () {
-		this.editMode();
-		var poem = new Poem(base.poemData.title);
-	};
-
-	this.events();
-}
-
-exports.default = PoemControls;
-
-// ES6 constructor
-//
-// class PoemControls {
-// 	constructor(poemData){
-// 		var base = this
-// 		this.poemData = poemData
-// 		this.poemEdit = $("#poemEdit")
-// 		this.poemEditIcon = $("#poemEdit .material-icons")
-// 		this.poemContainer = $("#poemContainer")
-// 		this.poemLinesRefresh = $(".poemLineRefresh")
-// 		this.wholePoemRefresh = $("#wholePoemRefresh")
-// 		this.editModeActive = false
-// 		this.events()
-// 	}
-
-// 	events() {
-// 		this.poemEdit.off().click(this.editMode.bind(this))
-// 		this.poemLinesRefresh.off().click(this.refreshLine)
-// 		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
-// 	}
-
-// 	editMode() {
-// 		if (this.editModeActive === true) {
-// 			this.poemEditIcon.text("mode_edit")
-// 			this.poemContainer.removeClass("editMode")
-// 			this.editModeActive = false
-// 		} else {
-// 			this.poemEditIcon.text("done")
-// 			this.poemContainer.addClass("editMode")
-// 			this.editModeActive = true
-// 		}
-// 	}
-
-// 	refreshLine() {
-// 		var newLine = base.poemData.content[Math.floor(Math.random()*base.poemData.content.length)]
-// 		$(this).prev().text(newLine)
-// 	}
-
-// 	refreshPoem(){
-// 		this.editMode()
-// 		var poem = new Poem(base.poemData.title)
-// 	}
-// }
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _ShareLinks = __webpack_require__(0);
+var _ShareLinks = __webpack_require__(1);
 
 var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
 
-var _PoemControls = __webpack_require__(1);
+var _PoemControls = __webpack_require__(2);
 
 var _PoemControls2 = _interopRequireDefault(_PoemControls);
 
@@ -300,6 +161,154 @@ function Poem(inputPhrase) {
 exports.default = Poem;
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+function ShareLinks() {
+	var base = this;
+	this.shareLink = $(".shareLink i");
+
+	this.events = function () {
+		this.shareLink.click(this.sendWhatsAppPoem.bind(this));
+	};
+
+	this.whatsAppPoemLink = function () {
+		var whatsAppPre = "whatsapp://send?text=";
+		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry";
+		var whatsAppText = $("#poemTitle h1").text().toUpperCase() + "\n\n";
+		var contents = $(".poemLineText");
+
+		contents.each(function () {
+			whatsAppText += this.textContent + "\n";
+		});
+
+		var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost);
+
+		return whatsAppLink;
+	};
+
+	this.sendWhatsAppPoem = function () {
+		this.shareLink.parent().attr("href", base.whatsAppPoemLink());
+	};
+
+	this.events();
+}
+
+exports.default = ShareLinks;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _Poem = __webpack_require__(0);
+
+var _Poem2 = _interopRequireDefault(_Poem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// !! should the poem input go in here?
+
+function PoemControls(poemData) {
+	var base = this;
+	this.poemData = poemData;
+	this.poemEdit = $("#poemEdit");
+	this.poemEditIcon = $("#poemEdit .material-icons");
+	this.poemContainer = $("#poemContainer");
+	this.poemLinesRefresh = $(".poemLineRefresh");
+	this.wholePoemRefresh = $("#wholePoemRefresh");
+	this.editModeActive = false;
+
+	this.events = function () {
+		this.poemEdit.off().click(this.editMode.bind(this));
+		this.poemLinesRefresh.off().click(this.refreshLine);
+		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
+	};
+
+	this.editMode = function () {
+		if (this.editModeActive === true) {
+			this.poemEditIcon.text("mode_edit");
+			this.poemContainer.removeClass("editMode");
+			this.editModeActive = false;
+		} else {
+			this.poemEditIcon.text("done");
+			this.poemContainer.addClass("editMode");
+			this.editModeActive = true;
+		}
+	};
+
+	this.refreshLine = function () {
+		var newLine = base.poemData.content[Math.floor(Math.random() * base.poemData.content.length)];
+		$(this).prev().text(newLine);
+	};
+
+	this.refreshPoem = function () {
+		this.editMode();
+		var poem = new _Poem2.default(base.poemData.title);
+	};
+
+	this.events();
+}
+
+// ES6 constructor
+
+// class PoemControls {
+// 	constructor(poemData){
+// 		var base = this // this needs fixing
+// 		this.poemData = poemData
+// 		this.poemEdit = $("#poemEdit")
+// 		this.poemEditIcon = $("#poemEdit .material-icons")
+// 		this.poemContainer = $("#poemContainer")
+// 		this.poemLinesRefresh = $(".poemLineRefresh")
+// 		this.wholePoemRefresh = $("#wholePoemRefresh")
+// 		this.editModeActive = false
+// 		this.events()
+// 	}
+
+// 	events() {
+// 		this.poemEdit.off().click(this.editMode.bind(this))
+// 		this.poemLinesRefresh.off().click(this.refreshLine)
+// 		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
+// 	}
+
+// 	editMode() {
+// 		if (this.editModeActive === true) {
+// 			this.poemEditIcon.text("mode_edit")
+// 			this.poemContainer.removeClass("editMode")
+// 			this.editModeActive = false
+// 		} else {
+// 			this.poemEditIcon.text("done")
+// 			this.poemContainer.addClass("editMode")
+// 			this.editModeActive = true
+// 		}
+// 	}
+
+// 	refreshLine() {
+// 		var newLine = base.poemData.content[Math.floor(Math.random()*base.poemData.content.length)]
+// 		$(this).prev().text(newLine)
+// 	}
+
+// 	refreshPoem(){
+// 		this.editMode()
+// 		var poem = new Poem(this.poemData.title)
+// 	}
+// }
+
+exports.default = PoemControls;
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -310,15 +319,15 @@ var _TopNav = __webpack_require__(4);
 
 var _TopNav2 = _interopRequireDefault(_TopNav);
 
-var _ShareLinks = __webpack_require__(0);
+var _ShareLinks = __webpack_require__(1);
 
 var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
 
-var _PoemControls = __webpack_require__(1);
+var _PoemControls = __webpack_require__(2);
 
 var _PoemControls2 = _interopRequireDefault(_PoemControls);
 
-var _Poem = __webpack_require__(2);
+var _Poem = __webpack_require__(0);
 
 var _Poem2 = _interopRequireDefault(_Poem);
 
@@ -332,7 +341,7 @@ var topNav = new _TopNav2.default();
 // !! initialise the poem here, then pass it to PoemInput?
 //possible use of webpack...
 
-//var $ = require("jquery")
+// var $ = require("jquery")
 
 var poemInput = new _PoemInput2.default();
 
@@ -392,7 +401,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _Poem = __webpack_require__(2);
+var _Poem = __webpack_require__(0);
 
 var _Poem2 = _interopRequireDefault(_Poem);
 
@@ -408,6 +417,7 @@ function PoemInput() {
 			this.poem = new _Poem2.default(this.inputText.val());
 			this.inputText.val("").removeClass("inputMobile").parent().removeClass("poemFormExpanded");
 			this.inputButton.blur();
+			// !! this should reset edit mode too
 		} else {
 			this.inputText.addClass("inputMobile").focus().parent().addClass("poemFormExpanded");
 		}

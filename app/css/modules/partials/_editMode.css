@@ -33,12 +33,10 @@
 				padding-right: 40px;
 			}
 			.poemLineRefresh {
-				opacity: 1;
-				width: 40px;
-				margin-right: 10px;
+				color: $secondary-color;
+				height: 100%;
 				@mixin atMedium {
 					i.material-icons {
-						font-size: 32px;
 						right: 0;
 					}
 				}

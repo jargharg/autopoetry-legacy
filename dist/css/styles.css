@@ -456,7 +456,7 @@ body {
 	font-family: 'Source Code Pro', monospace;
 	color: #3E4C5A;
 	font-size: 1.2rem;
-	background-color: #FCFCFC;
+	background-color: #FAFAFA;
 	position: relative;
 }
 
@@ -468,8 +468,8 @@ body {
 	}
 
 .topNav {
-	background: #708090;
-	color: white;
+	background: #FAFAFA;
+	color: #3E4C5A;
 	position: relative;
 	cursor: pointer;
 	height: 24px;
@@ -504,8 +504,7 @@ body {
 		        box-sizing: border-box;
 		max-height: 0;
 		overflow: hidden;
-		background: #708090;
-		opacity: 0.95;
+		background: #FAFAFA;
 		padding: 0 10px;
 		font-size: 0.7em;
 		top: 100%;
@@ -514,15 +513,18 @@ body {
 		-webkit-transition: 0.2s all;
 		transition: 0.2s all;
 		z-index: 100;
+		border-bottom: 1px solid transparent;
 	}
 
 .topNav .appDetails a {
-			color: white;
+			color: #3E4C5A;
+			display: inline-block;
 		}
 
 .topNav .appDetails.visible {
 			max-height: 400px;
 			padding: 10px;
+			border-bottom: 1px solid #708090;
 		}
 
 .container {
@@ -542,7 +544,17 @@ body {
 	}
 
 #poemContainer {
+	background: white;
 }
+
+@media (min-width: 530px) {
+
+#poemContainer {
+		border-radius: 20px;
+		border: 1px solid #708090;
+		overflow: hidden
+}
+	}
 
 .hidden {
 	opacity: 0;
@@ -558,9 +570,7 @@ body {
 @media (min-width: 530px) {
 
 #poemTitle {
-		border: 1px solid #708090;
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px
+		border-bottom: 1px solid #708090
 }
 	}
 
@@ -593,14 +603,14 @@ body {
 
 #poemTitle span i.material-icons {
 			height: 100%;
-			font-size: 48px;
+			font-size: 40px;
 			line-height: 64px;
 		}
 
 @media (min-width: 530px) {
 
 #poemTitle span i.material-icons {
-				font-size: 32px;
+				font-size: 40px;
 				line-height: 56px
 		}
 	}
@@ -618,9 +628,6 @@ body {
 .poemBody {
 	margin: 2px 0 0 0;
 	padding: 0 0 20px 0;
-
-	background: white;
-	border-bottom: 1px solid #708090;
 }
 
 @media (min-width: 530px) {
@@ -630,12 +637,17 @@ body {
 }
 	}
 
+@media (max-width: 530px) {
+
+.poemBody {
+		border-bottom: 1px solid #708090
+}
+	}
+
 @media (min-width: 530px) {
 
 .poemBody {
-		border: 1px solid #708090;
-		border-bottom-left-radius: 20px;
-		border-bottom-right-radius: 20px
+		border-top: 1px solid #708090
 }
 	}
 
@@ -659,13 +671,13 @@ body {
 .poemBody li .poemLineRefresh {
 			display: inline-block;
 			position: absolute;
-			opacity: 0;
+			margin-right: 10px;
 			top: 0px;
 			right: 0px;
-			width: 0px;
+			width: 40px;
 			overflow: hidden;
-			height: 100%;
-			color: #ED143D;
+			height: 0;
+			color: #fff;
 			cursor: pointer;
 			-webkit-transition: 0.2s;
 			transition: 0.2s;
@@ -982,14 +994,12 @@ body {
 			}
 
 .editMode .poemBody> li .poemLineRefresh {
-				opacity: 1;
-				width: 40px;
-				margin-right: 10px;
+				color: #ED143D;
+				height: 100%;
 			}
 
 @media (min-width: 530px) {
 					.editMode .poemBody> li .poemLineRefresh i.material-icons {
-						font-size: 32px;
 						right: 0;
 					}
 	}
