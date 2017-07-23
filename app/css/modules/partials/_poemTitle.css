@@ -1,6 +1,6 @@
 #poemTitle {
 	position: relative;
-	color: $primary-color-d2;
+	color: $primary-color;
 	padding: 10px 20px;
 	background: white;
 	@mixin atMedium {
