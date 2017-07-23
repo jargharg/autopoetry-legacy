@@ -1,20 +1,15 @@
 .container {
 	width: 100%;
-	max-width: 700px;
+	max-width: 650px;
 	margin: 0 auto;
 	transition: opacity 0.4s;
 	@mixin atMedium {
 		width: 80%;
-		margin-top: 50px;
+		margin-top: 70px;
 	}
 }
 
 #poemContainer {
-	background: white;
-	border-bottom: 1px solid $primary-color;
-	@mixin atMedium {
-		border: 1px solid $primary-color;
-	}
 }
 
 .hidden {

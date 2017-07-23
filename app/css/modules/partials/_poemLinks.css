@@ -8,9 +8,11 @@
 	}
 	a {
 		text-decoration: none;
-		color: darkgrey;
+		color: $primary-color;
+		opacity: 0.4;
+		transition: all 0.2s;
 		&:hover {
-			color: dark$primary-color;
+			opacity: 1;
 		}
 		&.articleLink {
 			float: right;

@@ -1,5 +1,5 @@
 .topNav {
-	background: $primary-color-d1;
+	background: $primary-color;
 	color: white;
 	position: relative;
 	cursor: pointer;
@@ -9,6 +9,9 @@
 		letter-spacing: 4px;
 		text-transform: uppercase;
 		display: inline-block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 	.moreIcon {
 		position: absolute;
@@ -22,6 +25,7 @@
 	}
 	.appDetails {
 		max-height: 0;
+		width: 100%;
 		overflow: hidden;
 		background: $primary-color;
 		opacity: 0.95;

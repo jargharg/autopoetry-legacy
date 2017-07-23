@@ -1,8 +1,14 @@
 #poemTitle {
 	position: relative;
-	color: white;
-	padding: 5px 20px;
-	background: $primary-color;
+	color: $primary-color-d2;
+	padding: 10px 20px;
+	background: white;
+	@mixin atMedium {
+		border: 1px solid $border-color;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+	}
+
 	h1 {
 		text-transform: uppercase;
 		margin: 0;
@@ -17,17 +23,17 @@
 		cursor: pointer;
 		user-select: none;
 		transition: all 0.2s ease-out;
-		opacity: 0.4;
+		opacity: 0.2;
 		&:hover {
 			opacity: 1;
 		}
 		i.material-icons {
 			height: 100%;
 			font-size: 48px;
-			line-height: 58px;
+			line-height: 64px;
 			@mixin atMedium {
 				font-size: 32px;
-				line-height: 50px;
+				line-height: 56px;
 			}
 		}
 		&#poemEdit {

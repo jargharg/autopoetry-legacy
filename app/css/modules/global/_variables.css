@@ -1,6 +1,7 @@
 $font-stack: 'Source Code Pro', monospace;
-$bg-color: aliceblue;
-$primary-color: slategrey;
+$bg-color: #FCFCFC;
+$border-color: #CDCDCD;
+$primary-color: #708090;
 $primary-color-d1: #546576;
 $primary-color-d2: #3E4C5A;
-$secondary-color: crimson;
+$secondary-color: #ED143D;

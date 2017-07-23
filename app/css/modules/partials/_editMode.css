@@ -2,30 +2,41 @@
 	#poemTitle {
 		&> h1 {
 			padding-left: 50px;
+			@mixin atMedium {
+				padding-left: 40px;
+			}
 		}
 		&> #wholePoemRefresh {
 			width: 50px;
 		}
 	}
-	.poemBody > li {
-		min-height: 40px;
-		margin-bottom: 2px;
-		&:hover {
-			background-color: rgba(220,20,60,0.5);
-			&> .poemLineRefresh {
-				opacity: 1;
+	.poemBody {
+		&> li {
+			padding-top: 7px;
+			padding-bottom: 5px;
+			min-height: 30px;
+			border-bottom: 1px solid $border-color;
+			&:hover {
+				background-color: rgba(220,20,60,0.5);
+				&> .poemLineRefresh {
+					opacity: 1;
+				}
 			}
-		}
-		.poemLineText {
-			padding-right: 40px;
-		}
-		.poemLineRefresh {
-			opacity: 0.5;
-			width: 40px;
-			@mixin atMedium {
-				i.material-icons {
-					font-size: 32px;
-					right: 0;
+			&:last-child {
+				border: 1px solid transparent;
+			}
+			.poemLineText {
+				padding-right: 40px;
+			}
+			.poemLineRefresh {
+				opacity: 0.5;
+				width: 40px;
+				margin-right: 10px;
+				@mixin atMedium {
+					i.material-icons {
+						font-size: 32px;
+						right: 0;
+					}
 				}
 			}
 		}
