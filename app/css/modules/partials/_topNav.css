@@ -34,7 +34,7 @@
 		top: 100%;
 		left: 0;
 		position: absolute;
-		transition: 0.2s all;
+		transition: 0.2s all ease-out;
 		z-index: 100;
 		border-bottom: 1px solid transparent;
 		a {

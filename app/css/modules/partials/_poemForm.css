@@ -36,9 +36,10 @@
 		left: 50%;
 		transform: translateX(-50%);
 		border: 1px solid $primary-color;
+		border-radius: 20px;
 		@mixin atMedium {
 			top: auto;
-			width: 40%;
+			max-width: 400px;
 			height: 120px;
 		}
 		input {

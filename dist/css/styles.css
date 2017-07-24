@@ -510,8 +510,8 @@ body {
 		top: 100%;
 		left: 0;
 		position: absolute;
-		-webkit-transition: 0.2s all;
-		transition: 0.2s all;
+		-webkit-transition: 0.2s all ease-out;
+		transition: 0.2s all ease-out;
 		z-index: 100;
 		border-bottom: 1px solid transparent;
 	}
@@ -832,13 +832,14 @@ body {
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
 		border: 1px solid #708090;
+		border-radius: 20px;
 	}
 
 @media (min-width: 530px) {
 
 .poemForm.poemFormInit {
 			top: auto;
-			width: 40%;
+			max-width: 400px;
 			height: 120px
 	}
 	}
