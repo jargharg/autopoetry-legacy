@@ -1,0 +1,23 @@
+.container {
+	width: 100%;
+	max-width: 650px;
+	margin: 0 auto;
+	transition: opacity 0.4s;
+	@mixin atMedium {
+		width: 80%;
+		margin-top: 70px;
+	}
+}
+
+#poemContainer {
+	background: white;
+	@mixin atMedium {
+		border-radius: 20px;
+		border: 1px solid $border-color;
+		overflow: hidden;
+	}
+}
+
+.hidden {
+	opacity: 0;
+}

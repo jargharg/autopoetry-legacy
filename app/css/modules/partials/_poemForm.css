@@ -5,7 +5,7 @@
 	background: $primary-color;
 	input {
 		font-family: $font-stack;
-		font-size: 0.7em;
+		font-size: 1em;
 		float: left;
 		box-sizing: border-box;
 		padding: 5px;
@@ -13,8 +13,8 @@
 		border: 0;
 		outline: 0;
 		transition: 0.4s all;
-		&[type="text"]:focus + input[type="submit"]{
-			background: $primary-color-d1;
+		@mixin atMedium {
+			font-size: 0.7em;
 		}
 		&[type="submit"] {
 			background: $primary-color;
@@ -36,7 +36,7 @@
 		left: 50%;
 		transform: translateX(-50%);
 		border: 1px solid $primary-color;
-		@include atMedium {
+		@mixin atMedium {
 			top: auto;
 			width: 40%;
 			height: 120px;
@@ -69,7 +69,7 @@
 			}
 		}
 
-		@include belowMedium {
+		@mixin belowMedium {
 			input {
 				&[type="text"] {
 					width: 100%;
@@ -95,7 +95,7 @@
 			}
 		}
 
-		@include atMedium {
+		@mixin atMedium {
 			height: 40px;
 			input[type="submit"]{
 				animation: submitResize 0.4s forwards;

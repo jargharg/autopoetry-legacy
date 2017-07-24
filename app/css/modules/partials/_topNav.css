@@ -1,6 +1,6 @@
 .topNav {
-	background: $primary-color-d1;
-	color: white;
+	background: $bg-color;
+	color: $primary-color-d2;
 	position: relative;
 	cursor: pointer;
 	height: 24px;
@@ -9,6 +9,9 @@
 		letter-spacing: 4px;
 		text-transform: uppercase;
 		display: inline-block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 	.moreIcon {
 		position: absolute;
@@ -21,10 +24,11 @@
 		}
 	}
 	.appDetails {
+		width: 100%;
+		box-sizing: border-box;
 		max-height: 0;
 		overflow: hidden;
-		background: $primary-color;
-		opacity: 0.95;
+		background: $bg-color;
 		padding: 0 10px;
 		font-size: 0.7em;
 		top: 100%;
@@ -32,12 +36,15 @@
 		position: absolute;
 		transition: 0.2s all;
 		z-index: 100;
+		border-bottom: 1px solid transparent;
 		a {
-			color: white;
+			color: $primary-color-d2;
+			display: inline-block;
 		}
 		&.visible {
 			max-height: 400px;
 			padding: 10px;
+			border-bottom: 1px solid $primary-color;
 		}
 	}
 }

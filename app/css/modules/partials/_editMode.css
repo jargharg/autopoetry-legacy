@@ -1,0 +1,46 @@
+.editMode {
+	#poemTitle {
+		&> h1 {
+			padding-left: 50px;
+			@mixin atMedium {
+				padding-left: 40px;
+			}
+		}
+		&> #wholePoemRefresh {
+			width: 50px;
+			color: $secondary-color;
+			opacity: 1;
+		}
+	}
+	.poemBody {
+		&> li {
+			padding-top: 7px;
+			padding-bottom: 5px;
+			min-height: 30px;
+			border-bottom: 1px solid $border-color;
+			&:hover {
+				color: white;
+				background-color: $secondary-color;
+				&> .poemLineRefresh {
+					opacity: 1;
+					color: white;
+				}
+			}
+			&:last-child {
+				border: 1px solid transparent;
+			}
+			.poemLineText {
+				padding-right: 40px;
+			}
+			.poemLineRefresh {
+				color: $secondary-color;
+				height: 100%;
+				@mixin atMedium {
+					i.material-icons {
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+}
