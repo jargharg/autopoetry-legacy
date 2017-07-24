@@ -832,7 +832,6 @@ body {
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
 		border: 1px solid #708090;
-		border-radius: 20px;
 	}
 
 @media (min-width: 530px) {
