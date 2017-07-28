@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autopoetry</title>
+    <meta property="og:title" content="Autopoetry">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="Cut-up poems, automated">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/styles/styles-8dc3552b16.css"/>
+</head>
+
+<body>
+    <header class="topNav">
+        <span class="appName">Autopoetry</span>
+        <div class="moreIcon">
+            <i class="material-icons">&#xE5D4;</i>
+        </div>
+        <div class="appDetails">
+            Inspired by the cut-up technique of William S Burroughs, this app searches for your phrase in the <a href="http://open-platform.theguardian.com/" target="_blank">Guardian API</a> and slices up an article to make a poem with random snippets.
+            Made by <a href="https://jarodhargreav.es">Jarod Hargreaves</a>. <a class="githubLink" href="https://github.com/jargharg/autopoetry/" target="_blank">See it on Github</a>
+        </div>
+    </header>
+
+    <div class="container hidden">
+        <div id="poemContainer">
+            <div id="poemTitle">
+                <span id="wholePoemRefresh"><i class="material-icons md-48">&#xE86A;</i></span>
+                <h1></h1>
+                <span id="poemEdit"><i class="material-icons md-48">mode_edit</i></span>
+            </div>
+            <ul class="poemBody">
+                <div class="loadingDiv">
+                    Loading<span>.</span><span>.</span><span>.</span>
+                </div>
+            </ul>
+        </div>
+        <div class="poemLinks">
+            <a class="shareLink" href="" data-action="share/whatsapp/share" title="Share to WhatsApp"><i class="material-icons md-48">&#xE80D;</i></a>
+            <a class="articleLink" href="" target="_blank">See the original article</a>
+        </div>
+    </div>
+
+    <div class="poemForm poemFormInit">
+        <input id="inputText" type="text" placeholder="Enter a phrase" autocomplete="off" name="wordSearch">
+        <input id="inputSubmit" type="submit" value="Make a new poem">
+    </div>
+
+    <script src="assets/scripts/app-183b00a17d.js"></script>
+</body>
+</html>
