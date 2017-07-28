@@ -10,21 +10,21 @@ gulp.task("watch", function(){
 		}
 	})
 	
-	watch("./index.html", function() {
+	watch("./app/index.html", function() {
 		browserSync.reload()
 	})
 	
-	watch("./app/css/**/*.css", function(){
+	watch("./app/assets/css/**/*.css", function(){
 		gulp.start("cssInject")
 	})
 
-	watch("./app/js/**/*.js", function(){
+	watch("./app/assets/js/**/*.js", function(){
 		gulp.start("scriptsRefresh")
 	})
 })
 
 gulp.task("cssInject", ["styles"], function(){
-	return gulp.src("./dist/css/styles.css")
+	return gulp.src("./app/temp/assets/css/styles.css")
 	.pipe(browserSync.stream())
 })
 
