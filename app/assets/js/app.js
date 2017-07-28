@@ -1,6 +1,4 @@
-//possible use of webpack...
-
-//var $ = require("jquery")
+// var $ = require("jquery")
 
 import TopNav from "./modules/TopNav"
 import ShareLinks from "./modules/ShareLinks"
