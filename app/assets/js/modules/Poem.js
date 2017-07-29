@@ -2,14 +2,16 @@ import ShareLinks from "./ShareLinks"
 import PoemControls from "./PoemControls"
 
 class Poem {
-	constructor(){
+	constructor() {
 		this.currentPoemData = {}
 		this.gUrl = "https://content.guardianapis.com/search?show-fields=body&q="
 		this.gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52"
 		this.poemBody = $(".poemBody")
+		this.poemControls = new PoemControls(this)
+		this.shareLinks = new ShareLinks()
 	}
 
-	createPoem(poemData){
+	createPoem(poemData) {
 		let randomArray = []
 		this.poemBody.empty()
 		for(let i=0; i<10; i++) {
@@ -30,8 +32,8 @@ class Poem {
 				)
 		})
 
-		let poemControls = new PoemControls(this.currentPoemData, this)
-		let shareLinks = new ShareLinks()
+		this.poemControls.newPoem(poemData)
+		this.shareLinks.newPoem()
 		$(".articleLink").attr("href", poemData.link)
 	}
 
@@ -60,7 +62,7 @@ class Poem {
 		this.createPoem(this.currentPoemData)
 	}
 
-	newPoem(wordSearch){
+	newPoem(wordSearch) {
 		const that = this
 		$("h1").text(wordSearch) // Add poem title
 

@@ -83,7 +83,7 @@ var ShareLinks = function () {
 		_classCallCheck(this, ShareLinks);
 
 		this.shareLink = $(".shareLink i");
-		this.poemContents = $(".poemLineText");
+		this.poemContents = {};
 		this.events();
 	}
 
@@ -91,6 +91,11 @@ var ShareLinks = function () {
 		key: "events",
 		value: function events() {
 			this.shareLink.click(this.sendWhatsAppPoem.bind(this));
+		}
+	}, {
+		key: "newPoem",
+		value: function newPoem() {
+			this.poemContents = $(".poemLineText");
 		}
 	}, {
 		key: "whatsAppPoemLink",
@@ -136,15 +141,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var PoemControls = function () {
-	function PoemControls(poemData, poem) {
+	function PoemControls(poem) {
 		_classCallCheck(this, PoemControls);
 
 		this.poem = poem;
-		this.poemData = poemData;
+		this.poemData = {};
 		this.poemEdit = $("#poemEdit");
 		this.poemEditIcon = $("#poemEdit .material-icons");
 		this.poemContainer = $("#poemContainer");
-		this.poemLinesRefresh = $(".poemLineRefresh");
+		this.poemLinesRefresh = $();
 		this.wholePoemRefresh = $("#wholePoemRefresh");
 		this.editModeActive = false;
 		this.events();
@@ -159,6 +164,13 @@ var PoemControls = function () {
 				that.refreshLine(this);
 			});
 			this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
+		}
+	}, {
+		key: "newPoem",
+		value: function newPoem(data) {
+			this.poemData = data;
+			this.poemLinesRefresh = $(".poemLineRefresh");
+			this.events();
 		}
 	}, {
 		key: "editMode",
@@ -304,6 +316,8 @@ var Poem = function () {
 		this.gUrl = "https://content.guardianapis.com/search?show-fields=body&q=";
 		this.gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52";
 		this.poemBody = $(".poemBody");
+		this.poemControls = new _PoemControls2.default(this);
+		this.shareLinks = new _ShareLinks2.default();
 	}
 
 	_createClass(Poem, [{
@@ -321,8 +335,8 @@ var Poem = function () {
 				_this.poemBody.append($("<li class='poemLine'>").append($("<span class='poemLineText'>").html(poemData.content[x])).append($("<div class='poemLineRefresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
 			});
 
-			var poemControls = new _PoemControls2.default(this.currentPoemData, this);
-			var shareLinks = new _ShareLinks2.default();
+			this.poemControls.newPoem(poemData);
+			this.shareLinks.newPoem();
 			$(".articleLink").attr("href", poemData.link);
 		}
 	}, {
