@@ -134,24 +134,11 @@ var Poem = function () {
 					var strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1);
 					return strCap;
 				}
+			}).filter(function (str) {
+				return str;
 			});
 
-			var tidyContent2 = [];
-
-			textContent.forEach(function (str, ind) {
-				str = str.trim();
-				//get rid of long sections, sentences with @, numbers too?
-				if (str.length > 2 && str.length < 90 && str != "Photograph" && str != "'*") {
-					str = str.charAt(0).toUpperCase() + str.slice(1);
-					tidyContent2.push(str);
-					console.log("yeah");
-				}
-			});
-
-			console.log(tidyContent);
-			console.log(tidyContent2);
-
-			this.currentPoemData = { title: title, link: articleLink, content: tidyContent2 };
+			this.currentPoemData = { title: title, link: articleLink, content: tidyContent };
 
 			this.createPoem(this.currentPoemData);
 		}

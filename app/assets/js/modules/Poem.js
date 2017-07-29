@@ -50,16 +50,15 @@ class Poem {
 		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
 		.split(".")
 
-		var tidyContent = []
-
-		textContent.forEach(function(str, ind){
-			str = str.trim()
-				//get rid of long sections, sentences with @, numbers too?
-				if (str.length > 2 && str.length < 90 && str != "Photograph" && str != "'*") {
-					str = str.charAt(0).toUpperCase() + str.slice(1)
-					tidyContent.push(str)
-				}
-			})
+		var tidyContent = textContent.map(function(str){
+			var strTrim = str.trim()
+			if (strTrim.length > 2 && strTrim.length < 90 && strTrim != "Photograph" && strTrim != "'*") {
+				var strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
+				return strCap
+			}
+		}).filter(function(str){
+			return str
+		})
 
 		this.currentPoemData = {title: title, link: articleLink, content: tidyContent}
 
