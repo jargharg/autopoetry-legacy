@@ -1,21 +1,27 @@
 class PoemControls {
-	constructor(poemData, poem){
+	constructor(poem) {
 		this.poem = poem
-		this.poemData = poemData
+		this.poemData = {}
 		this.poemEdit = $("#poemEdit")
 		this.poemEditIcon = $("#poemEdit .material-icons")
 		this.poemContainer = $("#poemContainer")
-		this.poemLinesRefresh = $(".poemLineRefresh")
+		this.poemLinesRefresh = $()
 		this.wholePoemRefresh = $("#wholePoemRefresh")
 		this.editModeActive = false
 		this.events()
 	}
 
-	events(){
+	events() {
 		const that = this
 		this.poemEdit.off().click(this.editMode.bind(this))
 		this.poemLinesRefresh.off().click(function(){that.refreshLine(this)})
 		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
+	}
+
+	newPoem(data) {
+		this.poemData = data
+		this.poemLinesRefresh = $(".poemLineRefresh")
+		this.events()
 	}
 
 	editMode() {
@@ -35,7 +41,7 @@ class PoemControls {
 		$(refreshIcon).prev().text(newLine)
 	}
 
-	refreshPoem(){
+	refreshPoem() {
 		this.editMode()
 		this.poem.newPoem(this.poemData.title)
 	}

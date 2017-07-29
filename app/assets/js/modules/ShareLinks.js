@@ -1,12 +1,16 @@
 class ShareLinks {
-	constructor(){
+	constructor() {
 		this.shareLink = $(".shareLink i")
-		this.poemContents = $(".poemLineText")
+		this.poemContents = {}
 		this.events()
 	}
 	
 	events() {
 		this.shareLink.click(this.sendWhatsAppPoem.bind(this))
+	}
+
+	newPoem() {
+		this.poemContents = $(".poemLineText")
 	}
 
 	whatsAppPoemLink() {
@@ -23,7 +27,7 @@ class ShareLinks {
 		return whatsAppLink
 	}
 
-	sendWhatsAppPoem(){
+	sendWhatsAppPoem() {
 		const that = this
 		this.shareLink.parent().attr("href", that.whatsAppPoemLink())
 	}
