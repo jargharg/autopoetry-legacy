@@ -347,7 +347,7 @@ var Poem = function () {
 			var content = results[article].fields.body;
 			var articleLink = results[article].webUrl;
 
-			var textContent = content.replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos/g, "'").replace(/\&amp/g, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".").split(".");
+			var textContent = content.replace(/\<br\>/g, ".").replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos/g, "'").replace(/\&amp/g, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".").split(".");
 
 			var tidyContent = textContent.map(function (str) {
 				var strTrim = str.trim();
