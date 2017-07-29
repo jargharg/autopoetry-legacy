@@ -5,7 +5,7 @@
 	background: $primary-color;
 	input {
 		font-family: $font-stack;
-		font-size: 1em;
+		font-size: 0.8em;
 		float: left;
 		box-sizing: border-box;
 		padding: 5px;

@@ -1,9 +1,11 @@
 .container {
 	width: 100%;
 	max-width: 650px;
-	margin: 0 auto;
+	margin: 1px auto;
 	transition: opacity 0.4s;
+	border-top: 1px solid $primary-color;
 	@mixin atMedium {
+		border: none;
 		width: 80%;
 		margin-top: 70px;
 	}

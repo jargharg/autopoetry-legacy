@@ -530,14 +530,16 @@ body {
 .container {
 	width: 100%;
 	max-width: 650px;
-	margin: 0 auto;
+	margin: 1px auto;
 	-webkit-transition: opacity 0.4s;
 	transition: opacity 0.4s;
+	border-top: 1px solid #708090;
 }
 
 @media (min-width: 530px) {
 
 .container {
+		border: none;
 		width: 80%;
 		margin-top: 70px
 }
@@ -790,7 +792,7 @@ body {
 
 .poemForm input {
 		font-family: 'Source Code Pro', monospace;
-		font-size: 1em;
+		font-size: 0.8em;
 		float: left;
 		-webkit-box-sizing: border-box;
 		        box-sizing: border-box;
