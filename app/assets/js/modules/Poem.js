@@ -12,15 +12,14 @@ class Poem {
 	}
 
 	createPoem(poemData){
-		var that = this
-		var randomArray = []
+		let randomArray = []
 		this.poemBody.empty()
-		for(var i=0; i<10; i++) {
+		for(let i=0; i<10; i++) {
 			randomArray.push(Math.floor(Math.random()*poemData.content.length))
 		}
 
-		randomArray.forEach(function(x){
-			that.poemBody.append(
+		randomArray.forEach(x => {
+			this.poemBody.append(
 				$("<li class='poemLine'>")
 				.append(
 					$("<span class='poemLineText'>")
@@ -33,45 +32,43 @@ class Poem {
 				)
 		})
 
-		var poemControls = new PoemControls(this.currentPoemData)
-		var shareLinks = new ShareLinks()
+		let poemControls = new PoemControls(this.currentPoemData)
+		let shareLinks = new ShareLinks()
 		$(".articleLink").attr("href", poemData.link)
 	}
 
 	parseData(guardianData, title) {
-		var results = guardianData.response.results
-		var article = Math.floor(Math.random()*results.length)
-		var content = results[article].fields.body
-		var articleLink = results[article].webUrl
+		const results = guardianData.response.results
+		const article = Math.floor(Math.random()*results.length)
+		const content = results[article].fields.body
+		const articleLink = results[article].webUrl
 
-		var textContent = content.replace(/<(?:.|\n)*?>/gm, '')
+		let textContent = content.replace(/<(?:.|\n)*?>/gm, '')
 		.replace(/\&apos/g,"'")
-		.replace(/\&amp/," and ")
+		.replace(/\&amp/g," and ")
 		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
 		.split(".")
 
-		var tidyContent = textContent.map(function(str){
-			var strTrim = str.trim()
+		let tidyContent = textContent.map(function(str){
+			const strTrim = str.trim()
 			if (strTrim.length > 2 && strTrim.length < 90 && strTrim != "Photograph" && strTrim != "'*") {
-				var strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
+				const strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
 				return strCap
 			}
-		}).filter(function(str){
-			return str
-		})
+		}).filter(str => str)
 
 		this.currentPoemData = {title: title, link: articleLink, content: tidyContent}
 
 		this.createPoem(this.currentPoemData)
 	}
-	
+
 	newPoem(wordSearch){
-		var that = this
+		const that = this
 		$("h1").text(wordSearch) // Add poem title
 
 		$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
 
-		var APIWordSearch = wordSearch.replace(/ /g, " AND ")
+		let APIWordSearch = wordSearch.replace(/ /g, " AND ")
 
 		$.getJSON(that.gUrl+APIWordSearch+that.gKey, function(guardianData){
 			if (Number(guardianData.response.total) > 0){

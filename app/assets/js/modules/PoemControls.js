@@ -13,7 +13,7 @@ class PoemControls {
 	}
 
 	events(){
-		var that = this
+		const that = this
 		this.poemEdit.off().click(this.editMode.bind(this))
 		this.poemLinesRefresh.off().click(function(){that.refreshLine(this)})
 		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
@@ -32,14 +32,13 @@ class PoemControls {
 	}
 
 	refreshLine(refreshIcon) {
-		var that = this
-		var newLine = that.poemData.content[Math.floor(Math.random()*that.poemData.content.length)]
+		const newLine = this.poemData.content[Math.floor(Math.random()*this.poemData.content.length)]
 		$(refreshIcon).prev().text(newLine)
 	}
 
 	refreshPoem(){
 		this.editMode()
-		var poem = new Poem(this.poemData.title)
+		const poem = new Poem(this.poemData.title)
 	}
 }
 

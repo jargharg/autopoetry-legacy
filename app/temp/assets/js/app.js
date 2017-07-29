@@ -103,7 +103,8 @@ var Poem = function () {
 	_createClass(Poem, [{
 		key: "createPoem",
 		value: function createPoem(poemData) {
-			var that = this;
+			var _this = this;
+
 			var randomArray = [];
 			this.poemBody.empty();
 			for (var i = 0; i < 10; i++) {
@@ -111,7 +112,7 @@ var Poem = function () {
 			}
 
 			randomArray.forEach(function (x) {
-				that.poemBody.append($("<li class='poemLine'>").append($("<span class='poemLineText'>").html(poemData.content[x])).append($("<div class='poemLineRefresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
+				_this.poemBody.append($("<li class='poemLine'>").append($("<span class='poemLineText'>").html(poemData.content[x])).append($("<div class='poemLineRefresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
 			});
 
 			var poemControls = new _PoemControls2.default(this.currentPoemData);
@@ -126,7 +127,7 @@ var Poem = function () {
 			var content = results[article].fields.body;
 			var articleLink = results[article].webUrl;
 
-			var textContent = content.replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos/g, "'").replace(/\&amp/, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".").split(".");
+			var textContent = content.replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos/g, "'").replace(/\&amp/g, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".").split(".");
 
 			var tidyContent = textContent.map(function (str) {
 				var strTrim = str.trim();
@@ -292,8 +293,7 @@ var PoemControls = function () {
 	}, {
 		key: "refreshLine",
 		value: function refreshLine(refreshIcon) {
-			var that = this;
-			var newLine = that.poemData.content[Math.floor(Math.random() * that.poemData.content.length)];
+			var newLine = this.poemData.content[Math.floor(Math.random() * this.poemData.content.length)];
 			$(refreshIcon).prev().text(newLine);
 		}
 	}, {
@@ -340,7 +340,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var topNav = new _TopNav2.default();
 // !! initialise the poem here, then pass it to PoemInput?
-// var $ = require("jquery")
+// import $ from "jquery"
 
 var poemInput = new _PoemInput2.default();
 
@@ -379,7 +379,7 @@ var TopNav = function () {
 			e.stopPropagation();
 			$(document).click(function () {
 				$(".appDetails").removeClass("visible");
-				$("body").off();
+				$(document).off();
 			});
 		}
 	}]);
@@ -416,21 +416,19 @@ var PoemInput = function () {
 
 		this.inputButton = $("#inputSubmit");
 		this.inputText = $("#inputText");
-		this.events();
+		this.events(this.firstWordSearch);
 		this.inputText.focus();
 	}
 
 	_createClass(PoemInput, [{
 		key: "events",
-		value: function events() {
-			var that = this;
-			this.inputButton.click(this.firstWordSearch.bind(this)); // Submit button pressed
-			this.inputText.keypress(function (e) {
-				if (e.which == 13) {
-					// Enter key pressed
-					that.firstWordSearch();
-				}
-			});
+		value: function events(func) {
+			var _this = this;
+
+			this.inputButton.off().click(func.bind(this)); // Submit button pressed
+			this.inputText.off().keypress(function (e) {
+				if (e.which == 13) func.call(_this);
+			}); // Enter key pressed
 		}
 	}, {
 		key: "newWordSearch",
@@ -439,7 +437,8 @@ var PoemInput = function () {
 				this.poem = new _Poem2.default(this.inputText.val());
 				this.inputText.val("").removeClass("inputMobile").parent().removeClass("poemFormExpanded");
 				this.inputButton.blur();
-				// !! this should reset edit mode too
+				$(".editMode").removeClass("editMode");
+				$("#poemEdit .material-icons").text("mode_edit");
 			} else {
 				this.inputText.addClass("inputMobile").focus().parent().addClass("poemFormExpanded");
 			}
@@ -447,17 +446,10 @@ var PoemInput = function () {
 	}, {
 		key: "firstWordSearch",
 		value: function firstWordSearch() {
-			var that = this;
 			if (this.inputText.val() != "") {
 				$(".container").removeClass("hidden");
 				$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom");
-				this.inputButton.off().click(this.newWordSearch.bind(this)); // Submit button pressed
-				this.inputText.off().keypress(function (e) {
-					if (e.which == 13) {
-						// Enter key pressed
-						that.newWordSearch();
-					}
-				});
+				this.events(this.newWordSearch);
 				this.newWordSearch();
 			} else {
 				this.inputText.focus();

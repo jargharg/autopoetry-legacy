@@ -10,21 +10,21 @@ class ShareLinks {
 	}
 
 	whatsAppPoemLink() {
-		var whatsAppPre = "whatsapp://send?text="
-		var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
-		var whatsAppText = $("#poemTitle h1").text().toUpperCase()+"\n\n"
+		const whatsAppPre = "whatsapp://send?text="
+		const whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
+		let whatsAppText = $("#poemTitle h1").text().toUpperCase()+"\n\n"
 
 		this.poemContents.each(function(){
 			whatsAppText += this.textContent + "\n"
 		})
 
-		var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost)
+		const whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost)
 
 		return whatsAppLink
 	}
 
 	sendWhatsAppPoem(){
-		var that = this
+		const that = this
 		this.shareLink.parent().attr("href", that.whatsAppPoemLink())
 	}
 }

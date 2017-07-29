@@ -1,16 +1,16 @@
 import Poem from "./Poem"
 
 class PoemInput {
-	constructor(){
+	constructor() {
 		this.inputButton = $("#inputSubmit")
 		this.inputText = $("#inputText")
-		this.events(this, this.firstWordSearch)
+		this.events(this.firstWordSearch)
 		this.inputText.focus()
 	}
 
-	events(that, func){
-		that.inputButton.off().click(func.bind(that)) // Submit button pressed
-		that.inputText.off().keypress(e => {if (e.which == 13) func.call(that) }) // Enter key pressed
+	events(func) {
+		this.inputButton.off().click(func.bind(this)) // Submit button pressed
+		this.inputText.off().keypress(e => {if (e.which == 13) func.call(this) }) // Enter key pressed
 	}
 
 	newWordSearch() {
@@ -21,6 +21,7 @@ class PoemInput {
 			.parent().removeClass("poemFormExpanded")
 			this.inputButton.blur()
 			$(".editMode").removeClass("editMode")
+			$("#poemEdit .material-icons").text("mode_edit")
 		} else {
 			this.inputText
 			.addClass("inputMobile")
@@ -33,7 +34,7 @@ class PoemInput {
 		if(this.inputText.val() != "") {
 			$(".container").removeClass("hidden")
 			$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
-			this.events(this, this.newWordSearch)
+			this.events(this.newWordSearch)
 			this.newWordSearch()
 		} else {
 			this.inputText.focus()
