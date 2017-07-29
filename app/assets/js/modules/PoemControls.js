@@ -1,5 +1,3 @@
-import Poem from "./Poem"
-
 class PoemControls {
 	constructor(poemData, poem){
 		this.poem = poem

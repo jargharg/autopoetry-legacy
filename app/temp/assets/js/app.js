@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -133,12 +133,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Poem = __webpack_require__(2);
-
-var _Poem2 = _interopRequireDefault(_Poem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var PoemControls = function () {
@@ -200,6 +194,85 @@ exports.default = PoemControls;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _TopNav = __webpack_require__(3);
+
+var _TopNav2 = _interopRequireDefault(_TopNav);
+
+var _ShareLinks = __webpack_require__(0);
+
+var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
+
+var _PoemControls = __webpack_require__(1);
+
+var _PoemControls2 = _interopRequireDefault(_PoemControls);
+
+var _Poem = __webpack_require__(4);
+
+var _Poem2 = _interopRequireDefault(_Poem);
+
+var _PoemInput = __webpack_require__(5);
+
+var _PoemInput2 = _interopRequireDefault(_PoemInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var topNav = new _TopNav2.default(); // import $ from "jquery"
+
+var poem = new _Poem2.default();
+var poemInput = new _PoemInput2.default(poem);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TopNav = function () {
+	function TopNav() {
+		_classCallCheck(this, TopNav);
+
+		this.topNav = $(".topNav");
+		this.events();
+	}
+
+	_createClass(TopNav, [{
+		key: "events",
+		value: function events() {
+			this.topNav.click(this.infoToggle.bind(this));
+		}
+	}, {
+		key: "infoToggle",
+		value: function infoToggle(e) {
+			$(".appDetails").toggleClass("visible");
+			e.stopPropagation();
+			$(document).click(function () {
+				$(".appDetails").removeClass("visible");
+				$(document).off();
+			});
+		}
+	}]);
+
+	return TopNav;
+}();
+
+exports.default = TopNav;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -307,85 +380,6 @@ var Poem = function () {
 }();
 
 exports.default = Poem;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _TopNav = __webpack_require__(4);
-
-var _TopNav2 = _interopRequireDefault(_TopNav);
-
-var _ShareLinks = __webpack_require__(0);
-
-var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
-
-var _PoemControls = __webpack_require__(1);
-
-var _PoemControls2 = _interopRequireDefault(_PoemControls);
-
-var _Poem = __webpack_require__(2);
-
-var _Poem2 = _interopRequireDefault(_Poem);
-
-var _PoemInput = __webpack_require__(5);
-
-var _PoemInput2 = _interopRequireDefault(_PoemInput);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var topNav = new _TopNav2.default(); // import $ from "jquery"
-
-var poem = new _Poem2.default();
-var poemInput = new _PoemInput2.default(poem);
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var TopNav = function () {
-	function TopNav() {
-		_classCallCheck(this, TopNav);
-
-		this.topNav = $(".topNav");
-		this.events();
-	}
-
-	_createClass(TopNav, [{
-		key: "events",
-		value: function events() {
-			this.topNav.click(this.infoToggle.bind(this));
-		}
-	}, {
-		key: "infoToggle",
-		value: function infoToggle(e) {
-			$(".appDetails").toggleClass("visible");
-			e.stopPropagation();
-			$(document).click(function () {
-				$(".appDetails").removeClass("visible");
-				$(document).off();
-			});
-		}
-	}]);
-
-	return TopNav;
-}();
-
-exports.default = TopNav;
 
 /***/ }),
 /* 5 */
