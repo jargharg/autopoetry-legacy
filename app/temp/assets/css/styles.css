@@ -468,12 +468,20 @@ body {
 	}
 
 .topNav {
-	background: #FAFAFA;
-	color: #3E4C5A;
+	background: #708090;
+	color: white;
 	position: relative;
 	cursor: pointer;
 	height: 24px;
 }
+
+@media (min-width: 530px) {
+
+.topNav {
+		background: #FAFAFA;
+		color: #3E4C5A
+}
+	}
 
 .topNav .appName {
 		padding-left: 10px;
@@ -504,7 +512,7 @@ body {
 		        box-sizing: border-box;
 		max-height: 0;
 		overflow: hidden;
-		background: #FAFAFA;
+		background: #708090;
 		padding: 0 10px;
 		font-size: 0.7em;
 		top: 100%;
@@ -516,8 +524,16 @@ body {
 		border-bottom: 1px solid transparent;
 	}
 
+@media (min-width: 530px) {
+
+.topNav .appDetails {
+			background: #FAFAFA;
+			color: #3E4C5A
+	}
+	}
+
 .topNav .appDetails a {
-			color: #3E4C5A;
+			color: inherit;
 			display: inline-block;
 		}
 
@@ -533,7 +549,6 @@ body {
 	margin: 1px auto;
 	-webkit-transition: opacity 0.4s;
 	transition: opacity 0.4s;
-	border-top: 1px solid #708090;
 }
 
 @media (min-width: 530px) {
@@ -785,8 +800,8 @@ body {
 .poemForm {
 	position: fixed;
 	overflow: hidden;
-	-webkit-transition: 0.4s all;
-	transition: 0.4s all;
+	-webkit-transition: 0.3s all;
+	transition: 0.3s all;
 	background: #708090;
 }
 
@@ -800,8 +815,8 @@ body {
 		background: white;
 		border: 0;
 		outline: 0;
-		-webkit-transition: 0.4s all;
-		transition: 0.4s all;
+		-webkit-transition: 0.3s all;
+		transition: 0.3s all;
 	}
 
 @media (min-width: 530px) {
@@ -863,8 +878,8 @@ body {
 		        transform: translateX(0%);
 		margin: 0;
 		border-top: 1px solid #708090;
-		-webkit-transition: 0.2s all;
-		transition: 0.2s all;
+		-webkit-transition: 0.3s all;
+		transition: 0.3s all;
 	}
 
 .poemForm.poemFormBottom input {
@@ -901,8 +916,8 @@ body {
 			}
 				.poemForm.poemFormBottom.poemFormExpanded input {
 					height: 50%;
-					-webkit-transition: 0.2s all;
-					transition: 0.2s all;
+					-webkit-transition: 0.3s all;
+					transition: 0.3s all;
 				}
 	}
 
@@ -912,8 +927,8 @@ body {
 			height: 40px
 	}
 			.poemForm.poemFormBottom input[type="submit"]{
-				-webkit-animation: submitResize 0.4s forwards;
-				        animation: submitResize 0.4s forwards;
+				-webkit-animation: submitResize 0.3s forwards;
+				        animation: submitResize 0.3s forwards;
 				@-webkit-keyframes submitResize {
 					0% {
 						width: 100%;

@@ -1,9 +1,13 @@
 .topNav {
-	background: $bg-color;
-	color: $primary-color-d2;
+	background: $primary-color;
+	color: white;
 	position: relative;
 	cursor: pointer;
 	height: 24px;
+	@mixin atMedium {
+		background: $bg-color;
+		color: $primary-color-d2;
+	}
 	.appName {
 		padding-left: 10px;
 		letter-spacing: 4px;
@@ -28,7 +32,7 @@
 		box-sizing: border-box;
 		max-height: 0;
 		overflow: hidden;
-		background: $bg-color;
+		background: $primary-color;
 		padding: 0 10px;
 		font-size: 0.7em;
 		top: 100%;
@@ -37,8 +41,12 @@
 		transition: 0.2s all ease-out;
 		z-index: 100;
 		border-bottom: 1px solid transparent;
-		a {
+		@mixin atMedium {
+			background: $bg-color;
 			color: $primary-color-d2;
+		}
+		a {
+			color: inherit;
 			display: inline-block;
 		}
 		&.visible {

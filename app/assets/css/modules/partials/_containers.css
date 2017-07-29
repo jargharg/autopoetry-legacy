@@ -3,7 +3,6 @@
 	max-width: 650px;
 	margin: 1px auto;
 	transition: opacity 0.4s;
-	border-top: 1px solid $primary-color;
 	@mixin atMedium {
 		border: none;
 		width: 80%;
