@@ -1,7 +1,6 @@
-import Poem from "./Poem"
-
 class PoemInput {
-	constructor() {
+	constructor(poem) {
+		this.poem = poem
 		this.inputButton = $("#inputSubmit")
 		this.inputText = $("#inputText")
 		this.events(this.firstWordSearch)
@@ -15,7 +14,7 @@ class PoemInput {
 
 	newWordSearch() {
 		if(this.inputText.val() != "") {
-			this.poem = new Poem(this.inputText.val())
+			this.poem.newPoem(this.inputText.val())
 			this.inputText.val("")
 			.removeClass("inputMobile")
 			.parent().removeClass("poemFormExpanded")

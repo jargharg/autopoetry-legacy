@@ -7,5 +7,5 @@ import Poem from "./modules/Poem"
 import PoemInput from "./modules/PoemInput"
 
 const topNav = new TopNav()
-// !! initialise the poem here, then pass it to PoemInput?
-const poemInput = new PoemInput()
+const poem = new Poem()
+const poemInput = new PoemInput(poem)

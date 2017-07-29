@@ -1,7 +1,8 @@
 import Poem from "./Poem"
 
 class PoemControls {
-	constructor(poemData){
+	constructor(poemData, poem){
+		this.poem = poem
 		this.poemData = poemData
 		this.poemEdit = $("#poemEdit")
 		this.poemEditIcon = $("#poemEdit .material-icons")
@@ -38,7 +39,7 @@ class PoemControls {
 
 	refreshPoem(){
 		this.editMode()
-		const poem = new Poem(this.poemData.title)
+		this.poem.newPoem(this.poemData.title)
 	}
 }
 

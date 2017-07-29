@@ -76,11 +76,146 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ShareLinks = __webpack_require__(1);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ShareLinks = function () {
+	function ShareLinks() {
+		_classCallCheck(this, ShareLinks);
+
+		this.shareLink = $(".shareLink i");
+		this.poemContents = $(".poemLineText");
+		this.events();
+	}
+
+	_createClass(ShareLinks, [{
+		key: "events",
+		value: function events() {
+			this.shareLink.click(this.sendWhatsAppPoem.bind(this));
+		}
+	}, {
+		key: "whatsAppPoemLink",
+		value: function whatsAppPoemLink() {
+			var whatsAppPre = "whatsapp://send?text=";
+			var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry";
+			var whatsAppText = $("#poemTitle h1").text().toUpperCase() + "\n\n";
+
+			this.poemContents.each(function () {
+				whatsAppText += this.textContent + "\n";
+			});
+
+			var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost);
+
+			return whatsAppLink;
+		}
+	}, {
+		key: "sendWhatsAppPoem",
+		value: function sendWhatsAppPoem() {
+			var that = this;
+			this.shareLink.parent().attr("href", that.whatsAppPoemLink());
+		}
+	}]);
+
+	return ShareLinks;
+}();
+
+exports.default = ShareLinks;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Poem = __webpack_require__(2);
+
+var _Poem2 = _interopRequireDefault(_Poem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PoemControls = function () {
+	function PoemControls(poemData, poem) {
+		_classCallCheck(this, PoemControls);
+
+		this.poem = poem;
+		this.poemData = poemData;
+		this.poemEdit = $("#poemEdit");
+		this.poemEditIcon = $("#poemEdit .material-icons");
+		this.poemContainer = $("#poemContainer");
+		this.poemLinesRefresh = $(".poemLineRefresh");
+		this.wholePoemRefresh = $("#wholePoemRefresh");
+		this.editModeActive = false;
+		this.events();
+	}
+
+	_createClass(PoemControls, [{
+		key: "events",
+		value: function events() {
+			var that = this;
+			this.poemEdit.off().click(this.editMode.bind(this));
+			this.poemLinesRefresh.off().click(function () {
+				that.refreshLine(this);
+			});
+			this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
+		}
+	}, {
+		key: "editMode",
+		value: function editMode() {
+			if (this.editModeActive === true) {
+				this.poemEditIcon.text("mode_edit");
+				this.poemContainer.removeClass("editMode");
+				this.editModeActive = false;
+			} else {
+				this.poemEditIcon.text("done");
+				this.poemContainer.addClass("editMode");
+				this.editModeActive = true;
+			}
+		}
+	}, {
+		key: "refreshLine",
+		value: function refreshLine(refreshIcon) {
+			var newLine = this.poemData.content[Math.floor(Math.random() * this.poemData.content.length)];
+			$(refreshIcon).prev().text(newLine);
+		}
+	}, {
+		key: "refreshPoem",
+		value: function refreshPoem() {
+			this.editMode();
+			this.poem.newPoem(this.poemData.title);
+		}
+	}]);
+
+	return PoemControls;
+}();
+
+exports.default = PoemControls;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ShareLinks = __webpack_require__(0);
 
 var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
 
-var _PoemControls = __webpack_require__(2);
+var _PoemControls = __webpack_require__(1);
 
 var _PoemControls2 = _interopRequireDefault(_PoemControls);
 
@@ -89,15 +224,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Poem = function () {
-	function Poem(inputPhrase) {
+	function Poem() {
 		_classCallCheck(this, Poem);
 
-		this.inputPhrase = inputPhrase;
 		this.currentPoemData = {};
 		this.gUrl = "https://content.guardianapis.com/search?show-fields=body&q=";
 		this.gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52";
 		this.poemBody = $(".poemBody");
-		this.newPoem(this.inputPhrase);
 	}
 
 	_createClass(Poem, [{
@@ -115,7 +248,7 @@ var Poem = function () {
 				_this.poemBody.append($("<li class='poemLine'>").append($("<span class='poemLineText'>").html(poemData.content[x])).append($("<div class='poemLineRefresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
 			});
 
-			var poemControls = new _PoemControls2.default(this.currentPoemData);
+			var poemControls = new _PoemControls2.default(this.currentPoemData, this);
 			var shareLinks = new _ShareLinks2.default();
 			$(".articleLink").attr("href", poemData.link);
 		}
@@ -176,140 +309,6 @@ var Poem = function () {
 exports.default = Poem;
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var ShareLinks = function () {
-	function ShareLinks() {
-		_classCallCheck(this, ShareLinks);
-
-		this.shareLink = $(".shareLink i");
-		this.poemContents = $(".poemLineText");
-		this.events();
-	}
-
-	_createClass(ShareLinks, [{
-		key: "events",
-		value: function events() {
-			this.shareLink.click(this.sendWhatsAppPoem.bind(this));
-		}
-	}, {
-		key: "whatsAppPoemLink",
-		value: function whatsAppPoemLink() {
-			var whatsAppPre = "whatsapp://send?text=";
-			var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry";
-			var whatsAppText = $("#poemTitle h1").text().toUpperCase() + "\n\n";
-
-			this.poemContents.each(function () {
-				whatsAppText += this.textContent + "\n";
-			});
-
-			var whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost);
-
-			return whatsAppLink;
-		}
-	}, {
-		key: "sendWhatsAppPoem",
-		value: function sendWhatsAppPoem() {
-			var that = this;
-			this.shareLink.parent().attr("href", that.whatsAppPoemLink());
-		}
-	}]);
-
-	return ShareLinks;
-}();
-
-exports.default = ShareLinks;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Poem = __webpack_require__(0);
-
-var _Poem2 = _interopRequireDefault(_Poem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var PoemControls = function () {
-	function PoemControls(poemData) {
-		_classCallCheck(this, PoemControls);
-
-		this.poemData = poemData;
-		this.poemEdit = $("#poemEdit");
-		this.poemEditIcon = $("#poemEdit .material-icons");
-		this.poemContainer = $("#poemContainer");
-		this.poemLinesRefresh = $(".poemLineRefresh");
-		this.wholePoemRefresh = $("#wholePoemRefresh");
-		this.editModeActive = false;
-		this.events();
-	}
-
-	_createClass(PoemControls, [{
-		key: "events",
-		value: function events() {
-			var that = this;
-			this.poemEdit.off().click(this.editMode.bind(this));
-			this.poemLinesRefresh.off().click(function () {
-				that.refreshLine(this);
-			});
-			this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
-		}
-	}, {
-		key: "editMode",
-		value: function editMode() {
-			if (this.editModeActive === true) {
-				this.poemEditIcon.text("mode_edit");
-				this.poemContainer.removeClass("editMode");
-				this.editModeActive = false;
-			} else {
-				this.poemEditIcon.text("done");
-				this.poemContainer.addClass("editMode");
-				this.editModeActive = true;
-			}
-		}
-	}, {
-		key: "refreshLine",
-		value: function refreshLine(refreshIcon) {
-			var newLine = this.poemData.content[Math.floor(Math.random() * this.poemData.content.length)];
-			$(refreshIcon).prev().text(newLine);
-		}
-	}, {
-		key: "refreshPoem",
-		value: function refreshPoem() {
-			this.editMode();
-			var poem = new _Poem2.default(this.poemData.title);
-		}
-	}]);
-
-	return PoemControls;
-}();
-
-exports.default = PoemControls;
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -320,15 +319,15 @@ var _TopNav = __webpack_require__(4);
 
 var _TopNav2 = _interopRequireDefault(_TopNav);
 
-var _ShareLinks = __webpack_require__(1);
+var _ShareLinks = __webpack_require__(0);
 
 var _ShareLinks2 = _interopRequireDefault(_ShareLinks);
 
-var _PoemControls = __webpack_require__(2);
+var _PoemControls = __webpack_require__(1);
 
 var _PoemControls2 = _interopRequireDefault(_PoemControls);
 
-var _Poem = __webpack_require__(0);
+var _Poem = __webpack_require__(2);
 
 var _Poem2 = _interopRequireDefault(_Poem);
 
@@ -338,11 +337,10 @@ var _PoemInput2 = _interopRequireDefault(_PoemInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var topNav = new _TopNav2.default();
-// !! initialise the poem here, then pass it to PoemInput?
-// import $ from "jquery"
+var topNav = new _TopNav2.default(); // import $ from "jquery"
 
-var poemInput = new _PoemInput2.default();
+var poem = new _Poem2.default();
+var poemInput = new _PoemInput2.default(poem);
 
 /***/ }),
 /* 4 */
@@ -402,18 +400,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Poem = __webpack_require__(0);
-
-var _Poem2 = _interopRequireDefault(_Poem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var PoemInput = function () {
-	function PoemInput() {
+	function PoemInput(poem) {
 		_classCallCheck(this, PoemInput);
 
+		this.poem = poem;
 		this.inputButton = $("#inputSubmit");
 		this.inputText = $("#inputText");
 		this.events(this.firstWordSearch);
@@ -434,7 +427,7 @@ var PoemInput = function () {
 		key: "newWordSearch",
 		value: function newWordSearch() {
 			if (this.inputText.val() != "") {
-				this.poem = new _Poem2.default(this.inputText.val());
+				this.poem.newPoem(this.inputText.val());
 				this.inputText.val("").removeClass("inputMobile").parent().removeClass("poemFormExpanded");
 				this.inputButton.blur();
 				$(".editMode").removeClass("editMode");
