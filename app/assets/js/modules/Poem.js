@@ -42,10 +42,9 @@ class Poem {
 		const article = Math.floor(Math.random()*results.length)
 		const content = results[article].fields.body
 		const articleLink = results[article].webUrl
-
-		let textContent = content.replace(/\<br\>/g,".")
+		let textContent = content.replace(/<br>/g,".")
 		.replace(/<(?:.|\n)*?>/gm, '')
-		.replace(/\&apos/g,"'")
+		.replace(/\&apos|’/g,"'")
 		.replace(/\&amp/g," and ")
 		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
 		.split(".")
