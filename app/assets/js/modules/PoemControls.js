@@ -12,16 +12,15 @@ class PoemControls {
 	}
 
 	events() {
-		const that = this
-		this.poemEdit.off().click(this.editMode.bind(this))
-		this.poemLinesRefresh.off().click(function(){that.refreshLine(this)})
-		this.wholePoemRefresh.off().click(this.refreshPoem.bind(this))
+		this.poemEdit.click(this.editMode.bind(this))
+		this.wholePoemRefresh.click(this.refreshPoem.bind(this))
 	}
 
 	newPoem(data) {
+		const that = this
 		this.poemData = data
 		this.poemLinesRefresh = $(".poemLineRefresh")
-		this.events()
+		this.poemLinesRefresh.off().click(function(){that.refreshLine(this)})
 	}
 
 	editMode() {

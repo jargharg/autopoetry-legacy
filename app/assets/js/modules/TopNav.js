@@ -11,7 +11,7 @@ class TopNav {
 	infoToggle(e){
 		$(".appDetails").toggleClass("visible")
 		e.stopPropagation()
-		$(document).click(function(){
+		$(document).click(() => {
 			$(".appDetails").removeClass("visible")
 			$(document).off()
 		})

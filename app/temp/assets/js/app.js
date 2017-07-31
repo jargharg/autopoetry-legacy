@@ -267,6 +267,7 @@ var ShareLinks = function () {
 
 		this.shareLink = $(".shareLink i");
 		this.poemContents = {};
+		this.poemTitle = {};
 		this.events();
 	}
 
@@ -279,13 +280,14 @@ var ShareLinks = function () {
 		key: "newPoem",
 		value: function newPoem() {
 			this.poemContents = $(".poemLineText");
+			this.poemTitle = $("#poemTitle h1").text().toUpperCase();
 		}
 	}, {
 		key: "whatsAppPoemLink",
 		value: function whatsAppPoemLink() {
 			var whatsAppPre = "whatsapp://send?text=";
 			var whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry";
-			var whatsAppText = $("#poemTitle h1").text().toUpperCase() + "\n\n";
+			var whatsAppText = this.poemTitle + "\n\n";
 
 			this.poemContents.each(function () {
 				whatsAppText += this.textContent + "\n";
@@ -341,19 +343,18 @@ var PoemControls = function () {
 	_createClass(PoemControls, [{
 		key: "events",
 		value: function events() {
-			var that = this;
-			this.poemEdit.off().click(this.editMode.bind(this));
-			this.poemLinesRefresh.off().click(function () {
-				that.refreshLine(this);
-			});
-			this.wholePoemRefresh.off().click(this.refreshPoem.bind(this));
+			this.poemEdit.click(this.editMode.bind(this));
+			this.wholePoemRefresh.click(this.refreshPoem.bind(this));
 		}
 	}, {
 		key: "newPoem",
 		value: function newPoem(data) {
+			var that = this;
 			this.poemData = data;
 			this.poemLinesRefresh = $(".poemLineRefresh");
-			this.events();
+			this.poemLinesRefresh.off().click(function () {
+				that.refreshLine(this);
+			});
 		}
 	}, {
 		key: "editMode",

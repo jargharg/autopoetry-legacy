@@ -2,6 +2,7 @@ class ShareLinks {
 	constructor() {
 		this.shareLink = $(".shareLink i")
 		this.poemContents = {}
+		this.poemTitle = {}
 		this.events()
 	}
 	
@@ -11,15 +12,16 @@ class ShareLinks {
 
 	newPoem() {
 		this.poemContents = $(".poemLineText")
+		this.poemTitle = $("#poemTitle h1").text().toUpperCase()
 	}
 
 	whatsAppPoemLink() {
 		const whatsAppPre = "whatsapp://send?text="
 		const whatsAppPost = "\nMake your own autopoem at jarodhargreav.es/autopoetry"
-		let whatsAppText = $("#poemTitle h1").text().toUpperCase()+"\n\n"
+		let whatsAppText = `${this.poemTitle}\n\n`
 
 		this.poemContents.each(function(){
-			whatsAppText += this.textContent + "\n"
+			whatsAppText += `${this.textContent}\n`
 		})
 
 		const whatsAppLink = whatsAppPre + encodeURI(whatsAppText + whatsAppPost)

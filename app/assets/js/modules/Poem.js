@@ -50,7 +50,7 @@ class Poem {
 		.replace( /\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".")
 		.split(".")
 
-		let tidyContent = textContent.map(function(str){
+		let tidyContent = textContent.map(str => {
 			const strTrim = str.trim()
 			if (strTrim.length > 2 && strTrim.length < 90 && strTrim != "Photograph" && strTrim != "'*") {
 				const strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
