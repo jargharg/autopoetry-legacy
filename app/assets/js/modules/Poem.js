@@ -69,6 +69,8 @@ class Poem {
 
 		$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
 
+		wordSearch = wordSearch.replace(/\?/g,"")
+		
 		let APIWordSearch = wordSearch.replace(/ /g, " AND ")
 
 		$.getJSON(that.gUrl+APIWordSearch+that.gKey, function(guardianData){
