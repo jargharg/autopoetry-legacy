@@ -453,10 +453,10 @@ template {
 body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Source Code Pro', monospace;
+	font-family: 'Montserrat', monospace;
 	color: #3E4C5A;
-	font-size: 1.2rem;
-	background-color: #FAFAFA;
+	font-size: 1.1rem;
+	background-color: #f2f2f2;
 	position: relative;
 }
 
@@ -470,7 +470,10 @@ body {
 .topNav {
 	background: #708090;
 	color: white;
-	position: relative;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
 	cursor: pointer;
 	height: 24px;
 }
@@ -478,7 +481,7 @@ body {
 @media (min-width: 530px) {
 
 .topNav {
-		background: #FAFAFA;
+		background: #f2f2f2;
 		color: #3E4C5A
 }
 	}
@@ -527,7 +530,7 @@ body {
 @media (min-width: 530px) {
 
 .topNav .appDetails {
-			background: #FAFAFA;
+			background: #f2f2f2;
 			color: #3E4C5A
 	}
 	}
@@ -546,7 +549,7 @@ body {
 .container {
 	width: 100%;
 	max-width: 650px;
-	margin: 1px auto;
+	margin: 25px auto 0;
 	-webkit-transition: opacity 0.4s;
 	transition: opacity 0.4s;
 }
@@ -556,19 +559,20 @@ body {
 .container {
 		border: none;
 		width: 80%;
-		margin-top: 70px
+		margin-top: 100px
 }
 	}
 
 #poemContainer {
-	background: white;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 @media (min-width: 530px) {
 
 #poemContainer {
 		border-radius: 20px;
-		border: 1px solid #708090;
 		overflow: hidden
 }
 	}
@@ -581,23 +585,26 @@ body {
 	position: relative;
 	color: #708090;
 	padding: 10px 20px;
-	background: white;
+	background: #fff;
 }
 
 @media (min-width: 530px) {
 
 #poemTitle {
-		border-bottom: 1px solid #708090
+		border-bottom: 1px solid rgba(112, 128, 144, 0.4)
 }
 	}
 
 #poemTitle h1 {
 		text-transform: uppercase;
+		font-weight: 700;
+		letter-spacing: 2px;
 		margin: 0;
 		display: inline-block;
 		padding-left: 0;
 		-webkit-transition: all 0.2s ease-out;
 		transition: all 0.2s ease-out;
+		background: white;
 	}
 
 #poemTitle span {
@@ -621,7 +628,7 @@ body {
 #poemTitle span i.material-icons {
 			height: 100%;
 			font-size: 40px;
-			line-height: 64px;
+			line-height: 60px;
 		}
 
 @media (min-width: 530px) {
@@ -645,6 +652,8 @@ body {
 .poemBody {
 	margin: 2px 0 0 0;
 	padding: 0 0 20px 0;
+	font-weight: 300;
+	background: #fff;
 }
 
 @media (min-width: 530px) {
@@ -654,29 +663,23 @@ body {
 }
 	}
 
-@media (max-width: 530px) {
-
-.poemBody {
-		border-bottom: 1px solid #708090
-}
-	}
-
 @media (min-width: 530px) {
 
 .poemBody {
-		border-top: 1px solid #708090
+		border-top: 1px solid rgba(112, 128, 144, 0.4)
 }
 	}
 
 .poemBody li {
 		padding: 0 20px;
-		line-height: 1;
+		line-height: 1.5;
 		list-style: none;
 		position: relative;
 		min-height: 10px;
 		-webkit-transition: all 0.3s;
 		transition: all 0.3s;
 		border-bottom: 1px solid transparent;
+		background-color: #fff;
 	}
 
 .poemBody li .poemLineText {
@@ -732,20 +735,21 @@ body {
 		opacity: 0.4;
 		-webkit-transition: all 0.2s;
 		transition: all 0.2s;
+		display: inline-block;
 	}
 
 .poemLinks a:hover {
 			opacity: 1;
 		}
 
-.poemLinks a.articleLink {
+.poemLinks .articleLink {
 			float: right;
 			line-height: 30px;
 		}
 
 @media (min-width: 530px) {
 
-.poemLinks a.articleLink {
+.poemLinks .articleLink {
 				line-height: 24px
 		}
 	}
@@ -754,6 +758,7 @@ body {
 	height: 180px;
 	line-height: 180px;
 	text-align: center;
+	font-size: 1.5em;
 }
 
 .loadingDiv span {
@@ -803,10 +808,14 @@ body {
 	-webkit-transition: 0.3s all;
 	transition: 0.3s all;
 	background: #708090;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .poemForm input {
-		font-family: 'Source Code Pro', monospace;
+		font-family: 'Montserrat', monospace;
+		font-weight: 300;
+		letter-spacing: 0.2px;
 		font-size: 0.8em;
 		float: left;
 		-webkit-box-sizing: border-box;
@@ -841,6 +850,7 @@ body {
 			}
 
 .poemForm.poemFormInit {
+		font-size: 1.1em;
 		top: 150px;
 		width: 80%;
 		height: 200px;
@@ -848,7 +858,7 @@ body {
 		left: 50%;
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
-		border: 1px solid #708090;
+		border-radius: 3px;
 	}
 
 @media (min-width: 530px) {
@@ -874,12 +884,8 @@ body {
 		height: 60px;
 		left: 0%;
 		width: 100%;
-		-webkit-transform: translateX(0%);
-		        transform: translateX(0%);
 		margin: 0;
-		border-top: 1px solid #708090;
-		-webkit-transition: 0.3s all;
-		transition: 0.3s all;
+		border-radius: 0px;
 	}
 
 .poemForm.poemFormBottom input {
@@ -989,7 +995,7 @@ body {
 			padding-top: 7px;
 			padding-bottom: 5px;
 			min-height: 30px;
-			border-bottom: 1px solid #708090;
+			border-bottom: 1px solid rgba(112, 128, 144, 0.4);
 		}
 
 .editMode .poemBody> li:hover {

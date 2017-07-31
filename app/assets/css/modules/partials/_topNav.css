@@ -1,7 +1,10 @@
 .topNav {
 	background: $primary-color;
 	color: white;
-	position: relative;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
 	cursor: pointer;
 	height: 24px;
 	@mixin atMedium {

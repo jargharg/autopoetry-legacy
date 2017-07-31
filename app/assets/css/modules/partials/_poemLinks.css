@@ -11,15 +11,16 @@
 		color: $primary-color;
 		opacity: 0.4;
 		transition: all 0.2s;
+		display: inline-block;
 		&:hover {
 			opacity: 1;
 		}
-		&.articleLink {
+	}
+	.articleLink {
 			float: right;
 			line-height: 30px;
 			@mixin atMedium {
 				line-height: 24px;
 			}
 		}
-	}
 }

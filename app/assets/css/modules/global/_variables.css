@@ -1,6 +1,7 @@
-$font-stack: 'Source Code Pro', monospace;
-$bg-color: #FAFAFA;
+$font-stack: 'Montserrat', monospace;
+$bg-color: #f2f2f2;
 $border-color: #708090;
+$border-color-l1: rgba(112, 128, 144, 0.4);
 $primary-color: #708090;
 $primary-color-d1: #546576;
 $primary-color-d2: #3E4C5A;

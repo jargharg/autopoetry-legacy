@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	font-family: $font-stack;
 	color: $primary-color-d2;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	background-color: $bg-color;
 	position: relative;
 	@mixin atMedium {
