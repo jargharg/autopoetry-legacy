@@ -1,6 +1,5 @@
 .poemForm {
 	position: fixed;
-	overflow: hidden;
 	transition: 0.3s all;
 	background: $primary-color;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -8,7 +7,7 @@
 		font-family: $font-stack;
 		font-weight: 300;
 		letter-spacing: 0.2px;
-		font-size: 0.8em;
+		font-size: 1rem;
 		float: left;
 		box-sizing: border-box;
 		padding: 5px;
@@ -17,7 +16,7 @@
 		outline: 0;
 		transition: 0.3s all;
 		@mixin atMedium {
-			font-size: 0.7em;
+			font-size: 0.8em;
 		}
 		&[type="submit"] {
 			background: $primary-color;
@@ -32,11 +31,9 @@
 		}
 	}
 	&.poemFormInit {
-		font-size: 1.1em;
-		top: 150px;
 		width: 80%;
-		height: 200px;
-		bottom: 60%;
+		height: 150px;
+		bottom: 50%;
 		left: 50%;
 		transform: translateX(-50%);
 		border-radius: 3px;
@@ -103,7 +100,6 @@
 				animation: submitResize 0.3s forwards;
 				@keyframes submitResize {
 					0% {
-						width: 100%;
 						opacity: 1;
 					}
 					65% {
@@ -111,6 +107,7 @@
 					}
 					70% {
 						opacity: 0;
+						width: 100%;
 					}
 					75% {
 						height: 100%;
@@ -122,4 +119,20 @@
 			}
 		}
 	}
+	.appNameInit {
+	position: absolute;
+	text-transform: uppercase;
+	top: 0;
+	font-size: 1.5em;
+	letter-spacing: 12px;
+	left: 50%;
+	transform: translate(-50%,-120%);
+	margin-left: 6px;
+	color: $primary-color;
+	transition: 0.1s;
+	@mixin atMedium {
+		font-size: 2.2em;
+		letter-spacing: 12px;
+	}
+}
 }

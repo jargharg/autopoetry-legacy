@@ -32,6 +32,8 @@ class PoemInput {
 	firstWordSearch() {
 		if(this.inputText.val() != "") {
 			$(".container").removeClass("hidden")
+			$(".topNav").removeClass("hidden")
+			$(".appNameInit").addClass("hidden")
 			$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom")
 			this.events(this.newWordSearch)
 			this.newWordSearch()

@@ -222,6 +222,8 @@ var Poem = function () {
 
 			$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>"); // Add loading animation
 
+			wordSearch = wordSearch.replace(/\?/g, "");
+
 			var APIWordSearch = wordSearch.replace(/ /g, " AND ");
 
 			$.getJSON(that.gUrl + APIWordSearch + that.gKey, function (guardianData) {
@@ -442,6 +444,8 @@ var PoemInput = function () {
 		value: function firstWordSearch() {
 			if (this.inputText.val() != "") {
 				$(".container").removeClass("hidden");
+				$(".topNav").removeClass("hidden");
+				$(".appNameInit").addClass("hidden");
 				$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom");
 				this.events(this.newWordSearch);
 				this.newWordSearch();

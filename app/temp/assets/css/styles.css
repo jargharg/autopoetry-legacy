@@ -476,6 +476,7 @@ body {
 	z-index: 10;
 	cursor: pointer;
 	height: 24px;
+	opacity: 1;
 }
 
 @media (min-width: 530px) {
@@ -493,15 +494,19 @@ body {
 		display: inline-block;
 		position: absolute;
 		top: 50%;
-		-webkit-transform: translateY(-50%);
-		        transform: translateY(-50%);
+		text-align: left;
+		-webkit-transform: translate(0,-50%);
+		        transform: translate(0,-50%);
 	}
 
 .topNav .moreIcon {
 		position: absolute;
 		top: 0;
 		right: 0;
+		opacity: 1;
 		width: 50px;
+		-webkit-transition: opacity 0.4s;
+		transition: opacity 0.4s;
 		text-align: center;
 	}
 
@@ -804,7 +809,6 @@ body {
 
 .poemForm {
 	position: fixed;
-	overflow: hidden;
 	-webkit-transition: 0.3s all;
 	transition: 0.3s all;
 	background: #708090;
@@ -816,7 +820,7 @@ body {
 		font-family: 'Montserrat', monospace;
 		font-weight: 300;
 		letter-spacing: 0.2px;
-		font-size: 0.8em;
+		font-size: 1rem;
 		float: left;
 		-webkit-box-sizing: border-box;
 		        box-sizing: border-box;
@@ -831,7 +835,7 @@ body {
 @media (min-width: 530px) {
 
 .poemForm input {
-			font-size: 0.7em
+			font-size: 0.8em
 	}
 	}
 
@@ -850,11 +854,9 @@ body {
 			}
 
 .poemForm.poemFormInit {
-		font-size: 1.1em;
-		top: 150px;
 		width: 80%;
-		height: 200px;
-		bottom: 60%;
+		height: 150px;
+		bottom: 50%;
 		left: 50%;
 		-webkit-transform: translateX(-50%);
 		        transform: translateX(-50%);
@@ -937,7 +939,6 @@ body {
 				        animation: submitResize 0.3s forwards;
 				@-webkit-keyframes submitResize {
 					0% {
-						width: 100%;
 						opacity: 1;
 					}
 					65% {
@@ -945,6 +946,7 @@ body {
 					}
 					70% {
 						opacity: 0;
+						width: 100%;
 					}
 					75% {
 						height: 100%;
@@ -955,7 +957,6 @@ body {
 				}
 				@keyframes submitResize {
 					0% {
-						width: 100%;
 						opacity: 1;
 					}
 					65% {
@@ -963,6 +964,7 @@ body {
 					}
 					70% {
 						opacity: 0;
+						width: 100%;
 					}
 					75% {
 						height: 100%;
@@ -972,6 +974,29 @@ body {
 					}
 				}
 			}
+	}
+
+.poemForm .appNameInit {
+	position: absolute;
+	text-transform: uppercase;
+	top: 0;
+	font-size: 1.5em;
+	letter-spacing: 12px;
+	left: 50%;
+	-webkit-transform: translate(-50%,-120%);
+	        transform: translate(-50%,-120%);
+	margin-left: 6px;
+	color: #708090;
+	-webkit-transition: 0.1s;
+	transition: 0.1s;
+}
+
+@media (min-width: 530px) {
+
+.poemForm .appNameInit {
+		font-size: 2.2em;
+		letter-spacing: 12px
+}
 	}
 
 .editMode #poemTitle> h1 {
