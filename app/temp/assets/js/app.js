@@ -206,22 +206,20 @@ var Poem = function () {
 			textContent.forEach(function (str) {
 				str = str.trim();
 				if (str.length > 2 && str != "Photograph" && str != "'*") {
-					if (str.length > 80) {
-						var _tidyContent;
-
-						str = str.replace(/.{60}\S*\s+/g, "$&@").split(/\s+@/);
-						(_tidyContent = tidyContent).push.apply(_tidyContent, _toConsumableArray(str));
+					if (str.length > 70) {
+						str = str.replace(/.{50}\S*\s+/g, "$&@").split(/\s+@/);
+						tidyContent.push.apply(tidyContent, _toConsumableArray(str));
 					} else {
 						tidyContent.push(str);
 					}
 				}
 			});
 
-			tidyContent = tidyContent.map(function (str) {
+			var finalContent = tidyContent.map(function (str) {
 				return str.charAt(0).toUpperCase() + str.slice(1);
 			});
 
-			this.currentPoemData = { title: title, link: articleLink, content: tidyContent };
+			this.currentPoemData = { title: title, link: articleLink, content: finalContent };
 
 			this.createPoem(this.currentPoemData);
 		}
