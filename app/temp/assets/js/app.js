@@ -157,6 +157,8 @@ var _PoemControls2 = _interopRequireDefault(_PoemControls);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Poem = function () {
@@ -197,16 +199,26 @@ var Poem = function () {
 			var article = Math.floor(Math.random() * results.length);
 			var content = results[article].fields.body;
 			var articleLink = results[article].webUrl;
-			var textContent = content.replace(/<br>/g, ".").replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos|’/g, "'").replace(/\&amp/g, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@/g, ".").split(".");
+			var textContent = content.replace(/<br>/g, ".").replace(/<(?:.|\n)*?>/gm, '').replace(/\&apos|’/g, "'").replace(/\&amp/g, " and ").replace(/\u201C|\u201D|!|\(|\)|\[|\]|;|:|\"|\/|,|\.com|\&quot|\.|\?|–|\u2013 |\&|\u2022|\||@|\d{3,}/g, ".").split(".");
 
-			var tidyContent = textContent.map(function (str) {
-				var strTrim = str.trim();
-				if (strTrim.length > 2 && strTrim.length < 90 && strTrim != "Photograph" && strTrim != "'*") {
-					var strCap = strTrim.charAt(0).toUpperCase() + strTrim.slice(1);
-					return strCap;
+			var tidyContent = [];
+
+			textContent.forEach(function (str) {
+				str = str.trim();
+				if (str.length > 2 && str != "Photograph" && str != "'*") {
+					if (str.length > 80) {
+						var _tidyContent;
+
+						str = str.replace(/.{60}\S*\s+/g, "$&@").split(/\s+@/);
+						(_tidyContent = tidyContent).push.apply(_tidyContent, _toConsumableArray(str));
+					} else {
+						tidyContent.push(str);
+					}
 				}
-			}).filter(function (str) {
-				return str;
+			});
+
+			tidyContent = tidyContent.map(function (str) {
+				return str.charAt(0).toUpperCase() + str.slice(1);
 			});
 
 			this.currentPoemData = { title: title, link: articleLink, content: tidyContent };
@@ -422,7 +434,7 @@ var PoemInput = function () {
 
 			this.inputButton.off().click(func.bind(this)); // Submit button pressed
 			this.inputText.off().keypress(function (e) {
-				if (e.which == 13) func.call(_this);
+				return e.which == 13 ? func.call(_this) : null;
 			}); // Enter key pressed
 		}
 	}, {
