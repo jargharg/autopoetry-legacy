@@ -2,7 +2,7 @@
 	width: 100%;
 	max-width: 650px;
 	margin: 25px auto 0;
-	transition: opacity 0.4s;
+	transition: opacity 0.5s;
 	@mixin atMedium {
 		border: none;
 		width: 80%;
@@ -21,4 +21,5 @@
 
 .hidden {
 	opacity: 0;
+	visibility: hidden;
 }

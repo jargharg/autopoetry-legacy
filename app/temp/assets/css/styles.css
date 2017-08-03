@@ -453,11 +453,10 @@ template {
 body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Montserrat', monospace;
+	font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 	color: #3E4C5A;
 	font-size: 1.1rem;
 	background-color: #f2f2f2;
-	position: relative;
 }
 
 @media (min-width: 530px) {
@@ -483,7 +482,7 @@ body {
 
 .topNav {
 		background: #f2f2f2;
-		color: #3E4C5A
+		color: #708090
 }
 	}
 
@@ -536,7 +535,7 @@ body {
 
 .topNav .appDetails {
 			background: #f2f2f2;
-			color: #3E4C5A
+			color: #708090
 	}
 	}
 
@@ -555,8 +554,8 @@ body {
 	width: 100%;
 	max-width: 650px;
 	margin: 25px auto 0;
-	-webkit-transition: opacity 0.4s;
-	transition: opacity 0.4s;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 }
 
 @media (min-width: 530px) {
@@ -584,6 +583,7 @@ body {
 
 .hidden {
 	opacity: 0;
+	visibility: hidden;
 }
 
 #poemTitle {
@@ -814,10 +814,13 @@ body {
 	background: #708090;
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	opacity: 0;
+	-webkit-animation: fadeIn 0.3s ease-in-out forwards;
+	        animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 .poemForm input {
-		font-family: 'Montserrat', monospace;
+		font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 		font-weight: 300;
 		letter-spacing: 0.2px;
 		font-size: 1rem;
@@ -978,27 +981,45 @@ body {
 	}
 
 .poemForm .appNameInit {
-	position: absolute;
-	text-transform: uppercase;
-	top: 0;
-	font-size: 1.5em;
-	letter-spacing: 12px;
-	left: 50%;
-	-webkit-transform: translate(-50%,-120%);
-	        transform: translate(-50%,-120%);
-	margin-left: 6px;
-	color: #708090;
-	-webkit-transition: 0.1s;
-	transition: 0.1s;
-}
+		position: absolute;
+		text-transform: uppercase;
+		top: 0;
+		font-size: 1.5em;
+		letter-spacing: 12px;
+		left: 50%;
+		-webkit-transform: translate(-50%,-120%);
+		        transform: translate(-50%,-120%);
+		margin-left: 6px;
+		color: #708090;
+		-webkit-transition: 0.1s;
+		transition: 0.1s;
+	}
 
 @media (min-width: 530px) {
 
 .poemForm .appNameInit {
-		font-size: 2.2em;
-		letter-spacing: 12px
-}
+			font-size: 2.2em;
+			letter-spacing: 12px
 	}
+	}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 
 .editMode #poemTitle> h1 {
 			padding-left: 50px;
