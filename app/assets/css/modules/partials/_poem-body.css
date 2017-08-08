@@ -1,0 +1,51 @@
+.poem-body {
+	margin: 2px 0 0 0;
+	padding: 0 0 20px 0;
+	font-weight: 300;
+	background: #fff;
+	@mixin atMedium {
+		padding: 20px 0;
+	}
+
+	@mixin atMedium {
+		border-top: 1px solid $border-color-l1;
+	}
+
+	li {
+		padding: 0 20px;
+		line-height: 1.5;
+		list-style: none;
+		position: relative;
+		min-height: 10px;
+		transition: all 0.3s;
+		border-bottom: 1px solid transparent;
+		background-color: #fff;
+		.poem-line {
+			&--text {
+				margin-left: 1em;
+				text-indent: -1em;
+				display: block;
+			}
+			&--refresh {
+				display: inline-block;
+				position: absolute;
+				margin-right: 10px;
+				top: 0px;
+				right: 0px;
+				width: 40px;
+				overflow: hidden;
+				height: 0;
+				color: #fff;
+				cursor: pointer;
+				transition: 0.2s;
+				user-select: none;
+				i.material-icons {
+					font-size: 40px;
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+		}
+	}
+}

@@ -108,7 +108,7 @@ var TopNav = function () {
 	function TopNav() {
 		_classCallCheck(this, TopNav);
 
-		this.topNav = $(".topNav");
+		this.topNav = $(".top-nav");
 		this.events();
 	}
 
@@ -120,10 +120,10 @@ var TopNav = function () {
 	}, {
 		key: "infoToggle",
 		value: function infoToggle(e) {
-			$(".appDetails").toggleClass("visible");
+			$(".top-nav--details").toggleClass("top-nav--details__expanded");
 			e.stopPropagation();
 			$(document).click(function () {
-				$(".appDetails").removeClass("visible");
+				$(".top-nav--details").removeClass("top-nav--details__expanded");
 				$(document).off();
 			});
 		}
@@ -168,7 +168,7 @@ var Poem = function () {
 		this.currentPoemData = {};
 		this.gUrl = "https://content.guardianapis.com/search?show-fields=body&q=";
 		this.gKey = "&api-key=2c7e590d-dde8-498a-b351-b008c42edf52";
-		this.poemBody = $(".poemBody");
+		this.poemBody = $(".poem-body");
 		this.poemControls = new _PoemControls2.default(this);
 		this.shareLinks = new _ShareLinks2.default();
 	}
@@ -185,7 +185,7 @@ var Poem = function () {
 			}
 
 			randomArray.forEach(function (x) {
-				_this.poemBody.append($("<li class='poemLine'>").append($("<span class='poemLineText'>").html(poemData.content[x])).append($("<div class='poemLineRefresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
+				_this.poemBody.append($("<li class='poem-line'>").append($("<span class='poem-line--text'>").html(poemData.content[x])).append($("<div class='poem-line--refresh'>").html("<i class='material-icons md-18'>&#xE86A;</i>")));
 			});
 
 			this.poemControls.newPoem(poemData);
@@ -229,7 +229,7 @@ var Poem = function () {
 			var that = this;
 			$("h1").text(wordSearch); // Add poem title
 
-			$("ul").empty().append("<div class='loadingDiv'>Loading<span>.</span><span>.</span><span>.</span></div>"); // Add loading animation
+			$("ul").empty().append("<div class='loading-div'>Loading<span>.</span><span>.</span><span>.</span></div>"); // Add loading animation
 
 			wordSearch = wordSearch.replace(/\?/g, "");
 
@@ -244,7 +244,7 @@ var Poem = function () {
 						if (Number(guardianData.response.total) > 0) {
 							that.parseData(guardianData, wordSearch);
 						} else {
-							$(".loadingDiv").html("No results, try again x");
+							$(".loading-div").html("No results, try again x");
 						}
 					});
 				}
@@ -276,7 +276,7 @@ var ShareLinks = function () {
 	function ShareLinks() {
 		_classCallCheck(this, ShareLinks);
 
-		this.shareLink = $(".shareLink i");
+		this.shareLink = $(".poem-links--share i");
 		this.poemContents = {};
 		this.poemTitle = {};
 		this.events();
@@ -290,8 +290,8 @@ var ShareLinks = function () {
 	}, {
 		key: "newPoem",
 		value: function newPoem() {
-			this.poemContents = $(".poemLineText");
-			this.poemTitle = $("#poemTitle h1").text().toUpperCase();
+			this.poemContents = $(".poem-line--text");
+			this.poemTitle = $(".poem-title h1").text().toUpperCase();
 		}
 	}, {
 		key: "whatsAppPoemLink",
@@ -344,7 +344,7 @@ var PoemControls = function () {
 		this.poemData = {};
 		this.poemEdit = $("#poemEdit");
 		this.poemEditIcon = $("#poemEdit .material-icons");
-		this.poemContainer = $("#poemContainer");
+		this.poemContainer = $(".poem-container");
 		this.poemLinesRefresh = $();
 		this.wholePoemRefresh = $("#wholePoemRefresh");
 		this.editModeActive = false;
@@ -362,7 +362,7 @@ var PoemControls = function () {
 		value: function newPoem(data) {
 			var that = this;
 			this.poemData = data;
-			this.poemLinesRefresh = $(".poemLineRefresh");
+			this.poemLinesRefresh = $(".poem-line--refresh");
 			this.poemLinesRefresh.off().click(function () {
 				that.refreshLine(this);
 			});
@@ -372,11 +372,11 @@ var PoemControls = function () {
 		value: function editMode() {
 			if (this.editModeActive === true) {
 				this.poemEditIcon.text("mode_edit");
-				this.poemContainer.removeClass("editMode");
+				this.poemContainer.removeClass("edit-mode");
 				this.editModeActive = false;
 			} else {
 				this.poemEditIcon.text("done");
-				this.poemContainer.addClass("editMode");
+				this.poemContainer.addClass("edit-mode");
 				this.editModeActive = true;
 			}
 		}
@@ -440,12 +440,12 @@ var PoemInput = function () {
 		value: function newWordSearch() {
 			if (this.inputText.val() != "") {
 				this.poem.newPoem(this.inputText.val());
-				this.inputText.val("").removeClass("inputMobile").parent().removeClass("poemFormExpanded");
+				this.inputText.val("").removeClass("input-mobile").parent().removeClass("poem-form__expanded");
 				this.inputButton.blur();
-				$(".editMode").removeClass("editMode");
+				$(".edit-mode").removeClass("edit-mode");
 				$("#poemEdit .material-icons").text("mode_edit");
 			} else {
-				this.inputText.addClass("inputMobile").focus().parent().addClass("poemFormExpanded");
+				this.inputText.addClass("input-mobile").focus().parent().addClass("poem-form__expanded");
 			}
 		}
 	}, {
@@ -453,9 +453,9 @@ var PoemInput = function () {
 		value: function firstWordSearch() {
 			if (this.inputText.val() != "") {
 				$(".container").removeClass("hidden");
-				$(".topNav").removeClass("hidden");
-				$(".appNameInit").addClass("hidden");
-				$(".poemForm").removeClass("poemFormInit").addClass("poemFormBottom");
+				$(".top-nav").removeClass("hidden");
+				$(".app-name__init").addClass("hidden");
+				$(".poem-form").removeClass("poem-form__init").addClass("poem-form__bottom");
 				this.events(this.newWordSearch);
 				this.newWordSearch();
 			} else {

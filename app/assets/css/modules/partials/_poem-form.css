@@ -1,4 +1,4 @@
-.poemForm {
+.poem-form {
 	position: fixed;
 	transition: 0.3s all;
 	background: $primary-color;
@@ -32,7 +32,7 @@
 			}
 		}
 	}
-	&.poemFormInit {
+	&__init {
 		width: 80%;
 		height: 150px;
 		bottom: 40%;
@@ -53,7 +53,7 @@
 			}
 		}
 	}
-	&.poemFormBottom {
+	&__bottom {
 		bottom: 0%;
 		height: 60px;
 		left: 0%;
@@ -88,7 +88,7 @@
 					}
 				}
 			}
-			&.poemFormExpanded {
+			&.poem-form__expanded {
 				height: 120px;
 				input {
 					height: 50%;
@@ -120,22 +120,6 @@
 					}
 				}
 			}
-		}
-	}
-	.appNameInit {
-		position: absolute;
-		text-transform: uppercase;
-		top: 0;
-		font-size: 1.5em;
-		letter-spacing: 12px;
-		left: 50%;
-		transform: translate(-50%,-120%);
-		margin-left: 6px;
-		color: $primary-color;
-		transition: 0.1s;
-		@mixin atMedium {
-			font-size: 2.2em;
-			letter-spacing: 12px;
 		}
 	}
 }

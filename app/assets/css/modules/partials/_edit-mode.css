@@ -1,5 +1,5 @@
-.editMode {
-	#poemTitle {
+.edit-mode {
+	.poem-title {
 		&> h1 {
 			padding-left: 50px;
 			@mixin atMedium {
@@ -12,16 +12,17 @@
 			opacity: 1;
 		}
 	}
-	.poemBody {
+	.poem-body {
 		&> li {
 			padding-top: 7px;
 			padding-bottom: 5px;
 			min-height: 30px;
 			border-bottom: 1px solid $border-color-l1;
+			user-select: none;
 			&:hover {
 				color: white;
 				background-color: $secondary-color;
-				&> .poemLineRefresh {
+				&> .poem-line--refresh {
 					opacity: 1;
 					color: white;
 				}
@@ -29,10 +30,10 @@
 			&:last-child {
 				border: 1px solid transparent;
 			}
-			.poemLineText {
+			.poem-line--text {
 				padding-right: 40px;
 			}
-			.poemLineRefresh {
+			.poem-line--refresh {
 				color: $secondary-color;
 				height: 100%;
 				@mixin atMedium {

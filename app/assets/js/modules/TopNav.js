@@ -1,21 +1,21 @@
 class TopNav {
 	constructor() {
-		this.topNav = $(".topNav");
-		this.events();
+		this.topNav = $(".top-nav")
+		this.events()
 	}
 
 	events() {
-		this.topNav.click(this.infoToggle.bind(this));
+		this.topNav.click(this.infoToggle.bind(this))
 	}
 
 	infoToggle(e){
-		$(".appDetails").toggleClass("visible");
-		e.stopPropagation();
+		$(".top-nav--details").toggleClass("top-nav--details__expanded")
+		e.stopPropagation()
 		$(document).click(() => {
-			$(".appDetails").removeClass("visible");
-			$(document).off();
-		});
+			$(".top-nav--details").removeClass("top-nav--details__expanded")
+			$(document).off()
+		})
 	}
 }
 
-export default TopNav;
+export default TopNav
