@@ -34,7 +34,7 @@ class Poem {
 
 		this.poemControls.newPoem(poemData)
 		this.shareLinks.newPoem()
-		$(".articleLink").attr("href", poemData.link)
+		$(".poem-links--article").attr("href", poemData.link)
 	}
 
 	parseData(guardianData, title) {
@@ -74,7 +74,7 @@ class Poem {
 		const that = this
 		$("h1").text(wordSearch) // Add poem title
 
-		$("ul").empty().append("<div class='loading-div'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
+		$("ul").html("<div class='loading-div'>Loading<span>.</span><span>.</span><span>.</span></div>") // Add loading animation
 
 		wordSearch = wordSearch.replace(/\?/g,"")
 		
