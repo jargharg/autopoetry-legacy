@@ -35,4 +35,4 @@ class ShareLinks {
 	}
 }
 
-export default ShareLinks;
+export default ShareLinks

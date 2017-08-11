@@ -48,4 +48,4 @@ class PoemControls {
 	}
 }
 
-export default PoemControls;
+export default PoemControls
