@@ -8,7 +8,7 @@ class TopNav {
 		this.topNav.click(this.infoToggle.bind(this))
 	}
 
-	infoToggle(e){
+	infoToggle(e) {
 		$(".top-nav--details").toggleClass("top-nav--details__expanded")
 		e.stopPropagation()
 		$(document).click(() => {

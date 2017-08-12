@@ -20,7 +20,7 @@ class PoemControls {
 		const that = this
 		this.poemData = data
 		this.poemLinesRefresh = $(".poem-line--refresh")
-		this.poemLinesRefresh.off().click(function(){
+		this.poemLinesRefresh.off().click(function() {
 			that.refreshLine(this)
 		})
 	}
@@ -38,7 +38,9 @@ class PoemControls {
 	}
 
 	refreshLine(refreshIcon) {
-		const newLine = this.poemData.content[Math.floor(Math.random()*this.poemData.content.length)]
+		const newLine = this.poemData.content[
+			Math.floor(Math.random() * this.poemData.content.length)
+		]
 		$(refreshIcon).prev().text(newLine)
 	}
 
