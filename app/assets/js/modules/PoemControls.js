@@ -46,7 +46,7 @@ class PoemControls {
 
 	refreshPoem() {
 		this.editMode()
-		this.poem.newPoem(this.poemData.title)
+		this.poem.createPoem(this.poemData)
 	}
 }
 
