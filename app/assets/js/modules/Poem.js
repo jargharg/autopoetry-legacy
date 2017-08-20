@@ -1,5 +1,6 @@
 import ShareLinks from "./ShareLinks"
 import PoemControls from "./PoemControls"
+import PoemMethods from "./PoemMethods"
 
 class Poem {
 	constructor() {
@@ -10,25 +11,18 @@ class Poem {
 		this.poemBody = $(".poem-body")
 		this.poemControls = new PoemControls(this)
 		this.shareLinks = new ShareLinks()
+		this.poemMethods = new PoemMethods()
 	}
 
 	createPoem(poemData) {
-		let randomArray = []
 		this.poemBody.empty()
-		for (let i = 0; i < 10; i++) {
-			randomArray.push(
-				Math.floor(Math.random() * poemData.content.length)
-			)
-		}
 
-		randomArray.forEach(x => {
+		const poemArray = this.poemMethods.newPoem(poemData)
+
+		poemArray.forEach(line => {
 			this.poemBody.append(
 				$("<li class='poem-line'>")
-					.append(
-						$("<span class='poem-line--text'>").html(
-							poemData.content[x]
-						)
-					)
+					.append($("<span class='poem-line--text'>").html(line))
 					.append(
 						$("<div class='poem-line--refresh'>").html(
 							"<i class='material-icons md-18'>&#xE86A;</i>"
@@ -39,15 +33,18 @@ class Poem {
 
 		this.poemControls.newPoem(poemData)
 		this.shareLinks.newPoem()
-		$(".poem-links--article").attr("href", poemData.link)
 	}
 
 	parseData(guardianData, title) {
 		const results = guardianData.response.results
-		const article = Math.floor(Math.random() * results.length)
-		const content = results[article].fields.body
-		const articleLink = results[article].webUrl
-		let textContent = content
+
+		const articles = results
+			.map(article => {
+				return article.fields.body
+			})
+			.join(" ")
+
+		const textContent = articles
 			.replace(/<br>/g, ".")
 			.replace(/<(?:.|\n)*?>/gm, "")
 			.replace(/\&apos|’/g, "'")
@@ -78,7 +75,6 @@ class Poem {
 
 		this.currentPoemData = {
 			title: title,
-			link: articleLink,
 			content: finalContent
 		}
 
