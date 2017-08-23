@@ -9,10 +9,10 @@ class TopNav {
 	}
 
 	infoToggle(e) {
-		$(".top-nav--details").toggleClass("top-nav--details__expanded")
+		$(".top-nav__details").toggleClass("top-nav__details--expanded")
 		e.stopPropagation()
 		$(document).click(() => {
-			$(".top-nav--details").removeClass("top-nav--details__expanded")
+			$(".top-nav__details").removeClass("top-nav__details--expanded")
 			$(document).off()
 		})
 	}

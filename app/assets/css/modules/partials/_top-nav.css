@@ -1,55 +1,40 @@
 .top-nav {
-	background: $primary-color;
-	color: white;
-	position: fixed;
+	position: absolute;
 	top: 0;
+	color: white;
 	width: 100%;
 	z-index: 10;
 	cursor: pointer;
-	height: 24px;
 	opacity: 1;
-	@mixin atMedium {
-		background: $bg-color;
-		color: $primary-color;
-	}
-	&--more-icon {
-		position: absolute;
-		top: 0;
-		right: 0;
-		opacity: 1;
-		width: 50px;
-		transition: opacity 0.4s;
-		text-align: center;
-		i.material-icons {
-			height: 1em;
+	color: $primary-color;
+	&__info-icon {
+		position: relative;
+		text-align: right;
+		opacity: 0.4;
+		transition: all 0.4s;
+		padding: 5px;
+		&:hover {
+			opacity: 1;
 		}
 	}
-	&--details {
+	&__details {
 		width: 100%;
-		box-sizing: border-box;
 		max-height: 0;
 		overflow: hidden;
+		color: #ffffff;
 		background: $primary-color;
 		padding: 0 10px;
 		font-size: 0.7em;
-		top: 100%;
-		left: 0;
 		position: absolute;
 		transition: 0.2s all ease-out;
 		z-index: 100;
-		border-bottom: 1px solid transparent;
-		@mixin atMedium {
-			background: $bg-color;
-			color: $primary-color;
-		}
 		a {
 			color: inherit;
 			display: inline-block;
 		}
-		&__expanded {
+		&--expanded {
 			max-height: 400px;
 			padding: 10px;
-			border-bottom: 1px solid $primary-color;
 		}
 	}
 }
