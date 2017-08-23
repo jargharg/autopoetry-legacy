@@ -9,3 +9,6 @@ body {
 		font-size: 1rem;
 	}
 }
+* {
+    box-sizing: border-box;
+}
