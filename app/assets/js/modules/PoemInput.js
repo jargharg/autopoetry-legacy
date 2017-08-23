@@ -37,8 +37,7 @@ class PoemInput {
 	firstWordSearch() {
 		if (this.inputText.val() != "") {
 			$(".container").removeClass("hidden")
-			$(".top-nav").removeClass("hidden")
-			$(".app-name__init").addClass("hidden")
+			$(".app-name").addClass("hidden")
 			$(".poem-form")
 				.removeClass("poem-form__init")
 				.addClass("poem-form__bottom")
