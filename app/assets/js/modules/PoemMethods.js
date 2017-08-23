@@ -8,8 +8,8 @@ class PoemMethods {
         this.length = 3 + Math.floor(Math.random() * 10)
         this.title = data.title
         this.content = data.content
+
         return this.randomPoem.call(this)
-        
         // const randomMethod = Math.floor(Math.random() * this.methods.length)
         // return this.methods[randomMethod].call(this)
     }
@@ -34,26 +34,30 @@ class PoemMethods {
         let thenArray = []
         let ifOrArray = []
 
-        this.content.forEach(
-            line =>
-                /if /i.test(line.substring(0, 3)) ? ifArray.push(line) : null
+        this.content.forEach(line => {
+            if (/if /i.test(line.substring(0, 3))) {
+                ifArray.push(line)
+            } else if (/or /i.test(line.substring(0, 3))) {
+                orArray.push(line)
+            } else if (/then /i.test(line.substring(0, 5))) {
+                thenArray.push(line)
+            }
+        })
+
+        const ifOrMin = Math.min(ifArray.length, orArray.length)
+
+        const ifOrLength = Math.floor(Math.random() * ifOrMin)
+
+        ifOrArray.push(
+            ifArray[Math.floor(Math.random() * ifArray.length)],
+            orArray[Math.floor(Math.random() * orArray.length)]
         )
 
-        this.content.forEach(
-            line =>
-                /or /i.test(line.substring(0, 3)) ? orArray.push(line) : null
-        )
+        thenArray.length !== 0
+            ? ifOrArray.push(thenArray[Math.floor(Math.random() * thenArray.length)])
+            : ifOrArray.push(this.content[this.randomLineIndex()])
 
-        this.content.forEach(
-            line =>
-                /then /i.test(line.substring(0, 5))
-                    ? thenArray.push(line)
-                    : null
-        )
-
-        // refactor this to one foreach
-
-        return ifArray.slice(1, this.length)
+        return ifOrArray //.slice(1, this.length)
     }
 }
 
