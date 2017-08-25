@@ -7,21 +7,23 @@
     <meta property="og:image" content="">
     <meta property="og:description" content="Cut-up poems, automated">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/styles-6344f5c3ff.css"/>
+    <link rel="stylesheet" href="assets/styles/styles-780d9c36b9.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <header class="top-nav hidden">
-        <span class="app-name app-name__base">Autopoetry</span>
-        <div class="top-nav--more-icon">
-            <i class="material-icons">&#xE5D4;</i>
-        </div>
-        <div class="top-nav--details">
+    <header class="top-nav">
+        <div class="top-nav__details">
             Inspired by the cut-up technique of William S Burroughs, this app searches for your phrase in the <a href="http://open-platform.theguardian.com/" target="_blank">Guardian API</a> and slices up an article to make a poem with random snippets.
             Made by <a href="https://jarodhargreav.es">Jarod Hargreaves</a>. <a href="https://github.com/jargharg/autopoetry/" target="_blank">See it on Github</a>
+        </div>
+        <div class="top-nav__name hidden">
+            AUTOPOETRY
+        </div>
+        <div class="top-nav__info-icon">
+            <i class="material-icons">info_outline</i>
         </div>
     </header>
 
@@ -44,11 +46,11 @@
     </div>
 
     <div class="poem-form poem-form__init">
-    <div class="app-name app-name__init">Autopoetry</div>
+        <img class="app-name" src="assets/images/autopoetry-title-slate.png" alt="AUTOPOETRY">
         <input id="inputText" type="text" placeholder="Enter a phrase" autocomplete="off" name="wordSearch">
         <input id="inputSubmit" type="submit" value="Make a new poem">
     </div>
 
-    <script src="assets/scripts/app-916e5cca5c.js"></script>
+    <script src="assets/scripts/app-dab7186ffe.js"></script>
 </body>
 </html>
