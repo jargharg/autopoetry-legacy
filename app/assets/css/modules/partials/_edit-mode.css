@@ -1,12 +1,12 @@
 .edit-mode {
 	.poem-title {
-		&> h1 {
+		& > h1 {
 			padding-left: 50px;
 			@mixin atMedium {
 				padding-left: 40px;
 			}
 		}
-		&> #wholePoemRefresh {
+		& > #wholePoemRefresh {
 			width: 50px;
 			color: $secondary-color;
 			opacity: 1;
@@ -15,47 +15,42 @@
 	.poem-body {
 		background: none;
 		box-shadow: none;
-		&> li {
-			padding-top: 10px;
-			padding-bottom: 5px;
+		& > li {
+			padding: 10px 35px 5px;
 			margin-bottom: 5px;
 			min-height: 40px;
 			user-select: none;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+			cursor: pointer;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+				0 1px 2px rgba(0, 0, 0, 0.24);
+			@mixin atMedium {
+				padding: 10px 20px 5px;
+			}
 			&:first-child {
 				margin-top: 10px;
 			}
 			&:last-child {
 				border-radius: 0;
 			}
-/* 			&:focus {
-				transition: all 0.2s;
-				transform: translateY(-2px);
-				z-index: 2;
-				box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-			} */
-			&:hover {
+			&:focus {
 				color: white;
 				background: $secondary-color;
-				&> .poem-line--refresh {
-					opacity: 1;
-					color: white;
+				.poem-line__nav {
+					@mixin belowMedium {
+						color: white;
+					}
 				}
 			}
 			&:last-child {
 				border: 1px solid transparent;
 			}
-			.poem-line--text {
+			.poem-line__text {
 				padding-right: 40px;
 			}
-			.poem-line--refresh {
-				color: $secondary-color;
-				transform: scale(1);
-				@mixin atMedium {
-					i.material-icons {
-						right: 0;
-					}
-				}
+			.poem-line__nav {
+				opacity: 1;
+				visibility: visible;
+				z-index: 2;
 			}
 		}
 	}

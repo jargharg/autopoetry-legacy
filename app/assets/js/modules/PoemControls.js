@@ -16,13 +16,8 @@ class PoemControls {
 		this.wholePoemRefresh.click(this.refreshPoem.bind(this))
 	}
 
-	newPoem(data) {
-		const that = this
-		this.poemData = data
-		this.poemLinesRefresh = $(".poem-line--refresh")
-		this.poemLinesRefresh.off().click(function() {
-			that.refreshLine(this)
-		})
+	newPoem(poemData) {
+		this.poemData = poemData
 	}
 
 	editMode() {
@@ -35,13 +30,6 @@ class PoemControls {
 			this.poemContainer.addClass("edit-mode")
 			this.editModeActive = true
 		}
-	}
-
-	refreshLine(refreshIcon) {
-		const newLine = this.poemData.content[
-			Math.floor(Math.random() * this.poemData.content.length)
-		]
-		$(refreshIcon).prev().text(newLine)
 	}
 
 	refreshPoem() {

@@ -1,6 +1,7 @@
 import ShareLinks from "./ShareLinks"
 import PoemControls from "./PoemControls"
 import PoemMethods from "./PoemMethods"
+import PoemLine from "./PoemLine"
 
 class Poem {
 	constructor() {
@@ -19,20 +20,28 @@ class Poem {
 
 		const poemArray = this.poemMethods.newPoem(poemData)
 
-		poemArray.forEach(line => {
-			this.poemBody.append(
-				$("<li class='poem-line'>")
-					.append($("<span class='poem-line--text'>").html(line))
-					.append(
-						$("<div class='poem-line--refresh'>").html(
-							"<i class='material-icons md-18'>&#xE86A;</i>"
-						)
-					)
-			)
-		})
-
+		poemArray.forEach(
+			(line, index) => new PoemLine(this.poemBody, line.content, line.index, poemData)
+		)
+		
 		this.poemControls.newPoem(poemData)
 		this.shareLinks.newPoem()
+	}
+
+	shuffle(array) {
+		var length = array.length,
+			lastElement,
+			i
+
+		while (length) {
+			i = Math.floor(Math.random() * length--)
+
+			lastElement = array[length]
+			array[length] = array[i]
+			array[i] = lastElement
+		}
+
+		return array
 	}
 
 	parseData(guardianData, title) {
@@ -69,13 +78,15 @@ class Poem {
 			}
 		})
 
-		let finalContent = tidyContent.map(
+		const capitalisedContent = tidyContent.map(
 			str => str.charAt(0).toUpperCase() + str.slice(1)
 		)
 
+		const shuffledContent = this.shuffle(capitalisedContent)
+
 		this.currentPoemData = {
 			title: title,
-			content: finalContent
+			content: shuffledContent
 		}
 
 		this.createPoem(this.currentPoemData)

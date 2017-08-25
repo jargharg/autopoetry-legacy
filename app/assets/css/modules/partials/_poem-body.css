@@ -20,7 +20,7 @@
 		transition: all 0.3s, box-shadow 0s;
 		background-color: #fff;
 		outline: none;
-		
+
 		&:first-child {
 			@mixin atMedium {
 				padding-top: 20px;
@@ -34,25 +34,35 @@
 			}
 		}
 		.poem-line {
-			&--text {
+			&__text {
 				margin-left: 1em;
 				text-indent: -1em;
 				display: block;
 			}
-			&--refresh {
+			&__nav {
+				color: $secondary-color;
 				display: inline-block;
 				position: absolute;
-				margin-right: 10px;
-				top: 0px;
-				right: 0px;
+				top: 0;
 				width: 40px;
-				overflow: hidden;
-				transform: scale(0);
 				height: 100%;
-				color: #fff;
 				cursor: pointer;
 				transition: 0.2s;
 				user-select: none;
+				opacity: 0;
+				visibility: hidden;
+				&__next {
+					right: 0;
+					@mixin atMedium {
+						transform: translateX(35px);
+					}
+				}
+				&__prev {
+					left: 0;
+					@mixin atMedium {
+						transform: translateX(-35px);
+					}
+				}
 				i.material-icons {
 					font-size: 40px;
 					position: absolute;

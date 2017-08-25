@@ -24,7 +24,13 @@ class PoemMethods {
             randomArray.push(this.randomLineIndex())
         }
 
-        const poemArray = randomArray.map(x => this.content[x])
+        const poemArray = randomArray.map(x => {
+            var lineObject = {}
+            lineObject.index = x
+            lineObject.content = this.content[x]
+            return lineObject
+        })
+
         return poemArray
     }
 
@@ -54,7 +60,9 @@ class PoemMethods {
         )
 
         thenArray.length !== 0
-            ? ifOrArray.push(thenArray[Math.floor(Math.random() * thenArray.length)])
+            ? ifOrArray.push(
+                  thenArray[Math.floor(Math.random() * thenArray.length)]
+              )
             : ifOrArray.push(this.content[this.randomLineIndex()])
 
         return ifOrArray //.slice(1, this.length)
