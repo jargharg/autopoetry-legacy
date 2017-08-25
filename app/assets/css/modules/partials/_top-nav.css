@@ -47,11 +47,13 @@
 		position: absolute;
 		transition: 0.2s all ease-out;
 		z-index: 100;
+		visibility: hidden;
 		a {
 			color: inherit;
 			display: inline-block;
 		}
 		&--expanded {
+			visibility: visible;
 			max-height: 400px;
 			padding: 10px;
 		}
