@@ -41,6 +41,7 @@ class PoemInput {
 			$(".poem-form")
 				.removeClass("poem-form__init")
 				.addClass("poem-form__bottom")
+			$(".top-nav__name").removeClass("hidden")
 			this.events(this.newWordSearch)
 			this.newWordSearch()
 		} else {
