@@ -3,11 +3,8 @@ body {
 	margin: 0;
 	font-family: $font-stack;
 	color: $primary-color-d2;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	background-color: $bg-color;
-	@mixin atMedium {
-		font-size: 1rem;
-	}
 }
 * {
     box-sizing: border-box;
