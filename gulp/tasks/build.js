@@ -23,7 +23,10 @@ gulp.task("copyGeneralFiles", ["deleteDocsFolder"], function() {
 	var pathsToCopy = [
 	"./app/**/*",
 	"!./app/index.html",
-	"!./app/assets/**",
+	"!./app/assets/js",
+	"!./app/assets/js/**",
+	"!./app/assets/css",
+	"!./app/assets/css/**",
 	"!./app/temp",
 	"!./app/temp/**"
 	];
