@@ -1,5 +1,11 @@
 .edit-mode {
 	.poem-title {
+		@mixin atMedium {
+			border-bottom: 1px solid transparent;
+		}
+		&::after {
+			opacity: 0;
+		}
 		& > h1 {
 			padding-left: 50px;
 			@mixin atMedium {
@@ -17,7 +23,7 @@
 		box-shadow: none;
 		& > li {
 			padding: 10px 35px 5px;
-			margin-bottom: 5px;
+			margin-bottom: 3px;
 			min-height: 40px;
 			user-select: none;
 			cursor: pointer;
@@ -27,14 +33,14 @@
 				padding: 10px 20px 5px;
 			}
 			&:first-child {
-				margin-top: 10px;
+				margin-top: 3px;
 			}
 			&:last-child {
 				border-radius: 0;
 			}
 			&:focus {
 				color: white;
-				background: $secondary-color;
+				background: $secondary-color-l1;
 				.poem-line__nav {
 					@mixin belowMedium {
 						color: white;
